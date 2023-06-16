@@ -1,0 +1,46 @@
+.menuCSS3 ul {
+  display: flex;
+  padding: 2;
+  margin: 2;
+  flex: 0 0 100%;
+  list-style: none;
+}
+.menuCSS3 a {
+  display: block;
+  padding: 0.9em;
+  background-color: #caf5b8;
+  text-decoration: none;
+  color: #191C26;
+}
+.menuCSS3 a:hover {
+  background-color: #7af180;
+}
+.mnu{
+  color: brown;
+  height: 1.em;
+}
+.menuCSS3 ul li ul {
+  display: none;
+}
+.menuCSS3 ul li a:hover + ul, .menuCSS3 ul li ul:hover {
+  display: block;
+}
+
+.menuCSS3 ul li {
+  padding-left: 2px;
+  border-radius: 10px;
+}
+.menuCSS3 ul li ul li{
+  padding-left: 2px;
+  border-radius: 10px;
+}
+.tit1{
+   color: #7af180;
+}
+.tit2{
+  color: #caf5b8;
+}
+.miSalida{
+  padding-right: 4px; 
+  color: #7af180;
+}

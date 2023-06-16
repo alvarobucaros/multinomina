@@ -1,0 +1,60 @@
+body{
+    background: #c6daec;
+}
+
+.fondo{
+    background: #aed3f3;
+}
+
+.miTituloForm{
+    color: darkgreen;
+    font-weight: bold;
+}
+.miSubTitulo{
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.mayuscula {
+    color: rgb(28, 114, 28);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.miForm{
+    width: auto;
+    border: #596c7d;
+    border-width: 2px;
+    border-color: #596c7d;
+    background: #cbf3ce;
+}
+
+.miInputText{
+    background: #dbecfb;
+    width: auto;
+}  
+.derecha{
+    text-align: right;
+}
+.centro{
+    text-align: center;
+}
+
+.tabs li {
+    list-style:none;
+    display:inline;
+}
+
+.tabs a {
+    padding:5px 20px;
+    display:inline-block;
+    background: #3c8dbc;
+    border-color: #ea0;
+    color:#fff;
+    text-decoration:none;
+}
+
+.tabs a.active {
+    background:#fff;
+    color:#000;
+}
