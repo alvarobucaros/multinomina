@@ -52,23 +52,25 @@
               <li><a href="#" class="nav-link px-2 ">Empleados</a>
                 <ul>
                   <li><a href="{{ route('empleados') }}" class="nav-link px-2 ">Empleados</a>
-                  <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Ingresos</a>
+                  <li><a href="{{ route('ingresos') }}" class="nav-link px-2 ">Ingresos</a>
                 </ul>
               </li>
               <li><a href="#" class="nav-link px-2 ">Liquidación</a>
                   <ul>
-                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Periódica</a></li>
-                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Primas</a></li>
-                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Cesantías</a></li>                     
+                      <li><a href="{{ route('liquidaciones') }}" class="nav-link px-2 ">Liquida nómina</a></li>                  
                       <li><a href="{{ route('coopfondos') }}" class="nav-link px-2 ">Cooperativas Fondos</a></li>
                       <li><a href="{{ route('embargos') }}" class="nav-link px-2 ">Embargos</a></li>
                       <li><a href="{{ route('horas_extras') }}" class="nav-link px-2 ">Horas Extras</a></li>
+                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Vacaciones</a></li>
+                      <li><a href="{{ route('licencias') }}" class="nav-link px-2 ">Licencias</a></li>
                   </ul>
               </li>
               <li><a href="#" class="nav-link px-2 ">Informes y consultas</a>
                   <ul>
-                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Lista de personal</a></li>
-                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Parafiscales</a></li>
+                    <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Desprendibles</a></li>
+                    <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Prenómina</a></li>        
+                    <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Lista de personal</a></li>
+                    <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Planilla Pila</a></li>
                   </ul>    
               </li>
                   <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Ayudas</a>

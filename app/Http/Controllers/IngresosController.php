@@ -14,7 +14,21 @@ class IngresosController extends Controller
     public function index()
     {
         $datos = Ingresos::where('ing_idEmpresa', auth()->user()->empresa)
-        ->orderBy('ing_tipo', 'asc', 'ing_titulo', 'asc')
+        ->join('empleados','empleados.id','=','ingresos.ing_idEmpleado')
+        ->join('cargos','cargos.id','=','ingresos.ing_idCargo')
+        ->join('dependencias','dependencias.id','=','ingresos.ing_idDependencia')
+        ->select('ingresos.id' ,  'ing_idEmpleado' , 'ing_fechaIngreso' , 
+        'ing_fechaRetiro' , 'ing_idCargo' , 'ing_idDependencia' , 
+        'ing_porcARL' , 'ing_EPS' , 'ing_AFP' , 'ing_encargo' , 'ing_estado' ,
+        'ing_idCargoEncargo' ,'ing_numeroContrato', 'empl_primerNombre', 
+        'empl_otroNombre', 'empl_primerApellido', 'empl_otroApellido',
+        'dep_nombre', 'car_nombre', 'car_salario')
+        ->where('empl_estado', '=', 'A')
+        ->where('car_estado', '=', 'A')
+        ->where('dep_estado', '=', 'A')
+     
+        ->orderBy('empl_primerNombre', 'asc', 'empl_otroNombre', 'asc',
+        'empl_primerApellido', 'asc','empl_otroApellido','asc')
         ->paginate(8);      
         return view('ingresos/index', compact('datos'));
     }

@@ -34,7 +34,7 @@ class CoopfondosController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */
+     */ 
     public function create()
     {
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)

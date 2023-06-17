@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\CargosController;
 use App\Http\Controllers\ConceptosController;
 use App\Http\Controllers\CoopfondosController;
@@ -12,6 +11,9 @@ use App\Http\Controllers\EmbargosController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\EmpresasController;
 use App\Http\Controllers\HorasExtrasController;
+use App\Http\Controllers\IngresosController;
+use App\Http\Controllers\LicenciasController;
+use App\Http\Controllers\LiquidacionesController;
 use App\Http\Controllers\ParametrosController;
 use App\Http\Controllers\TiposVariosController;
 use App\Http\Controllers\TercerosController;
@@ -92,16 +94,32 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('horas_extras/destroy/{id}', [HorasExtrasController::class, 'destroy'])->name('horas_extras/horas_extras.destroy');
     Route::get('horas_extras/export', [HorasExtrasController::class, 'export'])->name('horas_extras/horas_extras.export');
 
-    Route::get('/user', [UsersController::class, 'index'])->name('user'); 
-    Route::get('user/create', [UsersController::class, 'create'])->name('user/user.create');
-    Route::get('user/edit/{id}', [UsersController::class, 'edit'])->name('user/user.edit');
-    Route::post('user/update/{id}', [UsersController::class, 'update'])->name('user/user.update');
-    Route::get('user/show/{id}', [UsersController::class, 'show'])->name('user/user.show');
-    Route::post('user/store', [UsersController::class, 'store'])->name('user/user.store');
-    Route::delete('user/destroy/{id}', [UsersController::class, 'destroy'])->name('user/user.destroy');
-    Route::delete('user/export', [UsersController::class, 'export'])->name('user/user.export');
-    Route::get('user/changepwd/{id}', [UsersController::class, 'changepwd'])->name('user/user.changepwd');
-    
+    Route::get('ingresos', [IngresosController::class, 'index'])->name('ingresos'); 
+    Route::get('ingresos/create', [IngresosController::class, 'create'])->name('ingresos/ingresos.create');
+    Route::get('ingresos/edit/{id}', [IngresosController::class, 'edit'])->name('ingresos/ingresos.edit');
+    Route::post('ingresos/update/{id}', [IngresosController::class, 'update'])->name('ingresos/ingresos.update');
+    Route::get('ingresos/show/{id}', [IngresosController::class, 'show'])->name('ingresos/ingresos.show');
+    Route::post('ingresos/ingresos/store', [IngresosController::class, 'store'])->name('ingresos/ingresos.store');
+    Route::delete('ingresos/destroy/{id}', [IngresosController::class, 'destroy'])->name('ingresos/ingresos.destroy');
+    Route::get('ingresos/export', [IngresosController::class, 'export'])->name('ingresos/ingresos.export');
+
+    Route::get('licencias', [LicenciasController::class, 'index'])->name('licencias'); 
+    Route::get('licencias/create', [LicenciasController::class, 'create'])->name('licencias/licencias.create');
+    Route::get('licencias/edit/{id}', [LicenciasController::class, 'edit'])->name('licencias/licencias.edit');
+    Route::post('licencias/update/{id}', [LicenciasController::class, 'update'])->name('licencias/licencias.update');
+    Route::get('licencias/show/{id}', [LicenciasController::class, 'show'])->name('licencias/licencias.show');
+    Route::post('licencias/store', [LicenciasController::class, 'store'])->name('licencias/licencias.store');
+    Route::delete('licencias/destroy/{id}', [LicenciasController::class, 'destroy'])->name('licencias/licencias.destroy');
+    Route::delete('licencias/export', [LicenciasController::class, 'export'])->name('licencias/licencias.export');
+
+    Route::get('liquidaciones', [LiquidacionesController::class, 'index'])->name('liquidaciones'); 
+    Route::get('liquidaciones/create', [LiquidacionesController::class, 'create'])->name('liquidaciones/liquidaciones.create');
+    Route::get('liquidaciones/edit/{id}', [LiquidacionesController::class, 'edit'])->name('liquidaciones/liquidaciones.edit');
+    Route::post('liquidaciones/update/{id}', [LiquidacionesController::class, 'update'])->name('liquidaciones/liquidaciones.update');
+    Route::get('liquidaciones/show/{id}', [LiquidacionesController::class, 'show'])->name('liquidaciones/liquidaciones.show');
+    Route::post('liquidaciones/store', [LiquidacionesController::class, 'store'])->name('liquidaciones/liquidaciones.store');
+    Route::delete('liquidaciones/destroy/{id}', [LiquidacionesController::class, 'destroy'])->name('liquidaciones/liquidaciones.destroy');
+    Route::delete('liquidaciones/export', [LiquidacionesController::class, 'export'])->name('liquidaciones/liquidaciones.export');
 
    Route::get('parametros', [ParametrosController::class, 'index'])->name('parametros'); 
    Route::get('parametros/create', [ParametrosController::class, 'create'])->name('parametros/parametros.create');
@@ -120,7 +138,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('tiposvarios/destroy/{id}', [TiposVariosController::class, 'destroy'])->name('tiposvarios/tiposvarios.destroy');
     Route::get('tiposvarios/export', [TiposVariosController::class, 'export'])->name('tiposvarios/tiposvarios.export');
 
-
     Route::get('/terceros', [TercerosController::class, 'index'])->name('terceros'); 
     Route::get('terceros/create', [TercerosController::class, 'create'])->name('terceros/terceros.create');
     Route::get('terceros/edit/{id}', [TercerosController::class, 'edit'])->name('terceros/terceros.edit');
@@ -129,7 +146,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('terceros/store', [TercerosController::class, 'store'])->name('terceros/terceros.store');
     Route::delete('terceros/destroy/{id}', [TercerosController::class, 'destroy'])->name('terceros/terceros.destroy');
     Route::get('terceros/export', [TercerosController::class, 'export'])->name('terceros/terceros.export');
-
+  
+    Route::get('/user', [UsersController::class, 'index'])->name('user'); 
+    Route::get('user/create', [UsersController::class, 'create'])->name('user/user.create');
+    Route::get('user/edit/{id}', [UsersController::class, 'edit'])->name('user/user.edit');
+    Route::post('user/update/{id}', [UsersController::class, 'update'])->name('user/user.update');
+    Route::get('user/show/{id}', [UsersController::class, 'show'])->name('user/user.show');
+    Route::post('user/store', [UsersController::class, 'store'])->name('user/user.store');
+    Route::delete('user/destroy/{id}', [UsersController::class, 'destroy'])->name('user/user.destroy');
+    Route::delete('user/export', [UsersController::class, 'export'])->name('user/user.export');
+    Route::get('user/changepwd/{id}', [UsersController::class, 'changepwd'])->name('user/user.changepwd');
+    
     Route::get('/conceptos', [ConceptosController::class, 'index'])->name('conceptos'); 
     Route::get('/create', [ConceptosController::class, 'create'])->name('conceptos/conceptos.create');
     Route::get('/edit/{id}', [ConceptosController::class, 'edit'])->name('conceptos/conceptos.edit');

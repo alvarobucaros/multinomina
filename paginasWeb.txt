@@ -1,2 +1,23 @@
 Documentacion:
 https://www.gerencie.com/liquidacion-de-la-nomina-html
+
+
+
+
+Colocar en git
+
+
+git init 
+git add . 
+git commit -m "mi tarea"  
+git remote add origin https://github.com/alvarobucaros/multinomina.git
+git push   origin master  
+
+appCien1000+$  appente
+https://www.youtube.com/watch?v=aDIX16iwINY
+
+   "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^10.10",
+   }

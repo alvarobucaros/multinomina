@@ -1,0 +1,109 @@
+@extends('layouts.app-master')
+
+@section('content')
+    <div class="bg-light p-5 rounded">
+        @auth
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @if ($mensaje = Session::get('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ $mensaje }}
+                            </div>
+                        @endif
+                    </div>
+                </div> 
+             
+                <p>
+                    @if (auth()->user()->profile == 'A') 
+                        <a class="btn btn-primary btn-sm" href="{{ route('ingresos/ingresos.create')}}">
+                        <i class="fa-solid fa-plus"></i> Nuevo</a>
+                   @endif
+
+                    <a class="btn btn-success btn-sm" href="{{ route('ingresos/ingresos.export')}}">
+                    <i class="fa-solid fa-file-excel"></i> A Excel</a>
+                    <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
+                        <i class="fa-solid fa-file-excel"></i> Menú </a>
+                    <span class="miTituloForm"> ingresos</span>
+                </p>
+                <p class="card-text">
+                    <div class="table table-resposive-sm">
+                        <table class="table table-sm table-bordered table-striped table-hover">
+                            <thead class="table-success miThead">
+                                <th>Nombre</th>
+                                <th>Cargo</th>
+                                <th>Dependencia</th>
+                                <th>FchIngreso</th>
+                                <th>FchRetiro</th>                                
+                                <th>EPS</th>
+                                <th>APF</th>
+                                <th>ARL</th>
+                                <th>Contrato</th>
+                                <th>Salario</th>
+                                <th>Estado</th>
+                                @if (auth()->user()->profile == 'A') 
+                                    <th colspan="2" >Acciones</th>
+                                @endif                               
+                            </thead>
+{{--  ,  ,  , ing_encargo , ing_idCargoEncargo ,  ,   --}}
+                <tbody>
+                    @foreach ($datos as $item)  
+                        <tr>
+                            <td>{{$item->empl_primerApellido}} {{$item->empl_otroApellido}}
+                                {{$item->empl_primerNombre}} {{$item->empl_otroNombre}}</td>
+                            <td>{{$item->car_nombre}}</td>
+                            <td>{{$item->dep_nombre}}</td>
+                            <td>{{$item->ing_fechaIngreso}}</td>
+                            <td>{{$item->ing_fechaRetiro}}</td>
+                            <td>{{$item->ing_EPS}}</td>
+                            <td>{{$item->ing_AFP}}</td>
+                            <td>{{$item->ing_porcARL}}</td>
+                            <td>{{$item->ing_numeroContrato}}</td>
+                            <td>{{$item->car_salario}}</td>
+                          
+                            <td class="centro">{{$item->ing_estado}}</td>
+                            @if (auth()->user()->profile == 'A') 
+                            <td class="mithcmd">
+                                <form action="{{ route('ingresos/ingresos.edit',$item->id)}}" method="GET">
+                                    <button class="btn btn-sm btn-primary">
+                                    <span class="fa-solid fa-pen"></span> Edita
+                                    </button>         
+                                </form>
+                            </td>
+                            <td class="mithcmd">
+                                <form action="{{ route('ingresos/ingresos.show',$item->id)}}" method="GET">
+                                    <button class="btn btn-sm btn-danger">
+                                    <span class="fa-solid fa-trash-can"></span> eliminar</button>
+                                    </button>         
+                                </form>      
+                            </td>
+                            @endif
+
+                            <td style='display: none'>
+                                {{$item->id}}
+                                {{$item->ing_idEmpresa}}
+                            </td>                          
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ $datos->links()}}
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+
+        </div>
+        @endauth
+
+        @guest
+        <h1>Homepage</h1>
+        <p class="lead">Estás viendo la página de inicio. Inicie sesión para ver los contenidos.</p>
+        @endguest
+    </div>
+@endsection

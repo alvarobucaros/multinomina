@@ -45,6 +45,12 @@
                         <input type="text" name="par_auxTransporte" id="par_auxTransporte" class="form_control "
                         required value="{{$parametros->par_auxTransporte}}">
                     </div>
+                    <div class="input mb-1">
+                        <label for="par_diasVacaciones" class="col-md-2 control-label">Días Vacaciones:</label>
+                        <input type="text" name="par_diasVacaciones" id="par_diasVacaciones" class="form_control "
+                        required value="{{$parametros->par_diasVacaciones}}">
+                    
+                    </div>
                 </div>       
             </div>
         </div>
