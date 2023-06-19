@@ -28,7 +28,7 @@ class EmbargosController extends Controller
         ->orderBy('empl_primerNombre')
         ->paginate(8);   
         return view('embargos/index', compact('datos'));  
-    }
+    } 
  
     /**
      * Show the form for creating a new resource.

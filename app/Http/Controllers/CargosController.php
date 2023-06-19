@@ -111,4 +111,7 @@ class CargosController extends Controller
      public function export (){
 
      }
+     public function import (){
+      
+     }
 }

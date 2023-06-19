@@ -84,7 +84,10 @@ class DependenciasController extends Controller
         return redirect()->route("dependencias")->with("success","Eliminado correctamente");
     }
 
-     public function export (){
+    public function export (){
 
-     }
+    }
+    public function import (){
+     
+    }
 }

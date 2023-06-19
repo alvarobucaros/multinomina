@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Exports\ConceptosExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 use App\Models\Conceptos;
@@ -102,35 +103,10 @@ class ConceptosController extends Controller
     }
 
      public function export (){
-
+        return Excel::download(new ConceptosExport, 'conceptos.xlsx');
+ 
      }
-
-    //  https://www.youtube.com/watch?v=LWLN4p7Cn4E
-    // {
-    //     $conceptos = Conceptos::orderBy('cp_titulo', 'asc')->toArray();
-    //     $conceptos_array[] = array('Titulo', 'Descripcion', 'Fecha Desde',
-    //     'Fecha Hasta', 'Valor Cobro', 'Cuotas', 'Valor Cuota', 
-    //     'Aplica', 'Estado');
-    //     foreach ($conceptos as $concepto){
-    //         $conceptos_array[] = array('Titulo'=>$concepto->cp_titulo, 
-    //         'Descripcion'=>$concepto->cp_descripcion, 
-    //         'Fecha Desde'=>$concepto->cp_fechaDesde, 
-    //         'Fecha Hasta'=>$concepto->cp_fechaHasta, 
-    //         'Valor Cobro'=>$concepto->cp_tipo, 
-    //         'Cuotas'=>$concepto->cp_valorDefault,
-    //         'Valor Cuota'=>$concepto->cp_porcentajeDefault, 
-    //         'Estado'=>$concepto->cp_estado, 
-    //         'Aplica'=>$concepto->cp_aplica);
-    //     }
-        
-    //     Excel::create('Conceptos Data', function($excel) 
-    //     use($conceptos_array){
-    //     $excel->setTitle('Conceptos Cobros');
-    //     $excel->sheet('Conceptos Cobros', function($sheet)
-    //     use ($conceptos_array){
-    //     $sheet->fromArray($conceptos_array,null,'A1',
-    // false, false); });
-    // })->download('xlsx');
-
-    // }
+     public function import (){
+        return Excel::download(new ConceptosExport, 'conceptos.xlsx');
+     }
 }

@@ -66,7 +66,7 @@
 </div>
 
 <div class="mb-1">
-    <a href="{{route('home.index')}}" class="btn btn-sm btn-info"> Regresa</a>
+    <a href="{{route('home.index')}}" class="btn btn-sm btn-info"> Menú</a>
    @if (auth()->user()->profile == 'A') 
     <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>  
    @endif

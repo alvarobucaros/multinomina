@@ -29,7 +29,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     Route::view('/home/index', 'home')->name('home');
 
- 
+    Route::view('/home/importaXLS', 'home')->name('importaXLS');
+    
     Route::get('cargos', [CargosController::class, 'index'])->name('cargos'); 
     Route::get('cargos/create', [CargosController::class, 'create'])->name('cargos/cargos.create');
     Route::get('cargos/edit/{id}', [CargosController::class, 'edit'])->name('cargos/cargos.edit');
@@ -38,6 +39,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('cargos/cargos/store', [CargosController::class, 'store'])->name('cargos/cargos.store');
     Route::delete('cargos/destroy/{id}', [CargosController::class, 'destroy'])->name('cargos/cargos.destroy');
     Route::get('cargos/export', [CargosController::class, 'export'])->name('cargos/cargos.export');
+    Route::get('cargos/import', [CargosController::class, 'import'])->name('cargos/cargos.import');
+
+    Route::get('/conceptos', [ConceptosController::class, 'index'])->name('conceptos'); 
+    Route::get('/create', [ConceptosController::class, 'create'])->name('conceptos/conceptos.create');
+    Route::get('/edit/{id}', [ConceptosController::class, 'edit'])->name('conceptos/conceptos.edit');
+    Route::post('/update/{id}', [ConceptosController::class, 'update'])->name('conceptos/conceptos.update');
+    Route::get('/show/{id}', [ConceptosController::class, 'show'])->name('conceptos/conceptos.show');
+    Route::post('/store', [ConceptosController::class, 'store'])->name('conceptos/conceptos.store');
+    Route::delete('/destroy/{id}', [ConceptosController::class, 'destroy'])->name('conceptos/conceptos.destroy');
+    Route::get('conceptos/export', [ConceptosController::class, 'export'])->name('conceptos/conceptos.export');
+    Route::get('conceptos/import', [ConceptosController::class, 'import'])->name('conceptos/conceptos.import');
 
     Route::get('coopfondos', [CoopfondosController::class, 'index'])->name('coopfondos'); 
     Route::get('coopfondos/create', [CoopfondosController::class, 'create'])->name('coopfondos/coopfondos.create');
@@ -47,17 +59,19 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('coopfondos/coopfondos/store', [CoopfondosController::class, 'store'])->name('coopfondos/coopfondos.store');
     Route::delete('coopfondos/destroy/{id}', [CoopfondosController::class, 'destroy'])->name('coopfondos/coopfondos.destroy');
     Route::get('coopfondos/export', [CoopfondosController::class, 'export'])->name('coopfondos/coopfondos.export');
+    Route::get('coopfondos/import', [ConceptosController::class, 'import'])->name('coopfondos/coopfondos.import');
 
+    Route::get('dependencias', [DependenciasController::class, 'index'])->name('dependencias'); 
+    Route::get('dependencias/create', [DependenciasController::class, 'create'])->name('dependencias/dependencias.create');
+    Route::get('dependencias/edit/{id}', [DependenciasController::class, 'edit'])->name('dependencias/dependencias.edit');
+    Route::post('dependencias/update/{id}', [DependenciasController::class, 'update'])->name('dependencias/dependencias.update');
+    Route::get('dependencias/show/{id}', [DependenciasController::class, 'show'])->name('dependencias/dependencias.show');
+    Route::post('dependencias/dependencias/store', [DependenciasController::class, 'store'])->name('dependencias/dependencias.store');
+    Route::delete('dependencias/destroy/{id}', [DependenciasController::class, 'destroy'])->name('dependencias/dependencias.destroy');
+     Route::get('dependencias/export', [DependenciasController::class, 'export'])->name('dependencias/dependencias.export');
+    Route::post('dependencias/import', [DependenciasController::class, 'import'])->name('dependencias/dependencias.import');
+    Route::get('dependencias/cargaxls', [DependenciasController::class, 'cargaxls'])->name('dependencias/dependencias.cargaxls');
 
-    Route::get('dependencias', [dependenciasController::class, 'index'])->name('dependencias'); 
-    Route::get('dependencias/create', [dependenciasController::class, 'create'])->name('dependencias/dependencias.create');
-    Route::get('dependencias/edit/{id}', [dependenciasController::class, 'edit'])->name('dependencias/dependencias.edit');
-    Route::post('dependencias/update/{id}', [dependenciasController::class, 'update'])->name('dependencias/dependencias.update');
-    Route::get('dependencias/show/{id}', [dependenciasController::class, 'show'])->name('dependencias/dependencias.show');
-    Route::post('dependencias/dependencias/store', [dependenciasController::class, 'store'])->name('dependencias/dependencias.store');
-    Route::delete('dependencias/destroy/{id}', [dependenciasController::class, 'destroy'])->name('dependencias/dependencias.destroy');
-    Route::get('dependencias/export', [dependenciasController::class, 'export'])->name('dependencias/dependencias.export');
- 
     Route::get('embargos', [EmbargosController::class, 'index'])->name('embargos'); 
     Route::get('embargos/create', [EmbargosController::class, 'create'])->name('embargos/embargos.create');
     Route::get('embargos/edit/{id}', [EmbargosController::class, 'edit'])->name('embargos/embargos.edit');
@@ -75,7 +89,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('empleados/empleados/store', [EmpleadosController::class, 'store'])->name('empleados/empleados.store');
     Route::delete('empleados/destroy/{id}', [EmpleadosController::class, 'destroy'])->name('empleados/empleados.destroy');
     Route::get('empleados/export', [EmpleadosController::class, 'export'])->name('empleados/empleados.export');
-
+    Route::post('empleados/import', [EmpleadosController::class, 'import'])->name('empleados/empleados.import');
+    Route::get('empleados/cargaxls', [EmpleadosController::class, 'cargaxls'])->name('empleados/empleados.cargaxls');
+  
     Route::get('/miempresa', [EmpresasController::class, 'miempresa'])->name('miempresa'); 
     Route::get('empresas', [EmpresasController::class, 'index'])->name('empresas'); 
     Route::get('empresas/create', [EmpresasController::class, 'create'])->name('empresas/empresas.create');
@@ -146,6 +162,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('terceros/store', [TercerosController::class, 'store'])->name('terceros/terceros.store');
     Route::delete('terceros/destroy/{id}', [TercerosController::class, 'destroy'])->name('terceros/terceros.destroy');
     Route::get('terceros/export', [TercerosController::class, 'export'])->name('terceros/terceros.export');
+    Route::post('terceros/import', [TercerosController::class, 'import'])->name('terceros/terceros.import');
+    Route::get('terceros/cargaxls', [TercerosController::class, 'cargaxls'])->name('terceros/terceros.cargaxls');
   
     Route::get('/user', [UsersController::class, 'index'])->name('user'); 
     Route::get('user/create', [UsersController::class, 'create'])->name('user/user.create');
@@ -157,15 +175,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('user/export', [UsersController::class, 'export'])->name('user/user.export');
     Route::get('user/changepwd/{id}', [UsersController::class, 'changepwd'])->name('user/user.changepwd');
     
-    Route::get('/conceptos', [ConceptosController::class, 'index'])->name('conceptos'); 
-    Route::get('/create', [ConceptosController::class, 'create'])->name('conceptos/conceptos.create');
-    Route::get('/edit/{id}', [ConceptosController::class, 'edit'])->name('conceptos/conceptos.edit');
-    Route::post('/update/{id}', [ConceptosController::class, 'update'])->name('conceptos/conceptos.update');
-    Route::get('/show/{id}', [ConceptosController::class, 'show'])->name('conceptos/conceptos.show');
-    Route::post('/store', [ConceptosController::class, 'store'])->name('conceptos/conceptos.store');
-    Route::delete('/destroy/{id}', [ConceptosController::class, 'destroy'])->name('conceptos/conceptos.destroy');
-    Route::get('conceptos/export', [ConceptosController::class, 'export'])->name('conceptos/conceptos.export');
-
     Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes

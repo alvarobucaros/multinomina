@@ -15,15 +15,19 @@
                     </div>
                 </div>                
                 <p>
+                    <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
+                        <i class="fa-solid fa-plus"></i> Menú </a>
                     @if (auth()->user()->profile == 'A') 
                         <a class="btn btn-primary btn-sm" href="{{ route('conceptos/conceptos.create')}}">
                         <i class="fa-solid fa-plus"></i> Nuevo</a>
-                   @endif
+                        <a class="btn btn-warning btn-sm" href="{{ route('conceptos/conceptos.import')}}">
+                        <i class="fa-solid fa-plus"></i> Importa</a>
+                    @endif
+                    @if (auth()->user()->profile != 'C') 
+                        <a class="btn btn-success btn-sm" href="{{ route('conceptos/conceptos.export')}}">
+                        <i class="fa-solid fa-plus"></i> A Excel</a>
+                    @endif
 
-                    <a class="btn btn-success btn-sm" href="{{ route('conceptos/conceptos.export')}}">
-                    <i class="fa-solid fa-file-excel"></i> A Excel</a>
-                    <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
-                        <i class="fa-solid fa-file-excel"></i> Menú </a>
                     <span class="miTituloForm"> CONCEPTOS</span>
                 </p>
                 <p class="card-text">

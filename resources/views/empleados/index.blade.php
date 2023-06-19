@@ -15,12 +15,18 @@
                     </div>
                 </div> 
                 <p>
-                    <a class="btn btn-primary btn-sm" href="{{ route('empleados/empleados.create')}}">
-                    <i class="fa-solid fa-plus"></i> Nuevo</a>
-                    <a class="btn btn-success btn-sm" href="{{ route('empleados/empleados.export')}}">
-                    <i class="fa-solid fa-file-excel"></i> A Excel</a>
                     <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
-                        <i class="fa-solid fa-file-excel"></i> Menú </a>
+                        <i class="fa-solid fa-plus"></i> Menú </a>
+                    @if (auth()->user()->profile == 'A') 
+                        <a class="btn btn-primary btn-sm" href="{{ route('empleados/empleados.create')}}">
+                        <i class="fa-solid fa-plus"></i> Nuevo</a>
+                        <a class="btn btn-warning btn-sm" href="{{ route('empleados/empleados.cargaxls')}}">
+                        <i class="fa-solid fa-plus"></i> Importa</a>
+                    @endif
+                    @if (auth()->user()->profile != 'C') 
+                        <a class="btn btn-success btn-sm" href="{{ route('empleados/empleados.export')}}">
+                        <i class="fa-solid fa-plus"></i> A Excel</a>
+                    @endif
                     <span class="miTituloForm"> EMPLEADOS </span>
                 </p>               
                 <p>

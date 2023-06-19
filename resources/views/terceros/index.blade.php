@@ -15,15 +15,18 @@
                     </div>
                 </div>                
                 <p>
+                    <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
+                        <i class="fa-solid fa-plus"></i> Menú </a>
                     @if (auth()->user()->profile == 'A') 
                         <a class="btn btn-primary btn-sm" href="{{ route('terceros/terceros.create')}}">
                         <i class="fa-solid fa-plus"></i> Nuevo</a>
-                   @endif
-
-                    <a class="btn btn-success btn-sm" href="{{ route('terceros/terceros.export')}}">
-                    <i class="fa-solid fa-file-excel"></i> A Excel</a>
-                    <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
-                        <i class="fa-solid fa-file-excel"></i> Menú </a>
+                        <a class="btn btn-warning btn-sm" href="{{ route('terceros/terceros.import')}}">
+                        <i class="fa-solid fa-plus"></i> Importa</a>
+                    @endif
+                    @if (auth()->user()->profile != 'C') 
+                        <a class="btn btn-success btn-sm" href="{{ route('terceros/terceros.export')}}">
+                        <i class="fa-solid fa-plus"></i> A Excel</a>
+                    @endif
                     <span class="miTituloForm"> TERCEROS</span>
                 </p>
                 <p class="card-text">
@@ -54,7 +57,7 @@
                                         <td >{{$item->ter_ciudad}}</td>
                                         <td >{{$item->ter_email}}</td>
                                         <td >{{$item->ter_telefono}}</td>
-                                        <td >{{$item->ter_estado}} {{$item->id}}</td>
+                                        <td class="centro">{{$item->ter_estado}}</td>
                                         @if (auth()->user()->profile == 'A') 
                                         <td class="mithcmd">
                                             <form action="{{ route('terceros/terceros.edit',$item->id)}}" method="GET">

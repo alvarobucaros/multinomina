@@ -15,15 +15,14 @@
                     </div>
                 </div>                
                 <p>
+                    <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
+                        <i class="fa-solid fa-file-excel"></i> Menú </a>
                     @if (auth()->user()->profile == 'A') 
                         <a class="btn btn-primary btn-sm" href="{{ route('tiposvarios/tiposvarios.create')}}">
                         <i class="fa-solid fa-plus"></i> Nuevo</a>
-                   @endif
-
-                    <a class="btn btn-success btn-sm" href="{{ route('tiposvarios/tiposvarios.export')}}">
-                    <i class="fa-solid fa-file-excel"></i> A Excel</a>
-                    <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
-                        <i class="fa-solid fa-file-excel"></i> Menú </a>
+                        <a class="btn btn-success btn-sm" href="{{ route('tiposvarios/tiposvarios.export')}}">
+                        <i class="fa-solid fa-file-excel"></i> A Excel</a>
+                    @endif
                     <span class="miTituloForm"> TIPOS VARIOS</span>
                 </p>
                 <p class="card-text">

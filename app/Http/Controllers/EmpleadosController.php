@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Exports\EmpleadosExport;
+use App\Imports\EmpleadosImport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Empleados;
 
 class EmpleadosController extends Controller
@@ -111,7 +113,22 @@ class EmpleadosController extends Controller
         return redirect()->route("empleados")->with("success","Eliminado correctamente");
     }
 
-     public function export (){
+    public function export() 
+    {
+        return Excel::download(new EmpleadosExport, 'empleados.xlsx');
+       // return Excel::download(new EmpleadosExport, 'empleados.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+    }
 
-     }
+    public function cargaxls()
+    {
+        return view('empleados/cargaxls');
+        // Excel::import(new UsersImport, request()->file('your_file'));
+    }
+    
+    public function import() 
+    {
+        Excel::import(new EmpleadosImport, request()->file('file'));        
+        return redirect('/')->with('success', 'All good!');
+    }
+
 }
