@@ -10,9 +10,7 @@ use App\Models\Empleados;
 
 class EmpleadosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+ 
     public function index()
     {
         $datos = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
@@ -116,19 +114,19 @@ class EmpleadosController extends Controller
     public function export() 
     {
         return Excel::download(new EmpleadosExport, 'empleados.xlsx');
-       // return Excel::download(new EmpleadosExport, 'empleados.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        return redirect()->route("empleados")->with("success","Exportado correctamente");
     }
 
     public function cargaxls()
     {
         return view('empleados/cargaxls');
-        // Excel::import(new UsersImport, request()->file('your_file'));
-    }
+     }
     
     public function import() 
     {
         Excel::import(new EmpleadosImport, request()->file('file'));        
-        return redirect('/')->with('success', 'All good!');
+        return redirect()->route("empleados")->with("success","Importado correctamente");
+   
     }
 
 }

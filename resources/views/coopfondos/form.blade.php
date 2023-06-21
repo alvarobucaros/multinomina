@@ -33,15 +33,16 @@
     value="{{$coopfondos->cof_valorTotal}}">
 </div>
 <div class="input mb-1">
-    <label for="cof_valorCuota" class="col-md-2 control-label">Valor Cuota:</label>
-    <input type="text" name="cof_valorCuota" id="cof_valorCuota" class="form_control col-md-2" 
-    maxlength="10" required value="{{$coopfondos->cof_valorCuota}}">
-</div>     
-<div class="input mb-1">
     <label for="col_plazo" class="col-md-2 control-label">Plazo:</label>
     <input type="text" name="col_plazo" id="col_plazo" class="form_control col-md-2" 
     maxlength="10" required value="{{$coopfondos->col_plazo}}">
 </div> 
+<div class="input mb-1">
+    <label for="cof_valorCuota" class="col-md-2 control-label">Valor Cuota:</label>
+    <input type="text" name="cof_valorCuota" id="cof_valorCuota" class="form_control col-md-2" 
+    maxlength="10" required value="{{$coopfondos->cof_valorCuota}}">
+</div>     
+
 
 <div class="input mb-1">
     <label for="cof_saldo" class="col-md-2 control-label">Saldo:</label>

@@ -76,9 +76,7 @@
               <li><a href="#" class="nav-link px-2 ">Ayudas</a>
                 <ul>
                   <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Documentación</a></li>
-                  @if (auth()->user()->profile == 'A') 
-                    <li><a href="{{ route('importaXLS') }}" class="nav-link px-2 ">Carga Masiva</a></li>
-                  @endif
+
                 </ul>
               </li>
            

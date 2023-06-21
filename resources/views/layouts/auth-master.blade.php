@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Alvaro Ortiz C.">
     <meta name="generator" content="AortizC 0.1.0">
-    <title>Multi Cobros</title>
+    <title>Multi Nóminas</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">

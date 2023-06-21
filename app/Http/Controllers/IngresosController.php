@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Ingresos;
+use App\Models\TiposVarios;
+use App\Models\Empleados;
+use App\Models\Cargos;
+use App\Models\Dependencias;
 
 class IngresosController extends Controller
 {
@@ -13,6 +17,13 @@ class IngresosController extends Controller
      */
     public function index()
     {
+        $tipos = TiposVarios::where('tt_idEmpresa', auth()->user()->empresa)
+        ->select('id','tt_clase', 'tt_codigo')
+        ->where('tt_estado','A')
+        ->whereIn('tt_clase',['AF','EP','FP'])
+        ->orderBy("tt_clase")
+        ->orderBy("tt_codigo")->get();
+
         $datos = Ingresos::where('ing_idEmpresa', auth()->user()->empresa)
         ->join('empleados','empleados.id','=','ingresos.ing_idEmpleado')
         ->join('cargos','cargos.id','=','ingresos.ing_idCargo')
@@ -25,12 +36,11 @@ class IngresosController extends Controller
         'dep_nombre', 'car_nombre', 'car_salario')
         ->where('empl_estado', '=', 'A')
         ->where('car_estado', '=', 'A')
-        ->where('dep_estado', '=', 'A')
-     
+        ->where('dep_estado', '=', 'A')     
         ->orderBy('empl_primerNombre', 'asc', 'empl_otroNombre', 'asc',
         'empl_primerApellido', 'asc','empl_otroApellido','asc')
         ->paginate(8);      
-        return view('ingresos/index', compact('datos'));
+        return view('ingresos/index', compact('datos','tipos'));
     }
 
     /**
@@ -38,9 +48,34 @@ class IngresosController extends Controller
      */
     public function create()
     {
+        $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
+        ->where('empl_estado','A')
+        ->orderBy("empl_primerApellido")
+        ->orderBy("empl_primerNombre")->get();
+
+        $cargos = Cargos::where('car_idEmpresa', auth()->user()->empresa)
+        ->select('id','car_nombre','car_salario')
+        ->where('car_estado','A')
+        ->orderBy("car_nombre")->get();
+ 
+        $dependencias = Dependencias::where('dep_idEmpresa', auth()->user()->empresa)
+        ->select('id','dep_nombre')
+        ->where('dep_estado','A')
+        ->orderBy("dep_nombre")->get();
+
+        $tipos = TiposVarios::where('tt_idEmpresa', auth()->user()->empresa)
+        ->select('id','tt_clase', 'tt_codigo')
+        ->where('tt_estado','A')
+        ->whereIn('tt_clase',['AF','EP','FP'])
+        ->orderBy("tt_clase")
+        ->orderBy("tt_codigo")->get();
+            
         $ingresos = new Ingresos();
         $ingresos->ing_idEmpresa = auth()->user()->empresa;
-        return view('ingresos/agregar', compact('ingresos'));
+        $ingresos->ing_encargo = 'N';
+        $ingresos->ing_estado = 'A';
+        return view('ingresos/agregar',
+        compact('ingresos','empleados', 'cargos', 'dependencias','tipos'));
     }
 
     /**
@@ -110,7 +145,6 @@ class IngresosController extends Controller
         $ingresos->delete();
         return redirect()->route("ingresos")->with("success","Eliminado correctamente");
     }
-
      public function export (){
 
      }

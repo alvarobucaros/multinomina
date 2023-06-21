@@ -32,13 +32,10 @@
     @include('layouts.partials.footer')
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
     @endauth
+    <div>
+      @yield('scripts')
+    </div>
   </body>
-  <script> 
-                
-    $(document).ready(function(){
-        
-    });
-  
-  </script>
+
   </html>
 </html>

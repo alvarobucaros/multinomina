@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cargos;
-use App\Models\TiposVarios;
 use Illuminate\Http\Request;
+use App\Exports\CargosExport;
+use App\Imports\CargosImport;
+use App\Models\TiposVarios;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Cargos;
+
 
 class CargosController extends Controller
 {
@@ -109,9 +113,16 @@ class CargosController extends Controller
     }
 
      public function export (){
-
+        return Excel::download(new CargosExport, 'cargos.xlsx');
      }
+
+     public function cargaxls()
+     {
+         return view('cargos/cargaxls');
+    }
+
      public function import (){
-      
+        Excel::import(new CargosImport, request()->file('file'));        
+        return redirect()->route("cargos")->with("success","Carga correcta");
      }
 }

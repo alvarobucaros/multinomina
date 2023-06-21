@@ -5,18 +5,14 @@ namespace App\Imports;
 use App\Models\Empleados;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class EmpleadosImport implements ToModel, WithHeadingRow
+class EmpleadosImport implements ToModel, WithHeadingRow 
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+ 
     public function model(array $row)
     {
+       // dd($row);
         return new Empleados([
         'empl_idEmpresa'  => auth()->user()->empresa,
         'empl_primerNombre' => $row['empl_primerNombre'],

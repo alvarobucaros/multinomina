@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dependencias;
 use Illuminate\Http\Request;
+use App\Exports\DependenciasExport;
+use App\Imports\DependenciasImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Dependencias;
+
 
 class DependenciasController extends Controller
 {
@@ -84,10 +88,22 @@ class DependenciasController extends Controller
         return redirect()->route("dependencias")->with("success","Eliminado correctamente");
     }
 
-    public function export (){
 
+    public function export() 
+    {
+        return Excel::download(new DependenciasExport, 'dependencias.xlsx');
+        return redirect()->route("dependencias")->with("success","Exportado correctamente");
     }
-    public function import (){
-     
+
+    public function cargaxls()
+    {
+        return view('dependencias/cargaxls');
+     }
+    
+    public function import() 
+    {
+        Excel::import(new DependenciasImport, request()->file('file'));        
+        return redirect()->route("dependencias")->with("success","Importado correctamente");
+   
     }
 }

@@ -25,8 +25,9 @@
                     <i class="fa-solid fa-file-excel"></i> A Excel</a>
                     <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
                         <i class="fa-solid fa-file-excel"></i> Menú </a>
-                    <span class="miTituloForm"> ingresos</span>
+                    <span class="miTituloForm"> INGRESOS</span>
                 </p>
+              
                 <p class="card-text">
                     <div class="table table-resposive-sm">
                         <table class="table table-sm table-bordered table-striped table-hover">
@@ -38,7 +39,7 @@
                                 <th>FchRetiro</th>                                
                                 <th>EPS</th>
                                 <th>APF</th>
-                                <th>ARL</th>
+                                <th>ARL  (%)</th>
                                 <th>Contrato</th>
                                 <th>Salario</th>
                                 <th>Estado</th>
@@ -46,7 +47,7 @@
                                     <th colspan="2" >Acciones</th>
                                 @endif                               
                             </thead>
-{{--  ,  ,  , ing_encargo , ing_idCargoEncargo ,  ,   --}}
+
                 <tbody>
                     @foreach ($datos as $item)  
                         <tr>
@@ -56,9 +57,40 @@
                             <td>{{$item->dep_nombre}}</td>
                             <td>{{$item->ing_fechaIngreso}}</td>
                             <td>{{$item->ing_fechaRetiro}}</td>
-                            <td>{{$item->ing_EPS}}</td>
-                            <td>{{$item->ing_AFP}}</td>
-                            <td>{{$item->ing_porcARL}}</td>
+                            <td>
+                                <select name="ing_EPS" id="ing_EPS"  class="form_control ">
+                                    @if(!empty($tipos))
+                                        @foreach ($tipos as $tipo)                               
+                                            <option value="{{$tipo->id}}" @selected($tipo->id == $item->ing_EPS)>
+                                                {{$tipo->codigo}}   </option>
+                                        @endforeach                    
+                                    @endif                                     
+                                </select>
+                            </td>
+
+                            <td>
+                                <select name="ing_AFP" id="ing_AFP"  class="form_control ">
+                                    @if(!empty($tipos))
+                                        @foreach ($tipos as $tipo)                               
+                                            <option value="{{$tipo->id}}" @selected($tipo->id == $item->ing_AFP)>
+                                                {{$tipo->codigo}}   </option>
+                                        @endforeach                    
+                                    @endif                                     
+                                </select>
+                            </td>                            
+                            <td>
+                                <select name="ing_ARL" id="ing_ARL"  class="form_control ">
+                                    @if(!empty($tipos))
+                                        @foreach ($tipos as $tipo)                               
+                                            <option value="{{$tipo->id}}" @selected($tipo->id == $item->ing_ARL)>
+                                                {{$tipo->codigo}}   </option>
+                                        @endforeach                    
+                                    @endif                                     
+                                </select>
+                                {{$item->ing_porcARL}}
+                            </td>                             
+
+                            
                             <td>{{$item->ing_numeroContrato}}</td>
                             <td>{{$item->car_salario}}</td>
                           
@@ -75,7 +107,7 @@
                                 <form action="{{ route('ingresos/ingresos.show',$item->id)}}" method="GET">
                                     <button class="btn btn-sm btn-danger">
                                     <span class="fa-solid fa-trash-can"></span> eliminar</button>
-                                    </button>         
+                                    </button>          
                                 </form>      
                             </td>
                             @endif

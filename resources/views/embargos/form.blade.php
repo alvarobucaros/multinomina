@@ -56,5 +56,4 @@
                     <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>
                 </div> 
 
-                <script src="{!! url('js/app/embargos.js') !!}"></script>
-              
+           

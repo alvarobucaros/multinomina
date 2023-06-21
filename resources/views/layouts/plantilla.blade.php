@@ -16,7 +16,12 @@
     </div>     
 </body>
 
-<script>                    
+@yield('scripts') 
+
+{{--
+  @yield('scripts') 
+
+  <script>                    
   $(document).ready(function(){
 
   });
@@ -32,5 +37,5 @@
         }
     });
 
-</script>
+</script> --}}
 </html>

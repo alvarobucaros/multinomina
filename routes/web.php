@@ -39,7 +39,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('cargos/cargos/store', [CargosController::class, 'store'])->name('cargos/cargos.store');
     Route::delete('cargos/destroy/{id}', [CargosController::class, 'destroy'])->name('cargos/cargos.destroy');
     Route::get('cargos/export', [CargosController::class, 'export'])->name('cargos/cargos.export');
-    Route::get('cargos/import', [CargosController::class, 'import'])->name('cargos/cargos.import');
+    Route::post('cargos/import', [CargosController::class, 'import'])->name('cargos/cargos.import');
+    Route::get('cargos/cargaxls', [CargosController::class, 'cargaxls'])->name('cargos/cargos.cargaxls');
 
     Route::get('/conceptos', [ConceptosController::class, 'index'])->name('conceptos'); 
     Route::get('/create', [ConceptosController::class, 'create'])->name('conceptos/conceptos.create');
@@ -50,6 +51,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('/destroy/{id}', [ConceptosController::class, 'destroy'])->name('conceptos/conceptos.destroy');
     Route::get('conceptos/export', [ConceptosController::class, 'export'])->name('conceptos/conceptos.export');
     Route::get('conceptos/import', [ConceptosController::class, 'import'])->name('conceptos/conceptos.import');
+    Route::get('conceptos/cargaxls', [ConceptosController::class, 'cargaxls'])->name('conceptos/conceptos.cargaxls');
 
     Route::get('coopfondos', [CoopfondosController::class, 'index'])->name('coopfondos'); 
     Route::get('coopfondos/create', [CoopfondosController::class, 'create'])->name('coopfondos/coopfondos.create');
@@ -68,7 +70,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('dependencias/show/{id}', [DependenciasController::class, 'show'])->name('dependencias/dependencias.show');
     Route::post('dependencias/dependencias/store', [DependenciasController::class, 'store'])->name('dependencias/dependencias.store');
     Route::delete('dependencias/destroy/{id}', [DependenciasController::class, 'destroy'])->name('dependencias/dependencias.destroy');
-     Route::get('dependencias/export', [DependenciasController::class, 'export'])->name('dependencias/dependencias.export');
+    Route::get('dependencias/export', [DependenciasController::class, 'export'])->name('dependencias/dependencias.export');
     Route::post('dependencias/import', [DependenciasController::class, 'import'])->name('dependencias/dependencias.import');
     Route::get('dependencias/cargaxls', [DependenciasController::class, 'cargaxls'])->name('dependencias/dependencias.cargaxls');
 
