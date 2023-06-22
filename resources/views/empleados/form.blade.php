@@ -69,7 +69,7 @@
 <div class="input mb-1">
     <label for="empl_fechaRetiro" class="col-md-2 control-label">Fecha Retiro :</label>
     <input type="date" name="empl_fechaRetiro" id="empl_fechaRetiro" class="form_control col-md-2"
-    required value="{{$empleados->empl_fechaRetiro}}">
+     value="{{$empleados->empl_fechaRetiro}}">
 </div>
 <div class="input mb-1">
     <label for="empl_estado" class="col-md-2 control-label">Estado :</label>
@@ -86,6 +86,6 @@
 </div>
 
 <div class="mb-3">
-    <a href="{{route('empleados')}}" class="btn btn-sm btn-info"> Regresa</a>
+    <a href="{{route('empleados')}}" class="btn btn-sm btn-info"> Menú</a>
     <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>
 </div> 

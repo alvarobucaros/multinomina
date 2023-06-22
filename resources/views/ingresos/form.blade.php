@@ -1,6 +1,6 @@
 <div class="input mb-tt_codigo1">
-    <label for="emb_idEmpleado" class="col-md-2 control-label">Empleado :</label>
-    <select name="emb_idEmpleado" id="emb_idEmpleado" class="col-md-3 form_control">
+    <label for="ing_idEmpleado" class="col-md-2 control-label">Empleado :</label>
+    <select name="ing_idEmpleado" id="ing_idEmpleado" class="col-md-3 form_control">
         <option value="0">Seleccione empleado</option>
         @if(!empty($empleados))
             @foreach ($empleados as $empleado)                               
@@ -132,25 +132,24 @@
 
 <hr>
 
-                <div class="input mb-1">
-                    <label for="ing_estado" class="col-md-2 control-label">Estado :</label>
-                    <input type="radio" name="ing_estado" id="estadoA"
-                    value="A" @if ($ingresos->ing_estado=='A') checked @endif> Activo
-                    <input type="radio" name="ing_estado" id="estadoI" 
-                    value="I" @if ($ingresos->ing_estado=='I') checked @endif> Inactivo
-                 </div>
-  
-                 <div style='display: none'>
-                    <input type="text" name="id" id="id" value="{{$ingresos->id}}">
-                    <input type="text" name="ing_idEmpresa" id="ing_idEmpresa" value="{{$ingresos->ing_idEmpresa}}">
-                    <input type="date" name="ing_fchUltimaVacacion" id="ing_fchUltimaVacacion" value="{{$ingresos->ing_fchUltimaVacacion}}">
-                    <input type="date" name="ing_fchUltimaCesantia" id="ing_fchUltimaCesantia" value="{{$ingresos->ing_fchUltimaCesantia}}">
-                    
-                </div>
-      
-                <div class="mb-3">
-                    <a href="{{route('ingresos')}}" class="btn btn-sm btn-info"> Regresa</a>
-                    <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>
-                </div> 
+    <div class="input mb-1">
+        <label for="ing_estado" class="col-md-2 control-label">Estado :</label>
+        <input type="radio" name="ing_estado" id="estadoA"
+        value="A" @if ($ingresos->ing_estado=='A') checked @endif> Activo
+        <input type="radio" name="ing_estado" id="estadoI" 
+        value="I" @if ($ingresos->ing_estado=='I') checked @endif> Inactivo
+    </div>
+
+    <div style='display: none'>
+        <input type="text" name="id" id="id" value="{{$ingresos->id}}">
+        <input type="text" name="ing_idEmpresa" id="ing_idEmpresa" value="{{$ingresos->ing_idEmpresa}}">
+        <input type="date" name="ing_fchUltimaVacacion" id="ing_fchUltimaVacacion" value="{{$ingresos->ing_fchUltimaVacacion}}">
+        <input type="date" name="ing_fchUltimaCesantia" id="ing_fchUltimaCesantia" value="{{$ingresos->ing_fchUltimaCesantia}}">  
+    </div>
+
+    <div class="mb-3">
+        <a href="{{route('ingresos')}}" class="btn btn-sm btn-info"> Menú</a>
+        <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>
+    </div> 
 
          

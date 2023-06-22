@@ -96,20 +96,21 @@
                           
                             <td class="centro">{{$item->ing_estado}}</td>
                             @if (auth()->user()->profile == 'A') 
-                            <td class="mithcmd">
-                                <form action="{{ route('ingresos/ingresos.edit',$item->id)}}" method="GET">
-                                    <button class="btn btn-sm btn-primary">
-                                    <span class="fa-solid fa-pen"></span> Edita
-                                    </button>         
-                                </form>
-                            </td>
-                            <td class="mithcmd">
-                                <form action="{{ route('ingresos/ingresos.show',$item->id)}}" method="GET">
-                                    <button class="btn btn-sm btn-danger">
-                                    <span class="fa-solid fa-trash-can"></span> eliminar</button>
-                                    </button>          
-                                </form>      
-                            </td>
+                                <td class="mithcmd">
+                                    <form action="{{ route('ingresos/ingresos.edit',$item->id)}}" method="GET">
+                                        <button class="btn btn-sm btn-primary">
+                                        <span class="fa-solid fa-pen"></span> Edita
+                                        </button>         
+                                    </form>
+                                </td>
+                                <td class="mithcmd">
+                                    <form action="{{ route('ingresos/ingresos.show',$item->id.'|'.$item->ter_nombre.
+                                        '|'.$item->empl_primerApellido.'|'.$item->empl_otroApellido .'|'.$item->empl_primerNombre.'|'.$item->empl_otroNombre)}}" method="GET">
+                                        <button class="btn btn-sm btn-danger">
+                                        <span class="fa-solid fa-trash-can"></span> Eliminar</button>
+                                        </button>          
+                                    </form>      
+                                </td>
                             @endif
 
                             <td style='display: none'>

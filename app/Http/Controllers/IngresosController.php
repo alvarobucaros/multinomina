@@ -89,16 +89,18 @@ class IngresosController extends Controller
         $ingresos->ing_idEmpleado = $request->post('ing_idEmpleado');
         $ingresos->ing_fechaIngreso = $request->post('ing_fechaIngreso');
         $ingresos->ing_fechaRetiro = $request->post('ing_fechaRetiro');
-
         $ingresos->ing_idCargo = $request->post('ing_idCargo');
         $ingresos->ing_idDependencia = $request->post('ing_idDependencia');        
         $ingresos->ing_porcARL = $request->post('ing_porcARL');
-
         $ingresos->ing_EPS = $request->post('ing_EPS');
         $ingresos->ing_AFP = $request->post('ing_AFP');
-
-        $ingresos->ing_EPS = $request->post('ing_encargo');
-        $ingresos->ing_AFP = $request->post('ing_idCargoEncargo');
+        $ingresos->ing_ARL = $request->post('ing_ARL');
+        $ingresos->ing_estado = $request->post('ing_estado');
+        $ingresos->ing_encargo = $request->post('ing_encargo');
+        $ingresos->ing_numeroContrato = $request->post('ing_numeroContrato');
+        $ingresos->ing_idCargoEncargo = $request->post('ing_idCargoEncargo');
+        $ingresos->ing_fchUltimaVacacion = $request->post('ing_fechaIngreso');
+        $ingresos->ing_fchUltimaCesantia = $request->post('ing_fechaIngreso');
         $ingresos->save();
         return redirect()->route("ingresos")->with("success","Agregado correctamente");
 
@@ -109,8 +111,8 @@ class IngresosController extends Controller
      */
     public function show(string $id)
     {
-        $ingresos = Ingresos::find($id);
-        return view('ingresos/eliminar', compact('ingresos'));
+        $ar = explode('|',$id);
+        return view('ingresos/eliminar', compact('ar'));
     }
 
     /** 
@@ -130,7 +132,22 @@ class IngresosController extends Controller
     {
         $ingresos = Ingresos::find($id); 
         $ingresos->ing_idEmpresa= auth()->user()->empresa;
-
+        $ingresos->ing_idEmpleado = $request->post('ing_idEmpleado');
+        $ingresos->ing_fechaIngreso = $request->post('ing_fechaIngreso');
+        $ingresos->ing_fechaRetiro = $request->post('ing_fechaRetiro');
+        $ingresos->ing_idCargo = $request->post('ing_idCargo');
+        $ingresos->ing_idDependencia = $request->post('ing_idDependencia');        
+        $ingresos->ing_porcARL = $request->post('ing_porcARL');
+        $ingresos->ing_EPS = $request->post('ing_EPS');
+        $ingresos->ing_AFP = $request->post('ing_AFP');
+        $ingresos->ing_ARL = $request->post('ing_ARL');
+        $ingresos->ing_estado = $request->post('ing_estado');
+        $ingresos->ing_encargo = $request->post('ing_encargo');
+        $ingresos->ing_numeroContrato = $request->post('ing_numeroContrato');
+        $ingresos->ing_idCargoEncargo = $request->post('ing_idCargoEncargo');
+        $ingresos->ing_fchUltimaVacacion = $request->post('ing_fchUltimaVacacion');
+        $ingresos->ing_fchUltimaCesantia = $request->post('ing_fchUltimaCesantia');
+ 
         $ingresos->save();
         return redirect()->route("ingresos")->with("success","Actualizado correctamente");
  

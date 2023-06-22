@@ -12,23 +12,24 @@ class EmpleadosImport implements ToModel, WithHeadingRow
  
     public function model(array $row)
     {
-       // dd($row);
+        //dd($row);
         return new Empleados([
         'empl_idEmpresa'  => auth()->user()->empresa,
-        'empl_primerNombre' => $row['empl_primerNombre'],
-        'empl_otroNombre' => $row['empl_otroNombre'], 
-        'empl_primerApellido' => $row['empl_primerApellido'], 
-        'empl_otroApellido' => $row['empl_otroApellido'], 
-        'empl_tipodoc' => $row['empl_tipodoc'],
-        'empl_nrodoc' => $row['empl_nrodoc'],
-        'empl_codigo' => $row['empl_codigo'], 
-        'empl_email' => $row['empl_email'], 
-        'empl_telefono' => $row['empl_telefono'], 
-        'empl_direccion' => $row['empl_direccion'], 
-        'empl_ciudad' => $row['empl_ciudad'], 
-        'empl_fechaIngreso' => $row['empl_fechaIngreso'], 
-        'empl_fechaRetiro' => $row['empl_fechaRetiro'],
-        'empl_estado' => $row['empl_estado'],
+        'empl_primerNombre' => $row['primernombre'],
+        'empl_otroNombre' => $row['otronombre'], 
+        'empl_primerApellido' => $row['primerapellido'], 
+        'empl_otroApellido' => $row['otroapellido'], 
+        'empl_tipodoc' => $row['tipodoc'],
+        'empl_nrodoc' => $row['nrodoc'],
+        'empl_codigo' => $row['codigo'], 
+        'empl_email' => $row['email'], 
+        'empl_telefono' => $row['telefono'], 
+        'empl_direccion' => $row['direccion'], 
+        'empl_ciudad' => $row['ciudad'], 
+        'empl_fechaIngreso' => $row['anoingreso'].'-'.$row['mesingreso'].'-'.$row['diaingreso'], 
+        'empl_fechaRetiro' => '2099-01-01',
+        'empl_estado' => 'A',
         ]);
     }
-}
+} 
+

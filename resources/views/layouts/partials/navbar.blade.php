@@ -53,7 +53,8 @@
                 <ul>
                   <li><a href="{{ route('empleados') }}" class="nav-link px-2 ">Empleados</a>
                   <li><a href="{{ route('ingresos') }}" class="nav-link px-2 ">Ingresos</a>
-                </ul>
+                    <li><a href="{{ route('hvida') }}" class="nav-link px-2 ">Hoja de vida</a>
+                  </ul>
               </li>
               <li><a href="#" class="nav-link px-2 ">Liquidación</a>
                   <ul>

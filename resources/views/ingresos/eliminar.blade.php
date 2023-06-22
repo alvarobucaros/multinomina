@@ -4,7 +4,7 @@
 
 @section('contenido')
 <div class="card">
-    <h5 class="card-header"> Elimina este registro </h5>
+    <h5 class="card-header"> Elimina este ingreso </h5>
     <div class="card-body">
    
       <p class="card-text">
@@ -12,18 +12,23 @@
             Va a eliminar este registro
         </div>
         <table class="table table-sm table-hover">
-            <thead>
-                <th>Nombre</th>            
-            </thead>
-            <tbody>  
-                <tr>
-                    <td>{{ $ingresos->dep_nombe}}</td>                                
-                </tr>
-            </tbody>
+
+            <table class="table table-sm table-hover">
+              <thead>
+                  <th>Empleado</th>    
+            
+              </thead>
+              <tbody>  
+                  <tr>
+                      <td>{{ $ar[2] }} {{ $ar[3] }} {{ $ar[4] }} {{ $ar[5] }}</td> 
+                                               
+                  </tr>
+              </tbody>
+          </table>
         </table>
         <hr>
 
-        <form action="{{ route('ingresos/ingresos.destroy', $ingresos->id) }}" method="POST">
+        <form action="{{ route('ingresos/ingresos.destroy', $ar[0]) }}" method="POST">
             @csrf
             @method('DELETE')
               <a href="{{route('ingresos')}} " class="btn btn-sm btn-info"> 

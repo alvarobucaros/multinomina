@@ -4,25 +4,22 @@ namespace App\Imports;
 
 use App\Models\Cargos;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CargosImport implements ToModel
+class CargosImport implements ToModel, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+   
     public function model(array $row)
     {
-         dd($row);
+        //dd($row);
         return new Cargos([
         'car_idEmpresa'  => auth()->user()->empresa,
-        'car_nombre' => $row[0],
-        'car_nroOcupados' => $row[1], 
-        'car_nroVacantes' => $row[2],
+        'car_nombre' => $row['nombre'],
+        'car_nroOcupados' => $row['nroocupados'], 
+        'car_nroVacantes' => $row['nrovacantes'],
         'car_otrosFactores' => 'N', 
         'car_tipo' => '0',
-        'car_salario' => $row[3], 
+        'car_salario' => $row['salario'], 
         'car_estado' => 'A',
         ]);
     }

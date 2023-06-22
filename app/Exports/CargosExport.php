@@ -4,12 +4,11 @@ namespace App\Exports;
 
 use App\Models\Cargos;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class CargosExport implements FromCollection
+class CargosExport implements FromCollection, WithHeadings
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+ 
     public function collection()
     {
         return Cargos::all()

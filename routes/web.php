@@ -11,6 +11,7 @@ use App\Http\Controllers\EmbargosController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\EmpresasController;
 use App\Http\Controllers\HorasExtrasController;
+use App\Http\Controllers\HVidaController;
 use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\LicenciasController;
 use App\Http\Controllers\LiquidacionesController;
@@ -112,6 +113,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('horas_extras/destroy/{id}', [HorasExtrasController::class, 'destroy'])->name('horas_extras/horas_extras.destroy');
     Route::get('horas_extras/export', [HorasExtrasController::class, 'export'])->name('horas_extras/horas_extras.export');
 
+    Route::get('hvida', [HVidaController::class, 'index'])->name('hvida'); 
+  
     Route::get('ingresos', [IngresosController::class, 'index'])->name('ingresos'); 
     Route::get('ingresos/create', [IngresosController::class, 'create'])->name('ingresos/ingresos.create');
     Route::get('ingresos/edit/{id}', [IngresosController::class, 'edit'])->name('ingresos/ingresos.edit');

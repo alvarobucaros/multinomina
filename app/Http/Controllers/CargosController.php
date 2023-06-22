@@ -111,7 +111,7 @@ class CargosController extends Controller
         $cargos->delete();
         return redirect()->route("cargos")->with("success","Eliminado correctamente");
     }
-
+    
      public function export (){
         return Excel::download(new CargosExport, 'cargos.xlsx');
      }
