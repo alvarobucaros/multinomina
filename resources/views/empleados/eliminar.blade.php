@@ -1,6 +1,6 @@
 @extends('layouts/plantilla')
 
-@section('tituloPagina', 'Borra Registro')
+@section('tituloPagina', 'RELACION DE EMPLEADOS')
 
 @section('contenido')
 <div class="card">

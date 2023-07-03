@@ -1,7 +1,7 @@
 
         <div class="input mb-1">
-            <label class="col-md-2 control-label" name='selConcepto'>Empleado :</label>
-            <select name="hex_idEmpleado" id="hex_idEmpleado"  class="form_control ">
+            <label class="col-md-1 control-label" name='selConcepto'>Empleado :</label>
+            <select name="hex_idEmpleado" id="hex_idEmpleado"  class="form_control col-md-4">
                 <option value="0">Seleccione un empleado</option>
                 @if(!empty($empleados))
                 @foreach ($empleados as $empleado)                               
@@ -16,7 +16,7 @@
         </div>
         <div class="input mb-dep_nombre1">
             <label for="hex_periodo" class="col-md-1 control-label">Periodo :</label>
-            <input type="text" name="hex_periodo" id="hex_periodo" class="form_control col-md-3"
+            <input type="text" name="hex_periodo" id="hex_periodo" class="form_control col-md-1"
             required value="{{$HorasExtras->hex_periodo}}">
         </div>
         <div class="input mb-dep_nombre1">

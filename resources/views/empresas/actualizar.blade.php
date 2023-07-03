@@ -1,6 +1,8 @@
 @extends('layouts/plantilla')
 
-@section('tituloPagina', 'Nuevo Registro')
+@section('tituloPagina')
+<p class="mayuscula">Nuestra Empresa </p>
+@endsection
 
 @section('contenido')
 

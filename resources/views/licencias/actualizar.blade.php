@@ -1,6 +1,6 @@
 @extends('layouts/plantilla')
 
-@section('tituloPagina', 'Nuevo Registro')
+@section('tituloPagina', 'LICENCIAS A EMPLEADOS')
 
 @section('contenido')
 

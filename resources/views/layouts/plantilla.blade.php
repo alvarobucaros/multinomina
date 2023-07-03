@@ -12,30 +12,13 @@
 </head>
 <body>
     <div class="container miForm">
+      <p class="mayuscula"> 
+      @yield('tituloPagina') 
+      </p>
       @yield('contenido')    
     </div>     
 </body>
 
 @yield('scripts') 
 
-{{--
-  @yield('scripts') 
-
-  <script>                    
-  $(document).ready(function(){
-
-  });
-
-  $('#cp_cuotas').on('blur', function(e){
- 
-        var valor = e.target.value;
-        var deuda = document.getElementById('cp_valorCobro').value;    
-        if (valor > 0 ){
-          document.getElementById('cp_valorCuota').value = deuda / valor;
-        }else{
-          document.getElementById('cp_valorCuota').value = 0;
-        }
-    });
-
-</script> --}}
 </html>

@@ -27,7 +27,7 @@
                         <a class="btn btn-success btn-sm" href="{{ route('cargos/cargos.export')}}">
                         <i class="fa-solid fa-plus"></i> A Excel</a>
                     @endif
-                    <span class="miTituloForm"> CARGOS</span>
+                    <span class="miTituloForm"> CARGOS EN LA PLANTA</span>
                 </p>
                 <p class="card-text">
                     <div class="table table-resposive-sm">

@@ -7,6 +7,7 @@ use App\Http\Controllers\CargosController;
 use App\Http\Controllers\ConceptosController;
 use App\Http\Controllers\CoopfondosController;
 use App\Http\Controllers\DependenciasController;
+use App\Http\Controllers\DiasHabilesController;
 use App\Http\Controllers\EmbargosController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\EmpresasController;
@@ -75,6 +76,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('dependencias/import', [DependenciasController::class, 'import'])->name('dependencias/dependencias.import');
     Route::get('dependencias/cargaxls', [DependenciasController::class, 'cargaxls'])->name('dependencias/dependencias.cargaxls');
 
+    Route::get('diasHabiles', [diasHabilesController::class, 'index'])->name('diasHabiles'); 
+    Route::get('diasHabiles/create', [diasHabilesController::class, 'create'])->name('diasHabiles/diasHabiles.create');
+    Route::get('diasHabiles/edit/{id}', [diasHabilesController::class, 'edit'])->name('diasHabiles/diasHabiles.edit');
+    Route::post('diasHabiles/update/{id}', [diasHabilesController::class, 'update'])->name('diasHabiles/diasHabiles.update');
+    Route::get('diasHabiles/show/{id}', [diasHabilesController::class, 'show'])->name('diasHabiles/diasHabiles.show');
+    Route::post('diasHabiles/diasHabiles/store', [diasHabilesController::class, 'store'])->name('diasHabiles/diasHabiles.store');
+    Route::delete('diasHabiles/destroy/{id}', [diasHabilesController::class, 'destroy'])->name('diasHabiles/diasHabiles.destroy');
+    Route::get('diasHabiles/export', [diasHabilesController::class, 'export'])->name('diasHabiles/diasHabiles.export');
+    Route::get('diasHabiles/creaano', [diasHabilesController::class, 'creaano'])->name('diasHabiles/diasHabiles.creaano');
+    Route::post('diasHabiles/nuevoano/{id}', [diasHabilesController::class, 'nuevoano'])->name('diasHabiles/diasHabiles.nuevoano');
+
+
     Route::get('embargos', [EmbargosController::class, 'index'])->name('embargos'); 
     Route::get('embargos/create', [EmbargosController::class, 'create'])->name('embargos/embargos.create');
     Route::get('embargos/edit/{id}', [EmbargosController::class, 'edit'])->name('embargos/embargos.edit');
@@ -134,14 +147,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('licencias/export', [LicenciasController::class, 'export'])->name('licencias/licencias.export');
 
     Route::get('liquidaciones', [LiquidacionesController::class, 'index'])->name('liquidaciones'); 
-    Route::get('liquidaciones/create', [LiquidacionesController::class, 'create'])->name('liquidaciones/liquidaciones.create');
-    Route::get('liquidaciones/edit/{id}', [LiquidacionesController::class, 'edit'])->name('liquidaciones/liquidaciones.edit');
-    Route::post('liquidaciones/update/{id}', [LiquidacionesController::class, 'update'])->name('liquidaciones/liquidaciones.update');
-    Route::get('liquidaciones/show/{id}', [LiquidacionesController::class, 'show'])->name('liquidaciones/liquidaciones.show');
-    Route::post('liquidaciones/store', [LiquidacionesController::class, 'store'])->name('liquidaciones/liquidaciones.store');
-    Route::delete('liquidaciones/destroy/{id}', [LiquidacionesController::class, 'destroy'])->name('liquidaciones/liquidaciones.destroy');
-    Route::delete('liquidaciones/export', [LiquidacionesController::class, 'export'])->name('liquidaciones/liquidaciones.export');
+    Route::get('liquidaciones/liquida/{id}', [LiquidacionesController::class, 'liquida'])->name('liquidaciones/liquidaciones.liquida');
+    Route::get('/traeLiq/{id}', [LiquidacionesController::class, 'update'])->name('liquidaciones/liquidaciones.traeLiq');
+    Route::get('/verLiquidacion/{id}', [LiquidacionesController::class, 'verLiquidacion'])->name('liquidaciones/liquidaciones.verLiquidacion');
 
+    Route::get('/create/{id}', [LiquidacionesController::class, 'create'])->name('liquidaciones/liquidaciones.create');
+    Route::post('liquidaciones/store', [LiquidacionesController::class, 'store'])->name('liquidaciones/liquidaciones.store');
+ 
    Route::get('parametros', [ParametrosController::class, 'index'])->name('parametros'); 
    Route::get('parametros/create', [ParametrosController::class, 'create'])->name('parametros/parametros.create');
    Route::get('parametros/edit/{id}', [ParametrosController::class, 'edit'])->name('parametros/parametros.edit');

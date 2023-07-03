@@ -1,5 +1,5 @@
 
-                <div class="input mb-dep_nombre1">
+                <div class="input ">
                     <label for="dep_nombre" class="col-md-2 control-label">Nombre :</label>
                     <input type="text" name="dep_nombre" id="dep_nombre" class="form_control col-md-3"
                     required value="{{$dependencias->dep_nombre}}">

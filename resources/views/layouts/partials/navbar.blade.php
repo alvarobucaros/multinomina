@@ -44,7 +44,7 @@
                       <li><a href="{{ route('conceptos') }}" class="nav-link px-2 ">Conceptos</a></li>
                       <li><a href="{{ route('dependencias') }}" class="nav-link px-2 ">Dependencias</a></li>
                       <li><a href="{{ route('cargos') }}" class="nav-link px-2 ">Cargos</a></li>
-                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Dias hábiles</a></li>
+                      <li><a href="{{ route('diasHabiles') }}" class="nav-link px-2 ">Dias hábiles</a></li>
                      
                       <li><a href="{{ route('terceros') }}" class="nav-link px-2 ">Terceros</a></li>
                   </ul>

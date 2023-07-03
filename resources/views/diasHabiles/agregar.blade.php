@@ -1,16 +1,16 @@
 @extends('layouts/plantilla')
 
-@section('tituloPagina', 'CARGOS EN LA PLANTA')
+@section('tituloPagina', 'DIAS HABILES')
 
 @section('contenido')
 
 <div class="card row mt-2">
-    <h5 class="card-header">Adiciona Cargo</h5>
+    <h5 class="card-header">Adiciona día</h5>
     <div class="card-body">
         <p class="card-text">
-            <form action="{{ route('cargos/cargos.store')}}" method="post">
+            <form action="{{ route('diasHabiles/diasHabiles.store')}}" method="post">
                 @csrf
-                @include('cargos.form')
+                @include('diasHabiles.form')
             </form>
         </p>
     </div>

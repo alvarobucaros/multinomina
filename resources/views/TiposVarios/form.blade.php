@@ -9,6 +9,7 @@
                         <option value="EP" @selected($tiposvarios->tt_clase == 'EP')>EPS</option> 
                         <option value="FP" @selected($tiposvarios->tt_clase == 'FP')>Fondos Pensión</option> 
                         <option value="JZ" @selected($tiposvarios->tt_clase == 'JZ')>Juzgados</option>     
+                        <option value="LQ" @selected($tiposvarios->tt_clase == 'LQ')>Liquidación nómina</option>  
                         <option value="OT" @selected($tiposvarios->tt_clase == 'OT')>Otros</option> 
                         @selected($tiposvarios->tt_clase == 'AR')              
                     </select>                    
