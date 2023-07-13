@@ -82,7 +82,8 @@ class ParametrosController extends Controller
        $parametros->par_liquidacion = $request->post('par_liquidacion');
        $parametros->par_smmlv = $request->post('par_smmlv');    
        $parametros->par_auxTransporte = $request->post('par_auxTransporte');
-       $parametros->par_diasVacaciones = $request->post('par_diasVacaciones');   
+       $parametros->par_diasVacaciones = $request->post('par_diasVacaciones');
+       $parametros->par_horasMes = $request->post('par_horasMes');      
        $parametros->save();
        return redirect()->route("home.index")->with("success","Actualizado correctamente");
         

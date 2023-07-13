@@ -91,8 +91,7 @@ class UsersController extends Controller
         $user->email = $request->post('email');
         $user->codigo = $request->post('codigo');
         $user->tipodoc = $request->post('tipodoc');
-        $user->nrodoc = $request->post('nrodoc');
-        
+        $user->nrodoc = $request->post('nrodoc');        
         $user->en_nombre = '';
         $user->telefono = $request->post('telefono');
         $user->profile = $request->post('profile');
@@ -100,6 +99,14 @@ class UsersController extends Controller
         $user->save();
         return redirect()->route("user")->with("success","Actualizado correctamente");
      }
+
+     public function updatepwd(Request $request, string $id)
+     {
+        $user = Users::find($id); 
+        $user->password  =  bcrypt($request->post('passNuevo'));
+        $user->save();
+        return redirect()->route("user")->with("success","Actualizado correctamente");
+      }
 
     /**
      * Remove the specified resource from storage.

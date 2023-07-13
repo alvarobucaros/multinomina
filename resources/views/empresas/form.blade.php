@@ -37,8 +37,7 @@
     <label for="em_email" class="col-md-2 control-label">Email :</label>
     <input type="email" name="em_email" id="em_email" class="form_control col-md-6"
     required value="{{$empresas->em_email}}">
-</div>     
-  
+</div>    
 
 <div class="input mb-1">
         <label for="em_fchini" class="col-md-2 control-label">Fecha Inicio :</label>
@@ -67,8 +66,12 @@
 
 <div class="mb-1">
     <a href="{{route('home.index')}}" class="btn btn-sm btn-info"> Menú</a>
-   @if (auth()->user()->profile == 'A') 
-    <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>  
+    @if( isset(auth()->user()->profile) )  
+        @if (auth()->user()->profile == 'A') 
+            <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>  
+        @endif
+   @else
+   <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>  
    @endif
  
    

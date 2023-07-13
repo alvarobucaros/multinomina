@@ -5,7 +5,7 @@
 @section('contenido')
 
 
-<form action="{{ route('terceros/terceros.traeLiq',$tipos->tt_codigo)}}" method="post"></form>
+<form action="{{ route('liquidaciones/liquidaciones.traeLiq','9')}}" method="post"></form>
     <div class="card row mt-2">
         <h5 class="card-header">Liquidaciones de Nómina</h5>
         <div class="card-body">
@@ -31,6 +31,7 @@
                 <i class="fa-solid fa-plus"></i> Menú </a>
         </p>
     </div> 
+    
     <div class="car row mt-2"  id='ppal'  style="visibility:hidden;">
         <div class="input mb-tt_codigo1">
             <label for="liq_idEmpleado" class="col-md-2 control-label">Empleado :</label>

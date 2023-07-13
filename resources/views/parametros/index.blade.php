@@ -48,8 +48,11 @@
                     <div class="input mb-1">
                         <label for="par_diasVacaciones" class="col-md-2 control-label">Días Vacaciones:</label>
                         <input type="text" name="par_diasVacaciones" id="par_diasVacaciones" class="form_control "
-                        required value="{{$parametros->par_diasVacaciones}}">
-                    
+                        required value="{{$parametros->par_diasVacaciones}}">                    
+                  
+                        <label for="par_horasMes" class="col-md-2 control-label derecha">Horas mensuales:</label>
+                        <input type="text" name="par_horasMes" id="par_horasMes" class="form_control "
+                        required value="{{$parametros->par_horasMes}}">                    
                     </div>
                 </div>       
             </div>
@@ -58,6 +61,8 @@
             <div class="card-body">        
                 <div class="card-text">   
                 <span class="miSubTitulo">Horas extras</span>
+                <br>
+                <span>Día Ordinario</span>
                 <div class="input mb-1">
                     <label for="par_horasdiurna" class="col-md-2 control-label">Diurna:</label>
                     <input type="number" name="par_horasdiurna" id="par_horasdiurna" class="form_control "
@@ -66,16 +71,17 @@
                     <label for="par_horasnocturna" class="col-md-2 control-label derecha">Nocturna:</label>
                     <input type="number" name="par_horasnocturna" id="par_horasnocturna" class="form_control "
                     required value="{{$parametros->par_horasnocturna}}">
-                    </div>
+                </div>
+                <span>Día dominical y/o festivo</span>
 
-                    <div class="input mb-1">
-                        <label for="par_festivadiurna" class="col-md-2 control-label">Diurna Festivo:</label>
-                        <input type="number" name="par_festivadiurna" id="par_festivadiurna" class="form_control "
-                        required value="{{$parametros->par_festivadiurna}}">
-                        <label for="par_festivanocturna" class="col-md-2 control-label derecha">Nocturna Festivo:</label>
-                        <input type="number" name="par_festivanocturna" id="par_festivanocturna" class="form_control "
-                        required value="{{$parametros->par_festivanocturna}}">
-                    </div>
+                <div class="input mb-1">
+                    <label for="par_festivadiurna" class="col-md-2 control-label">Diurna Festivo:</label>
+                    <input type="number" name="par_festivadiurna" id="par_festivadiurna" class="form_control "
+                    required value="{{$parametros->par_festivadiurna}}">
+                    <label for="par_festivanocturna" class="col-md-2 control-label derecha">Nocturna Festivo:</label>
+                    <input type="number" name="par_festivanocturna" id="par_festivanocturna" class="form_control "
+                    required value="{{$parametros->par_festivanocturna}}">
+                </div>
                 </div>
             </div>
         </div>

@@ -40,7 +40,13 @@
             <input type="text" name="hex_festivasNocturna" id="hex_festivasNocturna" class="form_control col-md-3"
             required value="{{$HorasExtras->hex_festivasNocturna}}">
         </div>               
-
+        <div class="input mb-1">
+            <label for="hex_estado" class="col-md-1 control-label">Estado :</label>
+            <input type="radio" name="hex_estado" id="hex_estadoA"
+            value="P" @if ($HorasExtras->hex_estado=='P') checked @endif> Pendiente
+            <input type="radio" name="hex_estado" id="hex_estadoI" 
+            value="L" @if ($HorasExtras->hex_estado=='L') checked @endif> Liquidada
+         </div>
         <div style='display: none'>
             <input type="text" name="id" id="id" value="{{$HorasExtras->id}}">
             <input type="text" name="hex_idEmpresa" id="hex_idEmpresa" value="{{$HorasExtras->hex_idEmpresa}}">

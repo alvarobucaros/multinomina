@@ -47,6 +47,13 @@
                     <input type="radio" name="cp_estado" id="estadoI" 
                     value="I" @if ($conceptos->cp_estado=='I') checked @endif> Inactivo
                  </div>
+                 <div class="input mb-1">
+                    <label for="cp_clase" class="col-md-2 control-label">Clase :</label>
+                    <input type="radio" name="cp_clase" id="estadoA"
+                    value="U" @if ($conceptos->cp_clase=='U') checked @endif> De Usuario
+                    <input type="radio" name="cp_clase" id="estadoI" 
+                    value="F" @if ($conceptos->cp_clase=='F') checked @endif> Fijo
+                 </div>                 
 
                  <div style='display: none'>
                     <input type="text" name="id" id="id" value="{{$conceptos->id}}">

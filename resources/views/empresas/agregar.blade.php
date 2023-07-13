@@ -11,8 +11,8 @@
 
             <form method="POST" action="{{ route('empresas/empresas.store') }}">
                 @csrf
-                @include('empresas.form')
-                @include('empresas.formAdmin')
+                 @include('empresas.form') ;
+                @include('empresas.formAdmin');
             </form>
         </p>
     </div>

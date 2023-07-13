@@ -1,16 +1,16 @@
 @extends('layouts/plantilla')
 
-@section('tituloPagina', 'USUARIOS DEL SISTEMA')
+@section('tituloPagina', 'LICENCIAS A EMPLEADOS')
 
 @section('contenido')
 
 <div class="card row mt-2">
-    <h5 class="card-header">Cambia contraseña</h5>
+    <h5 class="card-header">Actualiza Licencia</h5>
     <div class="card-body">
         <div class="card-text">          
-            <form action="{{ route('user/user.updatepwd', $user->id)}}" method="post">
+            <form action="{{ route('licencias/licencias.update', $licencias->id)}}" method="post">
                 @csrf
-                @include('user.formpwd')
+                @include('licencias.form')
             </form>
         </div>
     </div>

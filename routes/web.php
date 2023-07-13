@@ -20,6 +20,7 @@ use App\Http\Controllers\ParametrosController;
 use App\Http\Controllers\TiposVariosController;
 use App\Http\Controllers\TercerosController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VacacionesController;
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {   
@@ -125,6 +126,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('horas_extras/horas_extras/store', [HorasExtrasController::class, 'store'])->name('horas_extras/horas_extras.store');
     Route::delete('horas_extras/destroy/{id}', [HorasExtrasController::class, 'destroy'])->name('horas_extras/horas_extras.destroy');
     Route::get('horas_extras/export', [HorasExtrasController::class, 'export'])->name('horas_extras/horas_extras.export');
+    Route::get('horas_extras/liquida', [HorasExtrasController::class, 'liquida'])->name('horas_extras/horas_extras.liquida');
 
     Route::get('hvida', [HVidaController::class, 'index'])->name('hvida'); 
   
@@ -147,8 +149,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::delete('licencias/export', [LicenciasController::class, 'export'])->name('licencias/licencias.export');
 
     Route::get('liquidaciones', [LiquidacionesController::class, 'index'])->name('liquidaciones'); 
+    Route::post('liquidaciones/edit', [LiquidacionesController::class, 'edit'])->name('liquidaciones/liquidaciones.edit');
+    Route::get('liquidaciones/show/{id}', [LiquidacionesController::class, 'show'])->name('liquidaciones/liquidaciones.show');
+ 
     Route::get('liquidaciones/liquida/{id}', [LiquidacionesController::class, 'liquida'])->name('liquidaciones/liquidaciones.liquida');
-    Route::get('/traeLiq/{id}', [LiquidacionesController::class, 'update'])->name('liquidaciones/liquidaciones.traeLiq');
+    Route::get('liquidaciones/traeLiq/{id}', [LiquidacionesController::class, 'traeLiq'])->name('liquidaciones/liquidaciones.traeLiq');
     Route::get('/verLiquidacion/{id}', [LiquidacionesController::class, 'verLiquidacion'])->name('liquidaciones/liquidaciones.verLiquidacion');
 
     Route::get('/create/{id}', [LiquidacionesController::class, 'create'])->name('liquidaciones/liquidaciones.create');
@@ -186,12 +191,25 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('user/create', [UsersController::class, 'create'])->name('user/user.create');
     Route::get('user/edit/{id}', [UsersController::class, 'edit'])->name('user/user.edit');
     Route::post('user/update/{id}', [UsersController::class, 'update'])->name('user/user.update');
+    Route::post('user/updatepwd/{id}', [UsersController::class, 'updatepwd'])->name('user/user.updatepwd');
+ 
+    
     Route::get('user/show/{id}', [UsersController::class, 'show'])->name('user/user.show');
     Route::post('user/store', [UsersController::class, 'store'])->name('user/user.store');
     Route::delete('user/destroy/{id}', [UsersController::class, 'destroy'])->name('user/user.destroy');
     Route::delete('user/export', [UsersController::class, 'export'])->name('user/user.export');
     Route::get('user/changepwd/{id}', [UsersController::class, 'changepwd'])->name('user/user.changepwd');
     
+    Route::get('vacaciones', [VacacionesController::class, 'index'])->name('vacaciones'); 
+    Route::get('vacaciones/create/{id}', [VacacionesController::class, 'create'])->name('vacaciones/vacaciones.create');
+    Route::post('vacaciones/edit', [VacacionesController::class, 'edit'])->name('vacaciones/vacaciones.edit');
+    Route::post('vacaciones/update/{id}', [VacacionesController::class, 'update'])->name('vacaciones/vacaciones.update');
+    Route::get('vacaciones/show/{id}', [VacacionesController::class, 'show'])->name('vacaciones/vacaciones.show');
+    Route::post('vacaciones/store', [VacacionesController::class, 'store'])->name('vacaciones/vacaciones.store');
+    Route::delete('vacaciones/destroy/{id}', [VacacionesController::class, 'destroy'])->name('vacaciones/vacaciones.destroy');
+    Route::delete('vacaciones/export', [VacacionesController::class, 'export'])->name('vacaciones/vacaciones.export');
+
+
     Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes

@@ -19,17 +19,17 @@ class LiquidacionesController extends Controller
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
         ->select('empleados.id','empl_primerNombre', 'empl_otroNombre', 'empl_primerApellido', 
         'empl_otroApellido')
+        ->join('ingresos','ingresos.ing_idEmpleado','=','empleados.id')
         ->where('empl_estado','A')
         ->orderBy("empl_primerApellido")
         ->orderBy("empl_primerNombre")->get();
 
         $tipos = TiposVarios::where('tt_idEmpresa', auth()->user()->empresa)
-        ->where('tt_clase','=','LQ')
-        ->where('tt_estado','=','A')
-        ->select('tt_clase', 'tt_codigo', 'tt_descripcion','tt_estado')
-        ->orderBy('tt_codigo', 'asc');
-        dd($tipos);
-        return view('liquidaciones/actualizar', compact('tipos','empleados')); 
+        ->where('tt_clase','LQ')
+        ->where('tt_estado','A')       
+        ->orderBy('tt_codigo')->get();
+     //   dd($tipos);
+        return view('liquidaciones/index', compact('tipos','empleados')); 
     }
 
     public function traeLiq(Request $request)
@@ -96,9 +96,38 @@ class LiquidacionesController extends Controller
         return view('home/desarrollo');
     }
 
-    public function edit(Liquidaciones $liquidaciones)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->post('liq_idEmpleado');
+        $tt = $request->post('tt_codigo');
+
+
+        $tiposVarios = DB::table('tipos_varios')
+        ->where('tt_idEmpresa', (auth()->user()->empresa))
+        ->where('tt_clase','LQ')
+        ->where('tt_codigo',$tt)
+        ->selectRaw('tipos_varios.*')
+        ->get();
+
+        $parametros = DB::table('parametros')
+        ->where('par_idEmpresa', (auth()->user()->empresa))
+        ->selectRaw('parametros.*')
+        ->get();
+
+        $empleados = DB::table('empleados')
+        ->where('empl_idEmpresa', (auth()->user()->empresa))
+        ->where('empleados.id',$id)
+        ->selectRaw('empleados.*')
+        ->get();
+       
+        $liquidaciones = Liquidaciones::where('liq_idEmpresa', auth()->user()->empresa)
+        ->where('liq_tipo',$tt)
+        ->select('liq_tipo', 'liq_fechaDesde', 'liq_fechaHasta', 'liq_idEmpleado', 'liq_periodo', 'liq_estado');
+
+        $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
+        ->where('empleados.id',$id)->get();
+       
+        return view('liquidaciones/form', compact('liquidaciones', 'parametros',  'empleados', 'tiposVarios' ));
      
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\Login\RememberMeExpiration;
 
 use App\Models\Empresas;
+use Config;
 
 class LoginController extends Controller
 {
@@ -48,12 +49,17 @@ class LoginController extends Controller
         endif;
         $id = $user->empresa;
         $empresas = Empresas::find($id);
+   
         $user->em_nombre = $empresas->em_nombre;
-        config(['app.config_empresa'  => $empresas->em_nombre]);
-        config(['constants.EMPRESA' => $user->empresa]);
-        config(['constants.NOM_EMPRESA' => $empresas->em_nombre]);
-        config(['constants.USUARIO' => $user->id]);
-        config(['constants.PERFIL' => $user->profile]);
+        Config::set('config_empresa',$empresas);
+   //     config()->set('config_empresa',$empresas);
+   //     App::setLocale($config_empresa);
+        // App::setLocale($locale);
+        // config(['app.config_empresa'  => $empresas->em_nombre]);
+        // config(['constants.EMPRESA' => $user->empresa]);
+        // config(['constants.NOM_EMPRESA' => $empresas->em_nombre]);
+        // config(['constants.USUARIO' => $user->id]);
+        // config(['constants.PERFIL' => $user->profile]);
         return $this->authenticated($request, $user);
  
     }

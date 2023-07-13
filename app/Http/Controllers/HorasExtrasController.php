@@ -29,6 +29,7 @@ class HorasExtrasController extends Controller
     public function create()
     {
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
+        ->join('ingresos','ingresos.ing_idEmpleado','=','empleados.id')
         ->where('empl_estado','A')
         ->orderBy("empl_primerApellido")
         ->orderBy("empl_primerNombre")->get();
@@ -40,7 +41,7 @@ class HorasExtrasController extends Controller
         $HorasExtras->hex_nocturnas = 0;
         $HorasExtras->hex_festivasNocturna = 0;
         $HorasExtras->hex_festivasDiurna = 0;
-        
+        $HorasExtras->hex_estado = 'P';
         return view('horas_extras/agregar', compact('HorasExtras','empleados'));
     }
 
@@ -58,7 +59,7 @@ class HorasExtrasController extends Controller
         $HorasExtras->hex_nocturnas = $request->post('hex_nocturnas');
         $HorasExtras->hex_festivasDiurna = $request->post('hex_festivasDiurna');        
         $HorasExtras->hex_festivasNocturna = $request->post('hex_festivasNocturna');
-
+        $HorasExtras->hex_estado = $request->post('hex_estado');
         $HorasExtras->save();
         return redirect()->route("horas_extras")->with("success","Agregado correctamente");
     }
@@ -87,7 +88,6 @@ class HorasExtrasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $HorasExtras = Horas_extras::find($id); 
         $HorasExtras->hex_idEmpresa= auth()->user()->empresa;
         $HorasExtras->hex_idEmpleado = $request->post('hex_idEmpleado');
@@ -96,7 +96,7 @@ class HorasExtrasController extends Controller
         $HorasExtras->hex_nocturnas = $request->post('hex_nocturnas');
         $HorasExtras->hex_festivasDiurna = $request->post('hex_festivasDiurna');        
         $HorasExtras->hex_festivasNocturna = $request->post('hex_festivasNocturna');
-
+        $HorasExtras->hex_estado = $request->post('hex_estado');
         $HorasExtras->save();
         return redirect()->route("horas_extras")->with("success","Actualizado correctamente");    }
 
@@ -111,6 +111,9 @@ class HorasExtrasController extends Controller
         return redirect()->route("horas_extras")->with("success","Eliminado correctamente");
     }
 
+    public function liquida (){
+
+    }
     
      public function export (){
 

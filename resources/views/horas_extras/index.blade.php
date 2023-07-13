@@ -18,6 +18,8 @@
                     @if (auth()->user()->profile == 'A') 
                         <a class="btn btn-primary btn-sm" href="{{ route('horas_extras/horas_extras.create')}}">
                         <i class="fa-solid fa-plus"></i> Nuevo</a>
+                        <a class="btn btn-warning btn-sm" href="{{ route('horas_extras/horas_extras.liquida')}}">
+                        <i class="fa-solid fa-plus"></i> Liquidar el período</a>
                    @endif
 
                     <a class="btn btn-success btn-sm" href="{{ route('horas_extras/horas_extras.export')}}">
@@ -34,6 +36,7 @@
                                 <th>Nocturnas</th>
                                 <th>Fest Diurna</th>
                                 <th>Fest Nocturnas</th>
+                                <th>Estado</th>
                                 @if (auth()->user()->profile == 'A') 
                                     <th colspan="2" >Acciones</th>
                                 @endif                               
@@ -49,6 +52,7 @@
                                         <td>{{$item->hex_nocturnas}}</td>
                                         <td>{{$item->hex_festivasDiurna}}</td>
                                         <td>{{$item->hex_festivasNocturna}}</td>
+                                        <td class="centro">{{$item->hex_estado}}</td>
                                         @if (auth()->user()->profile == 'A') 
                                         <td class="mithcmd">
                                             <form action="{{ route('horas_extras/horas_extras.edit',$item->id)}}" method="GET">

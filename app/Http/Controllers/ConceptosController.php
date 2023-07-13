@@ -31,6 +31,7 @@ class ConceptosController extends Controller
         $conceptos->cp_tipo='';
         $conceptos->cp_valorDefault = 0;
         $conceptos->cp_porcentajeDefault = 0;
+        $conceptos->cp_clase = 'U';
         return view('conceptos/agregar', compact('conceptos'));
     }
    
@@ -49,6 +50,7 @@ class ConceptosController extends Controller
         $conceptos->cp_valorDefault = $request->post('cp_valorDefault');
         $conceptos->cp_porcentajeDefault = $request->post('cp_porcentajeDefault');
         $conceptos->cp_estado = $request->post('cp_estado');
+        $conceptos->cp_clase = $request->post('cp_clase');
         $conceptos->save();
         return redirect()->route("conceptos")->with("success","Agregado correctamente");
     }
@@ -88,6 +90,7 @@ class ConceptosController extends Controller
         $conceptos->cp_valorDefault = $request->post('cp_valorDefault');
         $conceptos->cp_porcentajeDefault = $request->post('cp_porcentajeDefault');
         $conceptos->cp_estado = $request->post('cp_estado');
+        $conceptos->cp_clase = $request->post('cp_clase');
         $conceptos->save();
         return redirect()->route("conceptos")->with("success","Actualizado correctamente");
     }

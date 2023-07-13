@@ -15,14 +15,21 @@ body{
     font-weight: bold;
 }
 
+.miMayuscula {
+    color: rgb(28, 114, 28);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
 .mayuscula {
     color: rgb(28, 114, 28);
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.4em;
     margin: 1% 0 0 25%;
-
 }
+
 .miForm{
     width: auto;
     border: #596c7d;

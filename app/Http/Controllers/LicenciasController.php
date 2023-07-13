@@ -36,6 +36,7 @@ class LicenciasController extends Controller
     public function create()
     {
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
+        ->join('ingresos','ingresos.ing_idEmpleado','=','empleados.id')
         ->select('empleados.id','empl_primerNombre', 'empl_otroNombre', 'empl_primerApellido', 
         'empl_otroApellido')
         ->where('empl_estado','A')

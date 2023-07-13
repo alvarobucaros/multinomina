@@ -36,6 +36,7 @@ class EmbargosController extends Controller
     public function create()
     {
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
+        ->join('ingresos','ingresos.ing_idEmpleado','=','empleados.id')
         ->where('empl_estado','A')
         ->orderBy("empl_primerApellido")
         ->orderBy("empl_primerNombre")->get();

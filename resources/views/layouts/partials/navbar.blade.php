@@ -15,8 +15,8 @@
     <div class="navbar-brand d-flex align-items-center">
       <img src="/img/dibujos/mnomina.ico" alt="" srcset="">
       <div  class="tit1 p-2">Multi<strong class="tit2">Nómina</strong></div> 
-      <div  class="p-6"><span> @php  echo  config('app.config_empresa')  @endphp</span></div>
-      <div  class="p-3 align-self-end"><span> Usuario: 
+      <div  class="p-6"><span class="tit1 p-2"> @php  echo auth()->user()->emp_nombre  @endphp</span></div>
+      <div  class="p-3 align-self-end"><span  class="tit2"> Usuario: 
         <a href="{{ route('user/user.changepwd', auth()->user()->id)}}" class="tit2"> 
            @php  $pr='Consulta';
           if(auth()->user()->profile=='A'){$pr='Admin';}
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  {{-- menu principal --}}
+  {{-- menu principal --}}   
   <div>
       <nav class="menuCSS3">
           <ul>
@@ -62,7 +62,7 @@
                       <li><a href="{{ route('coopfondos') }}" class="nav-link px-2 ">Cooperativas Fondos</a></li>
                       <li><a href="{{ route('embargos') }}" class="nav-link px-2 ">Embargos</a></li>
                       <li><a href="{{ route('horas_extras') }}" class="nav-link px-2 ">Horas Extras</a></li>
-                      <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Vacaciones</a></li>
+                      <li><a href="{{ route('vacaciones') }}" class="nav-link px-2 ">Vacaciones</a></li>
                       <li><a href="{{ route('licencias') }}" class="nav-link px-2 ">Licencias</a></li>
                   </ul>
               </li>

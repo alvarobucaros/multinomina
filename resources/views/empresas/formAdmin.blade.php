@@ -9,7 +9,7 @@
     <label for="em_us_telefono" class="col-md-2 control-label">Teléfono :</label>
     <input type="text" name="em_us_telefono" id="em_us_telefono" class="form_control"
     value="{{$empresas->em_us_telefono}}">
-</div>   
+</div>  
 <div class="input mb-1">
     <label for="em_us_email" class="col-md-2 control-label">Email :</label>
     <input type="email" name="em_us_email" id="em_us_email" class="form_control col-md-6"

@@ -40,7 +40,8 @@
                                 <th>Fch Desde</th>
                                 <th>Fch Hasta</th>
                                 <th class="derecha">Valor Defecto</th>
-                                <th class="derecha">Prtage Defecto</th>
+                                <th class="derecha"> % por Defecto</th>
+                                <th>Clase</th>
                                 <th>Estado</th>
                                 @if (auth()->user()->profile == 'A') 
                                     <th colspan="2" >Acciones</th>
@@ -58,7 +59,7 @@
                                         <td>{{$item->cp_fechaHasta}}</td>
                                         <td class="derecha">{{$item->cp_valorDefault}}</td>
                                         <td class="derecha">{{$item->cp_porcentajeDefault}} %</td>                                      
-                                                                                   
+                                        <td class="centro">{{$item->cp_clase}}</td>                                       
                                         <td class="centro">{{$item->cp_estado}}</td>
                                         @if (auth()->user()->profile == 'A') 
                                         <td class="mithcmd">
