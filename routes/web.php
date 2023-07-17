@@ -217,7 +217,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/register', 'RegisterController@show')->name('register.show');
         Route::post('/register', 'RegisterController@register')->name('register.perform');
 
-        /**  
+        /**   
          * Login Routes
          */
         Route::get('/login', 'LoginController@show')->name('login.show');

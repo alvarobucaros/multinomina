@@ -14,15 +14,13 @@ class ConceptosController extends Controller
     {
         {
             $datos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
-            ->orderBy('cp_tipo', 'asc', 'cp_titulo', 'asc')
+            ->orderBy('cp_tipo', 'desc', 'cp_titulo', 'asc')
             ->paginate(8);      
             return view('conceptos/index', compact('datos'));  
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $conceptos = new Conceptos();
@@ -31,13 +29,11 @@ class ConceptosController extends Controller
         $conceptos->cp_tipo='';
         $conceptos->cp_valorDefault = 0;
         $conceptos->cp_porcentajeDefault = 0;
-        $conceptos->cp_clase = 'U';
+        $conceptos->cp_factorSalarial = 'N';
+        $conceptos->cp_seguridadSocial = 'N';
         return view('conceptos/agregar', compact('conceptos'));
     }
-   
-    /**
-     * Store a newly created resource in storage.
-     */
+ 
     public function store(Request $request)
     {
         $conceptos = new Conceptos();
@@ -49,16 +45,15 @@ class ConceptosController extends Controller
         $conceptos->cp_fechaHasta = $request->post('cp_fechaHasta');        
         $conceptos->cp_valorDefault = $request->post('cp_valorDefault');
         $conceptos->cp_porcentajeDefault = $request->post('cp_porcentajeDefault');
+        $conceptos->cp_factorSalarial = $request->post('cp_factorSalarial');
+        $conceptos->cp_seguridadSocial = $request->post('cp_seguridadSocial');
+        $conceptos->cp_codigo = $request->post('cp_codigo');
         $conceptos->cp_estado = $request->post('cp_estado');
-        $conceptos->cp_clase = $request->post('cp_clase');
         $conceptos->save();
         return redirect()->route("conceptos")->with("success","Agregado correctamente");
     }
-   
 
-    /**
-     * Display the specified resource.
-     */
+
  
     public function show(string $id)
     {
@@ -66,18 +61,14 @@ class ConceptosController extends Controller
         return view('conceptos/eliminar', compact('conceptos'));
     }
 
-    /** 
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         $conceptos = Conceptos::find($id);
         return view('conceptos/actualizar', compact('conceptos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         $conceptos = Conceptos::find($id); 
@@ -89,15 +80,14 @@ class ConceptosController extends Controller
         $conceptos->cp_fechaHasta = $request->post('cp_fechaHasta');        
         $conceptos->cp_valorDefault = $request->post('cp_valorDefault');
         $conceptos->cp_porcentajeDefault = $request->post('cp_porcentajeDefault');
-        $conceptos->cp_estado = $request->post('cp_estado');
-        $conceptos->cp_clase = $request->post('cp_clase');
+        $conceptos->cp_factorSalarial = $request->post('cp_factorSalarial');
+        $conceptos->cp_seguridadSocial = $request->post('cp_seguridadSocial');
+        $conceptos->cp_codigo = $request->post('cp_codigo');
         $conceptos->save();
         return redirect()->route("conceptos")->with("success","Actualizado correctamente");
     }
 
-    /**
-     * Remove the specified resource from storage. 
-     */
+
     public function destroy(string $id)
     {
         $conceptos = Conceptos::find($id); 

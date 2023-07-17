@@ -13,28 +13,28 @@
                     <span class="miSubTitulo">Generales</span>     
                     <div class="input mb-1">
                         <label for="par_porcCaja" class="col-md-2 control-label">Caja de compensación :</label>
-                        <input type="number" name="par_porcCaja" id="par_porcCaja" class="form_control "
+                        <input type="text" name="par_porcCaja" id="par_porcCaja" class="form_control "
                         required value="{{$parametros->par_porcCaja}}">
         
                         <label for="par_porcICBF" class="col-md-2 control-label derecha">ICBF :</label>
-                        <input type="number" name="par_porcICBF" id="par_porcICBF" class="form_control "
+                        <input type="text" name="par_porcICBF" id="par_porcICBF" class="form_control "
                         required value="{{$parametros->par_porcICBF}}">
                     </div> 
                     <div class="input mb-1">
                         <label for="par_porSENA" class="col-md-2 control-label">SENA :</label>
-                        <input type="number" name="par_porSENA" id="par_porSENA" class="form_control "
+                        <input type="text" name="par_porSENA" id="par_porSENA" class="form_control "
                         required value="{{$parametros->par_porSENA}}">
                 
                         <label for="par_porcESAP" class="col-md-2 control-label derecha">ESAP :</label>
-                        <input type="number" name="par_porcESAP" id="par_porcESAP" class="form_control "
+                        <input type="text" name="par_porcESAP" id="par_porcESAP" class="form_control "
                         required value="{{$parametros->par_porcESAP}}">
                     </div> 
                     <div class="input mb-1">
                         <label for="par_porcFODE" class="col-md-2 control-label">FODE :</label>
-                        <input type="number" name="par_porcFODE" id="par_porcFODE" class="form_control "
+                        <input type="text" name="par_porcFODE" id="par_porcFODE" class="form_control "
                         required value="{{$parametros->par_porcFODE}}">
                         <label for="par_porcRiesgos" class="col-md-2 control-label derecha">Porcentaje Riesgos :</label>
-                        <input type="number" name="par_porcRiesgos" id="par_porcRiesgos" class="form_control "
+                        <input type="text" name="par_porcRiesgos" id="par_porcRiesgos" class="form_control "
                         required value="{{$parametros->par_porcRiesgos}}">
                     </div> 
                     <div class="input mb-1">
@@ -65,21 +65,21 @@
                 <span>Día Ordinario</span>
                 <div class="input mb-1">
                     <label for="par_horasdiurna" class="col-md-2 control-label">Diurna:</label>
-                    <input type="number" name="par_horasdiurna" id="par_horasdiurna" class="form_control "
+                    <input type="text" name="par_horasdiurna" id="par_horasdiurna" class="form_control "
                     required value="{{$parametros->par_horasdiurna}}">
 
                     <label for="par_horasnocturna" class="col-md-2 control-label derecha">Nocturna:</label>
-                    <input type="number" name="par_horasnocturna" id="par_horasnocturna" class="form_control "
+                    <input type="text" name="par_horasnocturna" id="par_horasnocturna" class="form_control "
                     required value="{{$parametros->par_horasnocturna}}">
                 </div>
                 <span>Día dominical y/o festivo</span>
 
                 <div class="input mb-1">
                     <label for="par_festivadiurna" class="col-md-2 control-label">Diurna Festivo:</label>
-                    <input type="number" name="par_festivadiurna" id="par_festivadiurna" class="form_control "
+                    <input type="text" name="par_festivadiurna" id="par_festivadiurna" class="form_control "
                     required value="{{$parametros->par_festivadiurna}}">
                     <label for="par_festivanocturna" class="col-md-2 control-label derecha">Nocturna Festivo:</label>
-                    <input type="number" name="par_festivanocturna" id="par_festivanocturna" class="form_control "
+                    <input type="text" name="par_festivanocturna" id="par_festivanocturna" class="form_control "
                     required value="{{$parametros->par_festivanocturna}}">
                 </div>
                 </div>

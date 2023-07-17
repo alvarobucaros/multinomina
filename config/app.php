@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'config_empresa' => 'Empresa para mis Pruebas',
+    'config_empresa' => 'EMPRESA DE TRABAJO',
 
     /*
     |--------------------------------------------------------------------------

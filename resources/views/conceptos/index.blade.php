@@ -37,11 +37,13 @@
                                 <th>Tipo</th>
                                 <th>Titulo</th>
                                 <th>Descripción</th>
+                                <th>Código</th>
                                 <th>Fch Desde</th>
                                 <th>Fch Hasta</th>
                                 <th class="derecha">Valor Defecto</th>
                                 <th class="derecha"> % por Defecto</th>
-                                <th>Clase</th>
+                                <th>Factor Salarial</th>
+                                <th>Seg Social</th>
                                 <th>Estado</th>
                                 @if (auth()->user()->profile == 'A') 
                                     <th colspan="2" >Acciones</th>
@@ -55,11 +57,13 @@
                                         <td class="centro">{{$item->cp_tipo}}</td>
                                         <td>{{$item->cp_titulo}}</td>
                                         <td>{{$item->cp_descripcion}}</td>
+                                        <td class="centro">{{$item->cp_codigo}}</td>  
                                         <td>{{$item->cp_fechaDesde}}</td>
                                         <td>{{$item->cp_fechaHasta}}</td>
                                         <td class="derecha">{{$item->cp_valorDefault}}</td>
-                                        <td class="derecha">{{$item->cp_porcentajeDefault}} %</td>                                      
-                                        <td class="centro">{{$item->cp_clase}}</td>                                       
+                                        <td class="derecha">{{$item->cp_porcentajeDefault}} %</td>                                     
+                                        <td class="centro">{{$item->cp_factorSalarial}}</td>                             
+                                        <td class="centro">{{$item->cp_seguridadSocial}}</td>                                       
                                         <td class="centro">{{$item->cp_estado}}</td>
                                         @if (auth()->user()->profile == 'A') 
                                         <td class="mithcmd">

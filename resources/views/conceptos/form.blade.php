@@ -2,21 +2,24 @@
                     <label class="col-md-2 control-label" name='selConcepto'>Tipo :</label>
                     <select name="cp_tipo" id="cp_tipo"  class="form_control ">
                         <option value="">Seleccione un Tipo</option>
-                        <option value="I" @selected('I' == $conceptos->cp_tipo)>Devengados</option>
-                        <option value="D" @selected('D' == $conceptos->cp_tipo)>Deducible</option>
-                        <option value="A" @selected('A' == $conceptos->cp_tipo)>Auxiliar</option>
-                    </select>
-                    
+                        <option value="DV" @selected('DV' == $conceptos->cp_tipo)>Devengados</option>
+                        <option value="DD" @selected('DD' == $conceptos->cp_tipo)>Deducible</option>
+                     </select>                    
                 </div>
                 <div class="input mb-1">
                     <label for="cp_titulo" class="col-md-2 control-label">Titulo :</label>
                     <input type="text" name="cp_titulo" id="cp_titulo" class="form_control col-md-6"
-                    required value="{{$conceptos->cp_titulo}}">
+                    maxlength="20" value="{{$conceptos->cp_titulo}}">
                 </div>
                 <div class="input mb-1">
                     <label for="cp_descripcion" class="col-md-2 control-label">Descripción :</label>
                     <textarea name="cp_descripcion" id="cp_descripcion" cols="50" rows="2"
                     class="form_control col-md-6" required value="{{$conceptos->cp_descripcion}}">{{$conceptos->cp_descripcion}}</textarea>
+                </div>
+                <div class="input mb-1">
+                    <label for="cp_codigo" class="col-md-2 control-label">Código :</label>
+                    <input type="text" name="cp_codigo" id="cp_codigo" class="form_control col-md-1"
+                    maxlength="3" required value="{{$conceptos->cp_codigo}}">
                 </div>
                 <div class="input mb-1">
                     <label for="cp_fechaDesde" class="col-md-2 control-label">Fecha Desde :</label>
@@ -39,7 +42,20 @@
                     <input type="text" name="cp_porcentajeDefault" id="cp_porcentajeDefault" 
                     class="form_control col-md-2" required value="{{$conceptos->cp_porcentajeDefault}}">
                 </div>
-
+                <div class="input mb-1">
+                    <label for="cp_factorSalarial" class="col-md-2 control-label">Factor Salarial :</label>
+                    <input type="radio" name="cp_factorSalarial" id="cp_factorSalarialS"
+                    value="S" @if ($conceptos->cp_factorSalarial=='S') checked @endif> SI   
+                    <input type="radio" name="cp_factorSalarial" id="cp_factorSalarialN"                <input type="radio" name="cp_clase" id="estadoI" 
+                    value="N" @if ($conceptos->cp_factorSalarial=='N') checked @endif> NO
+                 </div>  
+                 <div class="input mb-1">
+                    <label for="cp_seguridadSocial" class="col-md-2 control-label">Seguridad Social :</label>
+                    <input type="radio" name="cp_seguridadSocial" id="cp_seguridadSocialS"
+                    value="S" @if ($conceptos->cp_seguridadSocial=='S') checked @endif> SI  
+                    <input type="radio" name="cp_seguridadSocial" id="cp_seguridadSocialN"                 <input type="radio" name="cp_clase" id="estadoI" 
+                    value="N" @if ($conceptos->cp_seguridadSocial=='N') checked @endif> NO
+                 </div> 
                 <div class="input mb-1">
                     <label for="cp_estado" class="col-md-2 control-label">Estado :</label>
                     <input type="radio" name="cp_estado" id="estadoA"
@@ -47,13 +63,7 @@
                     <input type="radio" name="cp_estado" id="estadoI" 
                     value="I" @if ($conceptos->cp_estado=='I') checked @endif> Inactivo
                  </div>
-                 <div class="input mb-1">
-                    <label for="cp_clase" class="col-md-2 control-label">Clase :</label>
-                    <input type="radio" name="cp_clase" id="estadoA"
-                    value="U" @if ($conceptos->cp_clase=='U') checked @endif> De Usuario
-                    <input type="radio" name="cp_clase" id="estadoI" 
-                    value="F" @if ($conceptos->cp_clase=='F') checked @endif> Fijo
-                 </div>                 
+               
 
                  <div style='display: none'>
                     <input type="text" name="id" id="id" value="{{$conceptos->id}}">

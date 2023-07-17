@@ -9,15 +9,15 @@
   });
 </script>
 
-
 <div class="navbar navbar-dark bg-dark shadow-sm">
   <div class="container">
     <div class="navbar-brand d-flex align-items-center">
       <img src="/img/dibujos/mnomina.ico" alt="" srcset="">
       <div  class="tit1 p-2">Multi<strong class="tit2">Nómina</strong></div> 
-      <div  class="p-6"><span class="tit1 p-2"> @php  echo auth()->user()->emp_nombre  @endphp</span></div>
+      <div  class="p-6"><span class="tit1 p-2"> @php  echo Config::get('app.config_empresa')  @endphp</span></div>
       <div  class="p-3 align-self-end"><span  class="tit2"> Usuario: 
         <a href="{{ route('user/user.changepwd', auth()->user()->id)}}" class="tit2"> 
+          
            @php  $pr='Consulta';
           if(auth()->user()->profile=='A'){$pr='Admin';}
           if(auth()->user()->profile=='O'){$pr='Opera';}

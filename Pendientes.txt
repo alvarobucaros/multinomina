@@ -1,0 +1,7 @@
+Pendientes de nomina
+
+1)	Parametros  liquidacion : falta el combo para seleccionar el fondo arl y la caja de compensaciòn
+
+2)	Incluir validaciones de datos. tener en cuenta que es punto deimal y no coma
+
+3)	en conceptos incluir si es no no factor salarial, incluir si es factos base de seguridad social
