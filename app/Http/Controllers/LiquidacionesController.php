@@ -24,12 +24,14 @@ class LiquidacionesController extends Controller
         ->orderBy("empl_primerApellido")
         ->orderBy("empl_primerNombre")->get();
 
+        $parametros = Parametros::all()->where('par_idEmpresa', auth()->user()->empresa);
+
         $tipos = TiposVarios::where('tt_idEmpresa', auth()->user()->empresa)
         ->where('tt_clase','LQ')
         ->where('tt_estado','A')       
         ->orderBy('tt_codigo')->get();
-     //   dd($tipos);
-        return view('liquidaciones/index', compact('tipos','empleados')); 
+     
+        return view('liquidaciones/index', compact('tipos','empleados', 'parametros')); 
     }
 
     public function traeLiq(Request $request)
@@ -78,6 +80,34 @@ class LiquidacionesController extends Controller
         return view('home/desarrollo',$param);
     }
 
+    public function verliquidaciones(Request $request){
+      
+    //    $tt_codigo = $request->post('tt_codigo');
+    //    $liq_idEmpleado = $request->post('liq_idEmpleado');
+    //    $liq_fechaRetiro = $request->post('liq_fechaRetiro');
+    //    $par_periodo = $request->post('par_periodo');
+    //    $par_fechaDesde = $request->post('par_fechaDesde');
+    //    $par_fechaHasta = $request->post('par_fechaHasta');
+    //    $verliq = $request->post('verliq');
+       
+    // //    "tt_codigo" => "LP"
+    // //    "liq_idEmpleado" => "0"
+    // //    "liq_fechaRetiro" => "2023-01-01"
+    // //    "par_periodo" => "202301"  
+    // //    "par_fechaDesde" => "2023-01-01"
+    // //    "par_fechaHasta" => "2023-01-30"
+    // //    "verliq" => "S"
+
+    //    $data = array($tt_codigo, $liq_idEmpleado, $liq_fechaRetiro,  $par_periodo);
+    //  if (verliq=='S'){
+    //     $datos = Liquidaciones::all()->where('liq_idEmpresa', auth()->user()->empresa)
+    //     ->where('liq_tipo','=','tt_codigo'); 
+    //   dd($datos);
+    //      return view('liquidaciones/verLiquidaciones', compact('datos'));
+    // }
+
+    }
+
     public function verLiquidacion(string $id)
     {
         $ar = explode('|',$id);
@@ -90,7 +120,35 @@ class LiquidacionesController extends Controller
         return view('home/desa/$request');
     }
 
-  
+    public function liquidar(Request $request)
+    {
+        $tt_codigo = $request->post('tt_codigo');
+        $liq_idEmpleado = $request->post('liq_idEmpleado');
+        $liq_fechaRetiro = $request->post('liq_fechaRetiro');
+        $par_periodo = $request->post('par_periodo');
+        $par_fechaDesde = $request->post('par_fechaDesde');
+        $par_fechaHasta = $request->post('par_fechaHasta');
+        $verliq = $request->post('verliq');
+        $nom_liq = $request->post('nom_liq');
+        
+     //    "tt_codigo" => "LP"
+     //    "liq_idEmpleado" => "0"
+     //    "liq_fechaRetiro" => "2023-01-01"
+     //    "par_periodo" => "202301"  
+     //    "par_fechaDesde" => "2023-01-01"
+     //    "par_fechaHasta" => "2023-01-30"
+     //    "verliq" => "S"
+ 
+        $data = array($tt_codigo, $liq_idEmpleado, $liq_fechaRetiro,  $par_periodo, $nom_liq);
+        // dd( $data);
+      if ($verliq=='S'){
+        $datos = Liquidaciones::all()->where('liq_idEmpresa', auth()->user()->empresa)
+        ->where('liq_tipo','=',$tt_codigo);
+    //  dd($datos);
+          return view('liquidaciones/verLiquidaciones', compact('datos', 'data'));
+        }
+    }
+
     public function show(Liquidaciones $liquidaciones)
     {
         return view('home/desarrollo');
@@ -146,4 +204,6 @@ class LiquidacionesController extends Controller
     {
         //
     }
+
+//    https://www.digitalocean.com/community/tutorials/easier-datetime-in-laravel-and-php-with-carbon
 }

@@ -4,6 +4,7 @@
                         <option value="">Seleccione un Tipo</option>
                         <option value="DV" @selected('DV' == $conceptos->cp_tipo)>Devengados</option>
                         <option value="DD" @selected('DD' == $conceptos->cp_tipo)>Deducible</option>
+                        <option value="PE" @selected('PE' == $conceptos->cp_tipo)>Personalizado</option>
                      </select>                    
                 </div>
                 <div class="input mb-1">

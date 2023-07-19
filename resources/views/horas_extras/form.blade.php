@@ -9,7 +9,6 @@
                         {{$empleado->empl_primerApellido}}    {{$empleado->empl_otroApellido}}                                  
                         {{$empleado->empl_primerNombre}}    {{$empleado->empl_otroNombre}}</option>
                 @endforeach
-
                 @endif 
                 
             </select>
@@ -25,7 +24,7 @@
             required value="{{$HorasExtras->hex_diurnas}}">
         </div>
         <div class="input mb-dep_nombre1">
-            <label for="hex_nocturnas" class="col-md-1 control-label">Nocturnes :</label>
+            <label for="hex_nocturnas" class="col-md-1 control-label">Nocturnas :</label>
             <input type="text" name="hex_nocturnas" id="hex_nocturnas" class="form_control col-md-3"
             required value="{{$HorasExtras->hex_nocturnas}}">
         </div>

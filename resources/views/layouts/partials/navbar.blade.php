@@ -59,6 +59,7 @@
               <li><a href="#" class="nav-link px-2 ">Liquidación</a>
                   <ul>
                       <li><a href="{{ route('liquidaciones') }}" class="nav-link px-2 ">Liquida nómina</a></li>                  
+                      <li><a href="{{ route('novedades') }}" class="nav-link px-2 ">Novedades</a></li>
                       <li><a href="{{ route('coopfondos') }}" class="nav-link px-2 ">Cooperativas Fondos</a></li>
                       <li><a href="{{ route('embargos') }}" class="nav-link px-2 ">Embargos</a></li>
                       <li><a href="{{ route('horas_extras') }}" class="nav-link px-2 ">Horas Extras</a></li>

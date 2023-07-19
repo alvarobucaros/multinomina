@@ -105,7 +105,7 @@ class HorasExtrasController extends Controller
      */
     public function destroy(string $id)
     {
-        print_r  ($id);
+      
         $HorasExtras = Horas_extras::find($id); 
         $HorasExtras->delete();
         return redirect()->route("horas_extras")->with("success","Eliminado correctamente");

@@ -51,10 +51,6 @@ class LoginController extends Controller
         $empresas = Empresas::where('id', $id)->get();
         
         $empre='NADA';
-        // foreach ($empresas as $empresa){
-        //     $empre =  $empresa->em_nombre;
-        // }
-
 
         config(['app.config_empresa'  => $empre]);
 
@@ -78,7 +74,7 @@ class LoginController extends Controller
         foreach ($empresas as $empresa){
             $empre =  $empresa->em_nombre;
         }
-    //  print_r($empre);
+    
         Config::set('app.config_empresa',$empre);
         return redirect()->intended();
     }

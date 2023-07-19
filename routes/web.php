@@ -16,6 +16,7 @@ use App\Http\Controllers\HVidaController;
 use App\Http\Controllers\IngresosController;
 use App\Http\Controllers\LicenciasController;
 use App\Http\Controllers\LiquidacionesController;
+use App\Http\Controllers\NovedadesController;
 use App\Http\Controllers\ParametrosController;
 use App\Http\Controllers\TiposVariosController;
 use App\Http\Controllers\TercerosController;
@@ -46,12 +47,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('cargos/cargaxls', [CargosController::class, 'cargaxls'])->name('cargos/cargos.cargaxls');
 
     Route::get('/conceptos', [ConceptosController::class, 'index'])->name('conceptos'); 
-    Route::get('/create', [ConceptosController::class, 'create'])->name('conceptos/conceptos.create');
-    Route::get('/edit/{id}', [ConceptosController::class, 'edit'])->name('conceptos/conceptos.edit');
-    Route::post('/update/{id}', [ConceptosController::class, 'update'])->name('conceptos/conceptos.update');
-    Route::get('/show/{id}', [ConceptosController::class, 'show'])->name('conceptos/conceptos.show');
-    Route::post('/store', [ConceptosController::class, 'store'])->name('conceptos/conceptos.store');
-    Route::delete('/destroy/{id}', [ConceptosController::class, 'destroy'])->name('conceptos/conceptos.destroy');
+    Route::get('conceptos/create', [ConceptosController::class, 'create'])->name('conceptos/conceptos.create');
+    Route::get('conceptos/edit/{id}', [ConceptosController::class, 'edit'])->name('conceptos/conceptos.edit');
+    Route::post('conceptos/update/{id}', [ConceptosController::class, 'update'])->name('conceptos/conceptos.update');
+    Route::get('conceptos/show/{id}', [ConceptosController::class, 'show'])->name('conceptos/conceptos.show');
+    Route::post('conceptos/store', [ConceptosController::class, 'store'])->name('conceptos/conceptos.store');
+    Route::delete('conceptos/destroy/{id}', [ConceptosController::class, 'destroy'])->name('conceptos/conceptos.destroy');
     Route::get('conceptos/export', [ConceptosController::class, 'export'])->name('conceptos/conceptos.export');
     Route::get('conceptos/import', [ConceptosController::class, 'import'])->name('conceptos/conceptos.import');
     Route::get('conceptos/cargaxls', [ConceptosController::class, 'cargaxls'])->name('conceptos/conceptos.cargaxls');
@@ -151,14 +152,27 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('liquidaciones', [LiquidacionesController::class, 'index'])->name('liquidaciones'); 
     Route::post('liquidaciones/edit', [LiquidacionesController::class, 'edit'])->name('liquidaciones/liquidaciones.edit');
     Route::get('liquidaciones/show/{id}', [LiquidacionesController::class, 'show'])->name('liquidaciones/liquidaciones.show');
- 
     Route::get('liquidaciones/liquida/{id}', [LiquidacionesController::class, 'liquida'])->name('liquidaciones/liquidaciones.liquida');
     Route::get('liquidaciones/traeLiq/{id}', [LiquidacionesController::class, 'traeLiq'])->name('liquidaciones/liquidaciones.traeLiq');
     Route::get('/verLiquidacion/{id}', [LiquidacionesController::class, 'verLiquidacion'])->name('liquidaciones/liquidaciones.verLiquidacion');
-
     Route::get('/create/{id}', [LiquidacionesController::class, 'create'])->name('liquidaciones/liquidaciones.create');
     Route::post('liquidaciones/store', [LiquidacionesController::class, 'store'])->name('liquidaciones/liquidaciones.store');
- 
+    Route::post('verliquidaciones', [LiquidacionesController::class, 'verliquidaciones'])->name('liquidaciones/liquidaciones/verliquidaciones');
+    Route::post('liquidaciones/liquidar', [LiquidacionesController::class, 'liquidar'])->name('liquidaciones/liquidaciones.liquidar');
+  
+
+    Route::get('/novedades', [NovedadesController::class, 'index'])->name('novedades'); 
+    Route::get('/create', [NovedadesController::class, 'create'])->name('novedades/novedades.create');
+    Route::get('/edit/{id}', [NovedadesController::class, 'edit'])->name('novedades/novedades.edit');
+    Route::post('/update/{id}', [NovedadesController::class, 'update'])->name('novedades/novedades.update');
+    Route::get('/show/{id}', [NovedadesController::class, 'show'])->name('novedades/novedades.show');
+    Route::post('/store', [NovedadesController::class, 'store'])->name('novedades/novedades.store');
+    Route::delete('/destroy/{id}', [NovedadesController::class, 'destroy'])->name('novedades/novedades.destroy');
+    Route::get('novedades/export', [NovedadesController::class, 'export'])->name('novedades/novedades.export');
+    Route::get('novedades/import', [NovedadesController::class, 'import'])->name('novedades/novedades.import');
+    Route::get('novedades/cargaxls', [NovedadesController::class, 'cargaxls'])->name('novedades/novedades.cargaxls');
+
+
    Route::get('parametros', [ParametrosController::class, 'index'])->name('parametros'); 
    Route::get('parametros/create', [ParametrosController::class, 'create'])->name('parametros/parametros.create');
    Route::get('parametros/edit/{id}', [ParametrosController::class, 'edit'])->name('parametros/parametros.edit');
