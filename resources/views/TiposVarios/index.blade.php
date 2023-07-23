@@ -33,9 +33,9 @@
                                 <th>Código</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                
                             </thead>
                           <hr>
 
@@ -46,7 +46,7 @@
                                         <td>{{$item->tt_codigo}}</td>
                                         <td>{{$item->tt_descripcion}}</td>
                                         <td class="mithcmd miColc">{{$item->tt_estado}}</td>
-                                        @if (auth()->user()->profile == 'A') 
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('tiposvarios/tiposvarios.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

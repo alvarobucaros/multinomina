@@ -17,45 +17,44 @@
                 <p>
                     <a class="btn btn-info btn-sm" href="{{ route('home.index')}}">
                         <i class="fa-solid fa-plus"></i> Menú </a>
-                    @if (auth()->user()->profile == 'A') 
-                        <a class="btn btn-primary btn-sm" href="{{ route('dependencias/dependencias.create')}}">
+                    @if (auth()->user()->profile == 'A')  
+                        <a class="btn btn-primary btn-sm" href="{{ route('bancos/bancos.create')}}">
                         <i class="fa-solid fa-plus"></i> Nuevo</a>
-                        <a class="btn btn-warning btn-sm" href="{{ route('dependencias/dependencias.cargaxls')}}">
-                        <i class="fa-solid fa-plus"></i> Importa</a>
                     @endif
                     @if (auth()->user()->profile != 'C') 
-                        <a class="btn btn-success btn-sm" href="{{ route('dependencias/dependencias.export')}}">
+                        <a class="btn btn-success btn-sm" href="{{ route('bancos/bancos.export')}}">
                         <i class="fa-solid fa-plus"></i> A Excel</a>
                     @endif
-                    <span class="miTituloForm"> DEPENDENCIAS</span>
+                    <span class="miTituloForm"> LISTA DE BANCOS</span>
                 </p>
                 <p class="card-text">
                     <div class="table table-resposive-sm">
                         <table class="table table-sm table-bordered table-striped table-hover">
                             <thead class="table-success miThead">
+                                <th>Código</th>
                                 <th>Nombre</th>
-                                <th>Estado</th>
+           
                                 @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                     <th colspan="2" class="centro">Acciones</th>
-                                @endif                                    
+                                @endif                               
                             </thead>
                           <hr>
-
                             <tbody>
                                 @foreach ($datos as $item)  
                                     <tr>
-                                        <td>{{$item->dep_nombre}}</td>
-                                        <td class="mithcmd miColc">{{$item->dep_estado}}</td>
+                                        <td>{{$item->ban_codigo}}</td>      
+                                        <td>{{$item->ban_nombre}}</td> 
+               
                                         @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
-                                            <form action="{{ route('dependencias/dependencias.edit',$item->id)}}" method="GET">
+                                            <form action="{{ route('bancos/bancos.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">
                                                 <span class="fa-solid fa-pen"></span> Edita
                                                 </button>         
                                             </form>
                                         </td>
                                         <td class="mithcmd">
-                                            <form action="{{ route('dependencias/dependencias.show',$item->id)}}" method="GET">
+                                            <form action="{{ route('bancos/bancos.show',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-danger">
                                                 <span class="fa-solid fa-trash-can"></span> eliminar</button>
                                                 </button>         
@@ -65,7 +64,7 @@
 
                                         <td style='display: none'>
                                             {{$item->id}}
-                                            {{$item->dep_idEmpresa}}
+                                            {{$item->ban_idEmpresa}}
                                         </td>                          
                                     </tr>
                                 @endforeach

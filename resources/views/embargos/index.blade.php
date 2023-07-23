@@ -37,9 +37,9 @@
                                 <th>Cuota Mes</th>
                                 <th>Valor Total</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                    
                             </thead>
                           <hr>
  
@@ -52,7 +52,7 @@
                                         <td>{{$item->emb_valorCuota}}</td>
                                         <td>{{$item->emb_valorTotal}}</td>
                                         <td class="mithcmd miColc">{{$item->emb_estado}}<td>
-                                        @if (auth()->user()->profile == 'A') 
+                                            @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('embargos/embargos.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

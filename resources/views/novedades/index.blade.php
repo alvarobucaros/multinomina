@@ -41,8 +41,8 @@
                                 <th class="derecha">Cantidad</th>
                                 <th class="derecha">Valor</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
                                 @endif                               
                             </thead>
                           <hr>
@@ -50,15 +50,15 @@
                             <tbody>
                                 @foreach ($datos as $item)  
                                     <tr>
-                                        <td>{{$item->empl_primerNombre}} {{$item->empl_otroNombre}}
-                                            {{$item->empl_primerApellido}} {{$item->empl_otroApellido}}</td>
+                                        <td>{{$item->empl_primerApellido}} {{$item->empl_otroApellido}}
+                                            {{$item->empl_primerNombre}} {{$item->empl_otroNombre}}</td>
                                         <td>{{$item->cp_titulo}}</td>
                                         <td>{{$item->nov_tipo}}</td>
                                         <td class="centro">{{$item->nov_periodo}}</td>  
                                         <td class="derecha">{{$item->nov_cantidad}}</td>
                                         <td class="derecha">{{$item->nov_valor}}</td>                                     
                                         <td class="centro">{{$item->nov_estado}}</td>
-                                        @if (auth()->user()->profile == 'A') 
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('novedades/novedades.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

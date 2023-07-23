@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BancosController;
 use App\Http\Controllers\CargosController;
 use App\Http\Controllers\ConceptosController;
 use App\Http\Controllers\CoopfondosController;
@@ -34,7 +35,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::view('/home/index', 'home')->name('home');
 
     Route::view('/home/importaXLS', 'home')->name('importaXLS');
-    
+
+    Route::get('bancos', [BancosController::class, 'index'])->name('bancos'); 
+    Route::get('bancos/create', [BancosController::class, 'create'])->name('bancos/bancos.create');
+    Route::get('bancos/edit/{id}', [BancosController::class, 'edit'])->name('bancos/bancos.edit');
+    Route::post('bancos/update/{id}', [BancosController::class, 'update'])->name('bancos/bancos.update');
+    Route::get('bancos/show/{id}', [BancosController::class, 'show'])->name('bancos/bancos.show');
+    Route::post('bancos/bancos/store', [BancosController::class, 'store'])->name('bancos/bancos.store');
+    Route::delete('bancos/destroy/{id}', [BancosController::class, 'destroy'])->name('bancos/bancos.destroy');
+    Route::get('bancos/export', [BancosController::class, 'export'])->name('bancos/bancos.export');
+ 
     Route::get('cargos', [CargosController::class, 'index'])->name('cargos'); 
     Route::get('cargos/create', [CargosController::class, 'create'])->name('cargos/cargos.create');
     Route::get('cargos/edit/{id}', [CargosController::class, 'edit'])->name('cargos/cargos.edit');

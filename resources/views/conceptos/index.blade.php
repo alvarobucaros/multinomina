@@ -44,10 +44,12 @@
                                 <th class="derecha"> % por Defecto</th>
                                 <th>Factor Salarial</th>
                                 <th>Seg Social</th>
+                                <th>Débito</th>
+                                <th>Crédito</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                   
                             </thead>
                           <hr>
 
@@ -63,9 +65,13 @@
                                         <td class="derecha">{{$item->cp_valorDefault}}</td>
                                         <td class="derecha">{{$item->cp_porcentajeDefault}} %</td>                                     
                                         <td class="centro">{{$item->cp_factorSalarial}}</td>                             
-                                        <td class="centro">{{$item->cp_seguridadSocial}}</td>                                       
+                                        <td class="centro">{{$item->cp_seguridadSocial}}</td>  
+                                        <td>{{$item->cp_ctaDebito}}</td>
+                                        <td>{{$item->cp_ctaCredito}}</td>
+                                                                                      
                                         <td class="centro">{{$item->cp_estado}}</td>
-                                        @if (auth()->user()->profile == 'A') 
+                                      
+                                        @if ((auth()->user()->profile == 'A' && $item->cp_tipo == 'PE') || (auth()->user()->profile == 'S')  )
                                         <td class="mithcmd">
                                             <form action="{{ route('conceptos/conceptos.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

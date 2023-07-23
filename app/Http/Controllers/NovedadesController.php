@@ -15,7 +15,9 @@ class NovedadesController extends Controller
         $datos = Novedades::where('nov_idEmpresa', auth()->user()->empresa)
         ->join('empleados','empleados.id','=','novedades.nov_idEmpleado')
         ->join('conceptos','conceptos.id','=','novedades.nov_idConcepto')
-        ->orderBy('nov_periodo', 'desc', 'nov_idEmpleado', 'asc')
+        ->orderBy('nov_periodo', 'desc')
+        ->orderBy( 'empleados.empl_primerApellido')
+        ->orderBy( 'empleados.empl_primerNombre')
         ->paginate(8);      
         return view('novedades/index', compact('datos')); 
     }

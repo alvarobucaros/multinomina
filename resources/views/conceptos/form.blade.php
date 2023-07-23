@@ -32,7 +32,7 @@
                     <input type="date" name="cp_fechaHasta" id="cp_fechaHasta"
                     class="form_control col-md-2" required value="{{$conceptos->cp_fechaHasta}}">
                 </div>
-            <div class="input mb-1">
+                 <div class="input mb-1">
                     <label for="cp_valorDefault" class="col-md-2 control-label">Valor Defecto :</label>
                     <input type="text" name="cp_valorDefault" id="cp_valorDefault" 
                     class="form_control col-md-2" required value="{{$conceptos->cp_valorDefault}}">
@@ -47,16 +47,28 @@
                     <label for="cp_factorSalarial" class="col-md-2 control-label">Factor Salarial :</label>
                     <input type="radio" name="cp_factorSalarial" id="cp_factorSalarialS"
                     value="S" @if ($conceptos->cp_factorSalarial=='S') checked @endif> SI   
-                    <input type="radio" name="cp_factorSalarial" id="cp_factorSalarialN"                <input type="radio" name="cp_clase" id="estadoI" 
+                    <input type="radio" name="cp_factorSalarial" id="cp_factorSalarialN" 
                     value="N" @if ($conceptos->cp_factorSalarial=='N') checked @endif> NO
                  </div>  
                  <div class="input mb-1">
                     <label for="cp_seguridadSocial" class="col-md-2 control-label">Seguridad Social :</label>
                     <input type="radio" name="cp_seguridadSocial" id="cp_seguridadSocialS"
                     value="S" @if ($conceptos->cp_seguridadSocial=='S') checked @endif> SI  
-                    <input type="radio" name="cp_seguridadSocial" id="cp_seguridadSocialN"                 <input type="radio" name="cp_clase" id="estadoI" 
+                    <input type="radio" name="cp_seguridadSocial" id="cp_seguridadSocialN" 
                     value="N" @if ($conceptos->cp_seguridadSocial=='N') checked @endif> NO
                  </div> 
+
+                 <div class="input mb-1">
+                    <label for="cp_ctaDebito" class="col-md-2 control-label">Cuenta Débito :</label>
+                    <input type="text" name="cp_ctaDebito" id="cp_ctaDebito" class="form_control col-md-1"
+                    maxlength="12" required value="{{$conceptos->cp_ctaDebito}}">
+                </div>
+                <div class="input mb-1">
+                    <label for="cp_ctaCredito" class="col-md-2 control-label">Cuenta Crédito :</label>
+                    <input type="text" name="cp_ctaCredito" id="cp_ctaCredito" class="form_control col-md-1"
+                    maxlength="12" required value="{{$conceptos->cp_ctaCredito}}">
+                </div>
+
                 <div class="input mb-1">
                     <label for="cp_estado" class="col-md-2 control-label">Estado :</label>
                     <input type="radio" name="cp_estado" id="estadoA"
@@ -64,8 +76,7 @@
                     <input type="radio" name="cp_estado" id="estadoI" 
                     value="I" @if ($conceptos->cp_estado=='I') checked @endif> Inactivo
                  </div>
-               
-
+                
                  <div style='display: none'>
                     <input type="text" name="id" id="id" value="{{$conceptos->id}}">
                     <input type="text" name="cp_idEmpresa" id="cp_idEmpresa" value="{{$conceptos->cp_idEmpresa}}">

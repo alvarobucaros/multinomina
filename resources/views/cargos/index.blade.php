@@ -40,9 +40,9 @@
                                 <th>Vacantes</th>
                                 <th>otros factores</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                    
                             </thead>
                           <hr>
                             <tbody>
@@ -55,7 +55,7 @@
                                         <td class="centro">{{$item->car_nroVacantes}}</td>   
                                         <td class="centro">{{$item->car_otrosFactores}}</td>                                                              
                                         <td class="centro">{{$item->car_estado}}</td>
-                                        @if (auth()->user()->profile == 'A') 
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('cargos/cargos.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

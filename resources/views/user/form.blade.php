@@ -54,6 +54,8 @@
     value="O" @if ($user->profile=='O') checked @endif> Operador
     <input type="radio" name="profile" id="profileI" 
     value="C" @if ($user->profile=='C') checked @endif> Consultas
+    <input type="radio" name="profile" id="profileS" 
+    value="S" @if ($user->profile=='S') checked @endif> Super ADM
  </div>                   
 
                 <div class="input mb-1">

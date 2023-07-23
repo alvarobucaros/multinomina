@@ -49,6 +49,8 @@ class ConceptosController extends Controller
         $conceptos->cp_seguridadSocial = $request->post('cp_seguridadSocial');
         $conceptos->cp_codigo = $request->post('cp_codigo');
         $conceptos->cp_estado = $request->post('cp_estado');
+        $conceptos->cp_ctaDebito  = $request->post('cp_ctaDebito');
+        $conceptos->cp_ctaCredito = $request->post('cp_ctaCredito');
         $conceptos->save();
         return redirect()->route("conceptos")->with("success","Agregado correctamente");
     }
@@ -83,6 +85,8 @@ class ConceptosController extends Controller
         $conceptos->cp_factorSalarial = $request->post('cp_factorSalarial');
         $conceptos->cp_seguridadSocial = $request->post('cp_seguridadSocial');
         $conceptos->cp_codigo = $request->post('cp_codigo');
+        $conceptos->cp_ctaDebito  = $request->post('cp_ctaDebito');
+        $conceptos->cp_ctaCredito = $request->post('cp_ctaCredito');
         $conceptos->save();
         return redirect()->route("conceptos")->with("success","Actualizado correctamente");
     }

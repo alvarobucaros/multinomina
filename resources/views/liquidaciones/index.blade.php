@@ -4,7 +4,16 @@
     <div class="bg-light p-5 rounded">
         @auth
         <div class="card">
-            <div class="card-body">       
+            <div class="card-body"> 
+                <div class="row">
+                    <div class="col-sm-12">
+                        @if ($mensaje = Session::get('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ $mensaje }}
+                            </div>
+                        @endif
+                    </div>
+                </div>        
                 <span class="miTituloForm"> LIQUIDACIONES DE NOMINA</span>
 
                 <p class="card-text">
@@ -73,10 +82,17 @@
                             </div>  
                             <hr>
                             <div class="input mb-1">
-                                <label for="verliq" class="col-md-3 control-label">Desea ver las liquidaciones anteriores :</label>
+                                <label for="verliq" class="col-md-4 control-label">Desea ver las liquidaciones anteriores :</label>
                                     <input type="radio" name="verliq" id="verliqS"
                                     value="S">   SI
                                     <input type="radio" name="verliq" id="verliqN" 
+                                    value="N" checked> NO                        
+                            </div>
+                            <div class="input mb-1">
+                                <label for="borrarliq" class="col-md-4 control-label">Si ya existe la liquidación borrar sus datos :</label>
+                                    <input type="radio" name="borrarliq" id="verliqS"
+                                    value="S">   SI
+                                    <input type="radio" name="borrarliq" id="verliqN" 
                                     value="N" checked> NO                        
                             </div>
                             <br>
@@ -114,7 +130,8 @@ $('#tt_codigo').on('change',function(){
     var periodo =  document.getElementById('par_periodo').value;
     var dia = 30;
     var mes = periodo.substring(4, 6);
-    var desde = periodo.substring(0, 4)+'-01-01';
+    if (mes == '02'){ dia = 28;}
+    var desde = periodo.substring(0, 4)+'-'+mes+'-01';
     var hasta = periodo.substring(0, 4)+'-'+mes+'-'+dia; 
    
     var span = document.getElementById('nom_liq');

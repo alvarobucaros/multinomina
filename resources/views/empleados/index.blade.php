@@ -45,7 +45,9 @@
                                 <th>Fch Ingreso</th>
                                 <th>Fch Retiro</th>
                                 <th>Estado</th>
-                                <th colspan="2" >Acciones</th>
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif      
                             </thead>
                           <hr>
                             <tbody>
@@ -64,20 +66,22 @@
                                         <td>{{$item->empl_fechaRetiro}}</td>
                                         
                                         <td>{{$item->empl_estado}}</td>
-                                        <td>
-                                            <form action="{{ route('empleados/empleados.edit',$item->id)}}" method="GET">
-                                                <button class="btn btn-sm btn-primary">
-                                                <span class="fa-solid fa-pen"></span> Edita
-                                                </button>         
-                                            </form>
-                                        </td>
-                                        <td class="mithcmd">
-                                            <form action="{{ route('empleados/empleados.show',$item->id)}}" method="GET">
-                                                <button class="btn btn-sm btn-danger">
-                                                <span class="fa-solid fa-trash-can"></span> eliminar</button>
-                                                </button>         
-                                            </form>      
-                                        </td>
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                            <td>
+                                                <form action="{{ route('empleados/empleados.edit',$item->id)}}" method="GET">
+                                                    <button class="btn btn-sm btn-primary">
+                                                    <span class="fa-solid fa-pen"></span> Edita
+                                                    </button>         
+                                                </form>
+                                            </td>
+                                            <td class="mithcmd">
+                                                <form action="{{ route('empleados/empleados.show',$item->id)}}" method="GET">
+                                                    <button class="btn btn-sm btn-danger">
+                                                    <span class="fa-solid fa-trash-can"></span> eliminar</button>
+                                                    </button>         
+                                                </form>      
+                                            </td>
+                                        @endif
                                         <td style='display: none'>
                                             {{$item->id}}
                                             {{$item->empl_idEmpresa}}

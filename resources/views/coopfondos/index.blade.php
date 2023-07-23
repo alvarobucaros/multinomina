@@ -42,9 +42,9 @@
                                 <th>Fch Inicial</th>
                                 <th>Fch Final</th>
                                 <th>Descuenta</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                    
                             </thead>
                           <hr>
 
@@ -63,7 +63,7 @@
                                         <td class="centro">{{$item->cof_fechaInicio}}</td>
                                         <td class="centro">{{$item->cof_fechaFinal}}</td>  
                                         <td class="centro">{{$item->cof_periDescuento}}</td> 
-                                        @if (auth()->user()->profile == 'A') 
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('coopfondos/coopfondos.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

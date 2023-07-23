@@ -35,9 +35,9 @@
                                 <th>Fch Inicio</th>
                                 <th>Fch Final</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                              
                             </thead>
                           <hr>
 

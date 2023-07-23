@@ -37,9 +37,9 @@
                                 <th>Fest Diurna</th>
                                 <th>Fest Nocturnas</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                
                             </thead>
                             <tbody>
                                 @foreach ($datos as $item)  
@@ -52,8 +52,8 @@
                                         <td>{{$item->hex_nocturnas}}</td>
                                         <td>{{$item->hex_festivasDiurna}}</td>
                                         <td>{{$item->hex_festivasNocturna}}</td>
-                                        <td class="centro">{{$item->hex_estado}}</td>
-                                        @if (auth()->user()->profile == 'A') 
+                                        <td class="centro">{{($item->hex_estado =  'P') ? 'Pendiente':'liquidada'}}</td>
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('horas_extras/horas_extras.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

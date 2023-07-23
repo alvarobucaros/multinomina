@@ -31,17 +31,7 @@
                     <input type="radio" name="nov_tipo" id="estadoI" 
                     value="O" @if ($novedades->nov_tipo=='O') checked @endif> Ocasional
                  </div>
-                <div class="input mb-1">
-                    <label for="nov_fchDesde" class="col-md-2 control-label">Fecha Desde :</label>
-                    <input type="date" name="nov_fchDesde" id="nov_fchDesde"
-                    class="form_control col-md-2" required value="{{$novedades->nov_fchDesde}}">
-                </div>
-                <div class="input mb-1">
-                    <label for="nov_fchHasta" class="col-md-2 control-label">Fecha Hasta :</label>
-                    <input type="date" name="nov_fchHasta" id="nov_fchHasta"
-                    class="form_control col-md-2" required value="{{$novedades->nov_fchHasta}}">
-                </div>
-  
+
                 <div class="input mb-1">
                     <label for="nov_periodo" class="col-md-2 control-label">Período :</label>
                     <input type="text" name="nov_periodo" id="nov_periodo" class="form_control col-md-2"

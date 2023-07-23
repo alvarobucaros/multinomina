@@ -37,9 +37,9 @@
                                 <th>Usuario</th>
                                 <th>Perfil</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                             
                             </thead>
                           <hr>
  
@@ -53,7 +53,7 @@
                                         <td>{{$item->username}}</td>
                                         <td class="centro">{{$item->profile}}</td>
                                         <td class="centro">{{$item->estado}}</td>
-                                        @if (auth()->user()->profile == 'A') 
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
 
                                         <td class="mithcmd">
                                             <form action="{{ route('user/user.edit',$item->id)}}" method="GET">

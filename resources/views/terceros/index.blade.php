@@ -41,9 +41,9 @@
                                 <th>Correo</th>
                                 <th>Teléfono</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                
                             </thead>
                           <hr>
 
@@ -58,7 +58,7 @@
                                         <td >{{$item->ter_email}}</td>
                                         <td >{{$item->ter_telefono}}</td>
                                         <td class="centro">{{$item->ter_estado}}</td>
-                                        @if (auth()->user()->profile == 'A') 
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('terceros/terceros.edit',$item->id)}}" method="GET">
                                                 <button class="btn btn-sm btn-primary">

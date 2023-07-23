@@ -107,6 +107,18 @@
     maxlength="10" required value="{{$ingresos->ing_numeroContrato}}">
 </div> 
 
+<div class="input mb-1">
+    <label for="ing_banco" class="col-md-2 control-label">Banco:</label>
+    <input type="text" name="ing_banco" id="ing_banco" class="form_control col-md-2" 
+    maxlength="10" required value="{{$ingresos->ing_banco}}">
+</div> 
+<div class="input mb-1">
+    <label for="ing_cuenta" class="col-md-2 control-label">Nro Cuenta:</label>
+    <input type="text" name="ing_cuenta" id="ing_cuenta" class="form_control col-md-2" 
+    maxlength="10" required value="{{$ingresos->ing_cuenta}}">
+</div> 
+
+
 <hr>
 <div class="input mb-1">
     <label for="ing_encargo" class="col-md-2 control-label">Encargado ? :</label>

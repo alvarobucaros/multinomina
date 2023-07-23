@@ -21,6 +21,7 @@
            @php  $pr='Consulta';
           if(auth()->user()->profile=='A'){$pr='Admin';}
           if(auth()->user()->profile=='O'){$pr='Opera';}
+          if(auth()->user()->profile=='S'){$pr='Super Adm';}
              echo auth()->user()->name . ' ( '. $pr . ' ) ' @endphp</a> </span></div>
     </div>
   </div>
@@ -45,8 +46,8 @@
                       <li><a href="{{ route('dependencias') }}" class="nav-link px-2 ">Dependencias</a></li>
                       <li><a href="{{ route('cargos') }}" class="nav-link px-2 ">Cargos</a></li>
                       <li><a href="{{ route('diasHabiles') }}" class="nav-link px-2 ">Dias hábiles</a></li>
-                     
                       <li><a href="{{ route('terceros') }}" class="nav-link px-2 ">Terceros</a></li>
+                      <li><a href="{{ route('bancos') }}" class="nav-link px-2 ">Bancos</a></li>
                   </ul>
               </li>
               <li><a href="#" class="nav-link px-2 ">Empleados</a>

@@ -43,9 +43,9 @@
                                 <th>Contrato</th>
                                 <th>Salario</th>
                                 <th>Estado</th>
-                                @if (auth()->user()->profile == 'A') 
-                                    <th colspan="2" >Acciones</th>
-                                @endif                               
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                            
                             </thead>
 
                 <tbody>
@@ -95,7 +95,7 @@
                             <td>{{$item->car_salario}}</td>
                           
                             <td class="centro">{{$item->ing_estado}}</td>
-                            @if (auth()->user()->profile == 'A') 
+                            @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                 <td class="mithcmd">
                                     <form action="{{ route('ingresos/ingresos.edit',$item->id)}}" method="GET">
                                         <button class="btn btn-sm btn-primary">

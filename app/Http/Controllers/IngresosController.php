@@ -101,6 +101,8 @@ class IngresosController extends Controller
         $ingresos->ing_idCargoEncargo = $request->post('ing_idCargoEncargo');
         $ingresos->ing_fchUltimaVacacion = $request->post('ing_fechaIngreso');
         $ingresos->ing_fchUltimaCesantia = $request->post('ing_fechaIngreso');
+        $ingresos->ing_banco  = $request->post('ing_banco');
+        $ingresos->ing_cuenta = $request->post('ing_cuenta');
         $ingresos->save();
         return redirect()->route("ingresos")->with("success","Agregado correctamente");
 
@@ -147,7 +149,8 @@ class IngresosController extends Controller
         $ingresos->ing_idCargoEncargo = $request->post('ing_idCargoEncargo');
         $ingresos->ing_fchUltimaVacacion = $request->post('ing_fchUltimaVacacion');
         $ingresos->ing_fchUltimaCesantia = $request->post('ing_fchUltimaCesantia');
- 
+        $ingresos->ing_banco  = $request->post('ing_banco');
+        $ingresos->ing_cuenta = $request->post('ing_cuenta');
         $ingresos->save();
         return redirect()->route("ingresos")->with("success","Actualizado correctamente");
  
