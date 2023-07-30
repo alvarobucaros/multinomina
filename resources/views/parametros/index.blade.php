@@ -3,6 +3,7 @@
     <li><a href='#tab2'> Horas Extras </a></li>
     <li><a href='#tab3'> Firmas </a></li>
     <li><a href='#tab4'> Liquidacion </a></li>
+    <li><a href='#tab5'> Retefuente </a></li>
   </ul>
 
 <div class="card row mt-2">
@@ -53,6 +54,16 @@
                         <label for="par_horasMes" class="col-md-2 control-label derecha">Horas mensuales:</label>
                         <input type="text" name="par_horasMes" id="par_horasMes" class="form_control "
                         required value="{{$parametros->par_horasMes}}">                    
+                    </div>
+                    <div class="input mb-1">
+                        <label for="par_periodo" class="col-md-2 control-label">Periodo liquidación:</label>
+                        <input type="text" name="par_periodo" id="par_periodo" class="form_control "
+                        required value="{{$parametros->par_periodo}}">
+                        <label for="par_liquidacion" class="col-md-1 control-label derecha">Liquida :</label>
+                        <input type="radio" name="par_liquidacion" id="liquidaM" 
+                        value="M"  @if ($parametros->par_liquidacion=='M') checked @endif> Mensual
+                        <input type="radio" name="par_tipoDocTesorero" id="liquidaQ"
+                        value="Q"  @if ($parametros->par_liquidacion=='Q') checked @endif> Quincenal
                     </div>
                 </div>       
             </div>
@@ -121,30 +132,155 @@
             </div>
         </div>
         <div id="tab4" class="col-md-11 col-md-offset-1 alert alert-mm color-palette-set">
+            <div class="card-body myCard">        
+                <div class="card-text">
+                    <span class="miSubTitulo">Código de conceptos</span>
+                    
+                        <div class="card">
+                            <h5 class="card-title">Devengados</h5>
+                        
+                                <div class="input mb-1">
+                                    <label  class="col-md-3 control-label">Salario:</label>
+                                    <input type="text" name="par_codigo_salario"  class="form_control col-md-1 derecha"
+                                    onclick="selConcepto('D1')"  id='D1' maxlength="3" value="{{$parametros->par_codigo_salario}}">                         
+                                         
+                                    <label  class="col-md-3 control-label derecha">Aux transporte:</label>
+                                    <input type="text" name="par_codigo_trasporte"  class="form_control col-md-1 derecha"
+                                    onclick="selConcepto('D2')" id='D2' maxlength="3"    value="{{$parametros->par_codigo_trasporte}}">
+                                </div>
+                                <div class="input mb-1">
+                                    <label  class="col-md-3 control-label">Extras:</label>
+                                    <input type="text" name="par_codigo_hrsRxtras"  class="form_control col-md-1 derecha"
+                                    onclick="selConcepto('D3')" id='D3' maxlength="3" value="{{$parametros->par_codigo_hrsRxtras}}">                         
+               
+                                    <label  class="col-md-3 control-label derecha">Bonos:</label>
+                                    <input type="text" name="par_codigo_bonos"  class="form_control col-md-1 derecha"
+                                    onclick="selConcepto('D4')" id='D4' maxlength="3"    value="{{$parametros->par_codigo_bonos}}">
+                                </div>                       
+                        </div>
+           
+                        <div class="card" >
+                            <h5 class="card-title">Deducciones</h5>
+                            <div class="input mb-1">
+                                <label  class="col-md-3 control-label">Salud:</label>
+                                <input type="text" name="par_codigo_salud"  class="form_control col-md-1 derecha"
+                                onclick="selConcepto('V1')"  id="V1"   maxlength="3" value="{{$parametros->par_codigo_salud}}">                         
+           
+                                <label  class="col-md-3 control-label derecha">Pensión:</label>
+                                <input type="text" name="par_codigo_pension"  class="form_control col-md-1 derecha"
+                                onclick="selConcepto('V2')"  id="V2"  maxlength="3"    value="{{$parametros->par_codigo_pension}}">
+                            </div>
+                            <div class="input mb-1">
+                                <label  class="col-md-3 control-label">Riesgos:</label>
+                                <input type="text" name="par_codigo_riesgos"  class="form_control col-md-1 derecha"
+                                onclick="selConcepto('V3')"  id="V3"  maxlength="3" value="{{$parametros->par_codigo_riesgos}}">                         
+                                <label  class="col-md-3 control-label">Retefuente:</label>
+                                <input type="text" name="par_codigo_retefuente"  class="form_control col-md-1 derecha"
+                                onclick="selConcepto('V4')"  id="V4"  maxlength="3" value="{{$parametros->par_codigo_retefuente}}">                         
+
+                            </div>
+                          
+                    </div>
+                    <div class="input mb-1">
+                        <label class="col-md-2 control-label" name='selConcepto'>Concepto :</label>
+                        <select name="idConcepto" id="idConcepto"  class="form_control col-md-5" "> 
+                            <option value="">Seleccione un concepto</option>
+                            @if(!empty($conceptos))
+                                @foreach ($conceptos as $concepto)                               
+                                    <option value="{{$concepto->cp_codigo}}">
+                                        {{$concepto->cp_titulo}}   </option>
+                                @endforeach
+                            @endif         
+                        </select>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div id="tab5" class="col-md-11 col-md-offset-1 alert alert-mm color-palette-set">
             <div class="card-body">        
                 <div class="card-text">  
-                    <span class="miSubTitulo">Liquidación</span>
+                    <span class="miSubTitulo">Retención en la Fuente</span>
                     <div class="input mb-1">
-                        <label for="par_periodo" class="col-md-2 control-label">Periodo liquidación:</label>
-                        <input type="text" name="par_periodo" id="par_periodo" class="form_control "
-                        required value="{{$parametros->par_periodo}}">
-                        <label for="par_liquidacion" class="col-md-1 control-label derecha">Liquida :</label>
-                        <input type="radio" name="par_liquidacion" id="liquidaM" 
-                        value="M"  @if ($parametros->par_liquidacion=='M') checked @endif> Mensual
-                        <input type="radio" name="par_tipoDocTesorero" id="liquidaQ"
-                        value="Q"  @if ($parametros->par_liquidacion=='Q') checked @endif> Quincenal
+                        <label for="par_uvt" class="col-md-2 control-label">Valor UVT:</label>
+                        <input type="text" name="par_uvt" id="par_uvt" class="form_control derecha"
+                        required value="{{$parametros->par_uvt}}">
+
                     </div>
 
                     <div class="input mb-1">
-                        <label for="par_fondoRiesgos" class="col-md-2 control-label">Fondo de riesgos:</label>
-                        <input type="text" name="par_fondoRiesgos" id="par_fondoRiesgos" class="form_control "
-                        required value="{{$parametros->par_fondoRiesgos}}">
+                        <label  class="col-md-2 control-label">Rango 0:</label>
+                        <input type="text" name="par_retefuente_rango0"  class="form_control col-md-1 derecha"
+                        maxlength="5" value="{{$parametros->par_retefuente_rango0}}">                         
+                         <input type="text"  class="form_control col-md-1 derecha"
+                        readonly maxlength="5"   value="{{$parametros->par_retefuente_rango1}}">
+                          <label  class="col-md-1 control-label derecha">Porcentaje :</label>
+                          <input type="text" name="par_retefunte_porc0"  class="form_control col-md-1 derecha"
+                          maxlength="6"    value="{{$parametros->par_retefunte_porc0}}">
                     </div>
                     <div class="input mb-1">
-                        <label for="par_CajaSubsidio" class="col-md-2 control-label">Caja compensación:</label>
-                        <input type="text" name="par_CajaSubsidio" id="par_CajaSubsidio" class="form_control "
-                        required value="{{$parametros->par_CajaSubsidio}}">
+                        <label  class="col-md-2 control-label">Rango 1:</label>
+                        <input type="text" name="par_retefuente_rango1"  class="form_control col-md-1 derecha"
+                        maxlength="5" value="{{$parametros->par_retefuente_rango1}}">                         
+                         <input type="text"  class="form_control col-md-1 derecha"
+                         readonly  maxlength="5"   value="{{$parametros->par_retefuente_rango2}}">
+                          <label  class="col-md-1 control-label derecha">Porcentaje :</label>
+                          <input type="text" name="par_retefunte_porc1"  class="form_control col-md-1 derecha"
+                          maxlength="6"    value="{{$parametros->par_retefunte_porc1}}">
                     </div>
+
+                    <div class="input mb-1">
+                        <label  class="col-md-2 control-label">Rango 2:</label>
+                        <input type="text" name="par_retefuente_rango2"  class="form_control col-md-1 derecha"
+                        maxlength="5" value="{{$parametros->par_retefuente_rango2}}">                         
+                        <input type="text"  class="form_control col-md-1 derecha"
+                        readonly  maxlength="5"   value="{{$parametros->par_retefuente_rango3}}">
+                        <label  class="col-md-1 control-label derecha">Porcentaje :</label>
+                        <input type="text" name="par_retefunte_porc2"  class="form_control col-md-1 derecha"
+                        maxlength="6"    value="{{$parametros->par_retefunte_porc2}}">
+                    </div>
+
+                    <div class="input mb-1">
+                        <label  class="col-md-2 control-label">Rango 3:</label>
+                        <input type="text" name="par_retefuente_rango3"  class="form_control col-md-1 derecha"
+                        maxlength="5" value="{{$parametros->par_retefuente_rango3}}">                         
+                        <input type="text" class="form_control col-md-1 derecha"
+                        readonly   maxlength="5"   value="{{$parametros->par_retefuente_rango4}}">
+                        <label  class="col-md-1 control-label derecha">Porcentaje :</label>
+                        <input type="text" name="par_retefunte_porc3"  class="form_control col-md-1 derecha"
+                         maxlength="6"    value="{{$parametros->par_retefunte_porc3}}">
+                    </div> 
+
+                    <div class="input mb-1">
+                        <label  class="col-md-2 control-label">Rango 4:</label>
+                        <input type="text" name="par_retefuente_rango4"  class="form_control col-md-1 derecha"
+                        maxlength="5" value="{{$parametros->par_retefuente_rango4}}">                         
+                        <input type="text"  class="form_control col-md-1 derecha"
+                        readonly maxlength="5"   value="{{$parametros->par_retefuente_rango5}}">
+                        <label  class="col-md-1 control-label derecha">Porcentaje :</label>
+                        <input type="text" name="par_retefunte_porc4"  class="form_control col-md-1 derecha"
+                         maxlength="6"    value="{{$parametros->par_retefunte_porc4}}">
+                    </div> 
+
+                    <div class="input mb-1">
+                        <label  class="col-md-2 control-label">Rango 5:</label>
+                        <input type="text" name="par_retefuente_rango5"  class="form_control col-md-1 derecha"
+                        maxlength="5" value="{{$parametros->par_retefuente_rango5}}">                         
+                        <input type="text"  class="form_control col-md-1 derecha"
+                        readonly maxlength="5"   value="{{$parametros->par_retefuente_rango6}}">
+                        <label  class="col-md-1 control-label derecha">Porcentaje :</label>
+                        <input type="text" name="par_retefunte_porc5"  class="form_control col-md-1 derecha"
+                         maxlength="6"    value="{{$parametros->par_retefunte_porc5}}">
+                    </div> 
+                    <div class="input mb-1">
+                        <label  class="col-md-2 control-label">Rango 6:</label>
+                        <input type="text" name="par_retefuente_rango6"  class="form_control col-md-1 derecha"
+                        maxlength="5" value="{{$parametros->par_retefuente_rango6}}">                         
+                        <input type="text"   class="form_control col-md-1 derecha"
+                        readonly maxlength="5"  value="999999">
+                        <label  class="col-md-1 control-label derecha">Porcentaje :</label>
+                        <input type="text" name="par_retefunte_porc6"  class="form_control col-md-1 derecha"
+                         maxlength="6"    value="{{$parametros->par_retefunte_porc6}}">
+                    </div> 
               
                 </div>
             </div> 
@@ -152,19 +288,21 @@
     @endforeach 
     <div class="mb-1">
         <a href="{{route('home.index')}}" class="btn btn-sm btn-info"> Menú</a>
-    @if (auth()->user()->profile == 'A') 
+    @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
         <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>  
     @endif
     
-    (   par_fondoRiesgos ,  par_CajaSubsidio    
+     {{-- par_fondoRiesgos ,  par_CajaSubsidio    @php echo number_format($item->acu_valor,2,",","."); @endphp  --}}
     </div> 
     <div style='display: none'>
         <input type="text" name="id" id="id" value="{{$parametros->id}}">
+        <input type="text" id="cpto" value="">
         <input type="text" name="par_idEmpresa" id="par_idEmpresa" value="{{$parametros->par_idEmpresa}}">
     </div>
 </div>
 
 <script>
+   
     $('ul.tabs').each(function(){
       // Para cada conjunto de pestañas, queremos realizar un seguimiento de 
       // qué pestaña está activa y su contenido asociado
@@ -201,6 +339,21 @@
         e.preventDefault();
       });
     });
+
+    function  selConcepto(op){       
+        document.getElementById('cpto').value = op;
+        document.getElementById(op).style.backgroundColor='#7af180';
+    }
+
+    $('#idConcepto').on('change',function(){
+    var selectBox = document.getElementById('idConcepto');
+    var nombre = selectBox.options[selectBox.selectedIndex].text;   
+    var id = selectBox.options[selectBox.selectedIndex].value;
+    var op = document.getElementById('cpto').value;
+    document.getElementById(op).value = id;
+    document.getElementById(op).style.backgroundColor='#FFF';
+    })
+
     </script>
     
     <!-- >>>>>>>   Creado por: Alvaro Ortiz Castellanos   Monday,Nov 27, 2017 9:41:16   <<<<<<< -->

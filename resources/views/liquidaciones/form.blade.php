@@ -8,7 +8,7 @@
                   
                 <p>
                     @php
-                         echo (' <span class="miMayuscula">LIQUIDACION : ' . $data [4] .'</span> ');
+                        echo (' <span class="miMayuscula">LIQUIDACION : ' . $data [4] .'</span> ');
                     @endphp
            
                     <br>
@@ -21,10 +21,10 @@
                                 <th>periodo</th>
                                 <th>Fecha desde</th>
                                 <th>Fecha hasta</th>
-                                <th>Estado</th>  
-                                @if (auth()->user()->profile == 'A') 
-                                <th>Acciones</th>
-                            @endif                                                           
+                                <th class="centro">Estado</th>  
+                                @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                    <th colspan="2" class="centro">Acciones</th>
+                                @endif                                                            
                             </thead>
                             <hr>
                             <tbody>
@@ -36,8 +36,8 @@
                                         <td >{{$item->liq_fechaHasta}}</td>
                                         <td class="centro">{{($item->liq_estado == 'P') ? 'Pendiente' : 'Cerrada'}}</td> 
                                         <td class="mithcmd">
-                                            <form action="{{ route('tiposvarios/tiposvarios.show',$item->id)}}" method="GET">
-                                                <button class="btn btn-sm btn-success">
+                                            <form action="{{ route('liquidaciones/liquidaciones/verMovimientos',$item->id)}}" method="GET">
+                                                <button class="btn btn-sm miButton">
                                                 <span class="fa-solid fa-trash-can"></span> Ver liquidación</button>
                                                 </button>         
                                             </form>      

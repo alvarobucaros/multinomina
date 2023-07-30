@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Acumulados;
 use App\Models\Cargos;
+use App\Models\Conceptos;
 use App\Models\Empresas;
 use App\Models\Empleados;
 use App\Models\Horas_extras;
@@ -17,9 +18,6 @@ use App\Models\Novedades;
 use App\Models\TiposVarios;
 use App\Models\Parametros;
 
-// use App\Http\Controllers\DateTime;
-
-// use Carbon\Carbon;
 
 class LiquidacionesController extends Controller
 {
@@ -89,6 +87,20 @@ class LiquidacionesController extends Controller
         $param[] = $ar[0];
         return view('home/desarrollo',$param);
     }
+    public function verMovimientos(string $id)
+    {
+        $datos = Acumulados::where('acu_idEmpresa', auth()->user()->empresa)
+        ->join('empleados','empleados.id','=','acumulados.acu_idEmpleado')
+        ->join('conceptos','conceptos.id','=','acumulados.acu_idConcepto')
+        ->orderBy('empl_primerApellido')
+        ->orderBy('empl_primerNombre')
+        ->orderBy('acu_idConcepto', 'asc')
+        ->paginate(10);      
+        return view('liquidaciones/verMovimientos', compact('datos'));  
+    }
+
+    // <td>{{$item->}} {{$item->empl_otroNombre}}
+    // {{$item->}} {{$item->empl_otroApellido}}</td>
 
    // public function verliquidaciones(Request $request){
       
@@ -190,23 +202,63 @@ class LiquidacionesController extends Controller
     // Crea la liquidación y sus acumulados
     //             
 
-        $para = array();
+        
         $parametros = Parametros::all()->where('par_idEmpresa','=',auth()->user()->empresa);
         if(!empty($parametros)){
-            foreach ($parametros as $parametro){  
-                 
+            foreach ($parametros as $parametro){                  
                 $par_festivadiurna = $parametro->par_festivadiurna;
                 $par_festivanocturna = $parametro->par_festivanocturna;
                 $par_horasnocturna = $parametro->par_horasnocturna;
                 $par_horasdiurna = $parametro->par_horasdiurna;
-                array_push($para, $par_horasdiurna, $par_horasnocturna, $par_festivadiurna, $par_festivanocturna );
+                $par_horasdiurna = $parametro->par_horasdiurna;
+                $par_smmlv = $parametro->par_smmlv;
+                $par_auxTransporte = $parametro->par_auxTransporte;
+                $par_uvt = $parametro->par_uvt;
+                $par_retefuente_rango0 = $parametro->par_retefuente_rango0;
+                $par_retefuente_rango1 =  $parametro->par_retefuente_rango1;
+                $par_retefuente_rango2 =  $parametro->par_retefuente_rango2;
+                $par_retefuente_rango3 =  $parametro->par_retefuente_rango3;
+                $par_retefuente_rango4 =  $parametro->par_retefuente_rango4;
+                $par_retefuente_rango5 =  $parametro->par_retefuente_rango5;
+                $par_retefuente_rango6 =  $parametro->par_retefuente_rango6;
+                $par_retefunte_porc0 =  $parametro->par_retefunte_porc0;
+                $par_retefunte_porc1 =  $parametro->par_retefunte_porc1;
+                $par_retefunte_porc2 =  $parametro->par_retefunte_porc2;
+                $par_retefunte_porc3 =  $parametro->par_retefunte_porc3;
+                $par_retefunte_porc4 =  $parametro->par_retefunte_porc4;
+                $par_retefunte_porc5 =  $parametro->par_retefunte_porc5;
+                $par_retefunte_porc6 =  $parametro->par_retefunte_porc6;    
+                $par_codigo_salario =  $parametro->par_codigo_salario;
+                $par_codigo_trasporte =  $parametro->par_codigo_trasporte;
+                $par_codigo_hrsRxtras =  $parametro->par_codigo_hrsRxtras;
+                $par_codigo_bonos =  $parametro->par_codigo_bonos;
+                $par_codigo_salud =  $parametro->par_codigo_salud;
+                $par_codigo_pension =  $parametro->par_codigo_pension; 
+                $par_codigo_riesgos =  $parametro->par_codigo_riesgos;
+                $par_codigo_retefuente =  $parametro->par_codigo_retefuente;        
+                
+        // lleva valores de parametrización
+        $para = ["par_horasdiurna" => $par_horasdiurna, "par_horasnocturna" => $par_horasnocturna,
+            "par_festivadiurna" => $par_festivadiurna,"par_festivanocturna" => $par_festivanocturna,
+            "par_smmlv" => $par_smmlv,"par_auxTransporte" => $par_auxTransporte, "par_uvt" => $par_uvt,
+            "par_retefuente_rango0" => $par_retefuente_rango0, "par_retefuente_rango1" => $par_retefuente_rango1,
+            "par_retefuente_rango2" => $par_retefuente_rango2, "par_retefuente_rango3" => $par_retefuente_rango3,
+            "par_retefuente_rango4" => $par_retefuente_rango4, "par_retefuente_rango5" => $par_retefuente_rango5,
+            "par_retefuente_rango6" => $par_retefuente_rango6, 
+            "par_retefunte_porc0" => $par_retefunte_porc0 ,"par_retefunte_porc1" => $par_retefunte_porc1,
+            "par_retefunte_porc2" => $par_retefunte_porc2 ,"par_retefunte_porc3" => $par_retefunte_porc3,
+            "par_retefunte_porc4" => $par_retefunte_porc4 ,"par_retefunte_porc5" => $par_retefunte_porc5,
+            "par_retefunte_porc6" => $par_retefunte_porc6, "par_codigo_salario" => $par_codigo_salario,
+            "par_codigo_trasporte" => $par_codigo_trasporte, "par_codigo_hrsRxtras" => $par_codigo_hrsRxtras, 
+            "par_codigo_bonos" => $par_codigo_bonos, "par_codigo_salud" => $par_codigo_salud,
+            "par_codigo_pension" => $par_codigo_pension, "par_codigo_riesgos" => $par_codigo_riesgos, 
+            "par_codigo_retefuente" => $par_codigo_retefuente]; 
             }     
         }
 
         $ingresos = Ingresos::all()->where('ing_idEmpresa', auth()->user()->empresa)
         ->where('ing_estado','A');
-//dd( $ingresos);
-    // Crea la liquidación
+
         $liquidaciones = new Liquidaciones;  
         $liquidaciones->liq_idEmpresa= auth()->user()->empresa;
         $liquidaciones->liq_tipo = $tt_codigo;
@@ -218,40 +270,18 @@ class LiquidacionesController extends Controller
         $liquidaciones->save();
         $liqId = $liquidaciones->id;
 
-     //    "tt_codigo" => "LP"
-     //    "liq_idEmpleado" => "0"
-     //    "liq_fechaRetiro" => "2023-01-01"
-     //    "par_periodo" => "202301"  
-     //    "par_fechaDesde" => "2023-01-01"
-     //    "par_fechaHasta" => "2023-01-30"
-     //    "verliq" => "S"
-
-        //  'acu_idEmpresa',
-        //   'acu_idLiquidacion', 
-        //   'acu_periodo', 
-        //   'acu_idEmpleado', 
-        //   'acu_idConcepto', 
-        //   'acu_numero', 
-        //   'acu_valor', 
-        //   'acu_estado', 
-
-$arre = array();
-
+    // Liquida todos los ingresos
         foreach ($ingresos as $ingreso){
             $fchIngreso = $ingreso->ing_fechaIngreso;
             $empleado = $ingreso->ing_idEmpleado;
             $cargo = $ingreso->ing_idCargo;
-            $salarioMes =  $ingreso->ing_salario;
-            
+            $salarioMes =  $ingreso->ing_salario;            
             $salarioDiario = 0;
             $salarioHora = 0;
 
     // Salario básico mes, dia y hora
             if ($salarioMes  == 0 ){
-              //  $datos = Cargos::where('car_idEmpresa', auth()->user()->empresa)
                 $cargos = Cargos::find($cargo);
-           //     ->where('car_idEmpresa', auth()->user()->empresa);
-           //     dd($cargos);
                 if(!empty($cargos)){
                     $salarioMes = $cargos->car_salario;
                 }
@@ -264,30 +294,107 @@ $arre = array();
             if ($dias > 30){
                 $dias = 30;
             }
-           
-            
-    // Horas extras
-            $nro = 0;  
-            $vlrExtras=0;
-            if($tt_codigo == 'LP'){
-                $vlrExtras = LiquidacionesController::liqHorasExtras($empleado,  $par_periodo, $para, $salarioHora);                 
-                if($vlrExtras > 0){
-///   trael el id del HEX
-                    LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, 0,   $nro,   $vlrExtras);
+             
+        if($tt_codigo == 'LP'){
+             // Liquida Devengados: salario, trasporte, horas extras 
+
+            //  Liquida salario 
+               $nro = $dias;
+               $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
+               ->where('cp_codigo',$par_codigo_salario)->get();
+               if(!empty($conceptos)){
+                    foreach ($conceptos as $concepto){  
+                        $concepto_id = $concepto->id; 
+                    }
                 }
+
+                if ($dias  >  0){
+                   $salario = ($salarioMes * 30) / $dias;    
+                   LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $concepto_id, $nro, $salario);
+               }
+       
+            //  Liquida trasporte 
+                if ($salarioMes <= $para['par_smmlv'] * 2){
+                    $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
+                    ->where('cp_codigo',$par_codigo_trasporte)->get();
+                    if(!empty($conceptos)){
+                        foreach ($conceptos as $concepto){  
+                        $concepto_id = $concepto->id; 
+                        }
+                    }
+                    $valor = $para['par_auxTransporte'];
+                    if ($dias   >  0){
+                        $valorTrans = ($valor * 30) / $dias;    
+                        LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $concepto_id, $nro, $valorTrans);
+                    }
+                }
+            
+            // Horas extras
+                $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
+                ->where('cp_codigo',$par_codigo_hrsRxtras)->get();
+                if(!empty($conceptos)){
+                    foreach ($conceptos as $concepto){  
+                       $concepto_id = $concepto->id; 
+                       }
+                   }       
+                $vlrExtras = LiquidacionesController::liqHorasExtras($empleado, $par_periodo, $para, $salarioHora);                 
+                if($vlrExtras > 0){
+                    LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $concepto_id, $nro,  $vlrExtras);
+                }
+   
+            // Novedades del periodo solo para liquidación periódica    
+                $permanantes = LiquidacionesController::leeNnovedadesPermanantes($liqId, $empleado, $dias, $par_periodo);
+                $ocasionales = LiquidacionesController::leeNnovedadesOcasionales($liqId, $empleado,  $dias, $par_periodo);
+            
+            // DES C U E N T O S
+
+            $valor = $salario + $vlrExtras + $permanantes + $ocasionales;
+
+            //  salud
+           
+            $base = ($valor * 30) / $dias; 
+            $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
+            ->where('cp_codigo',$par_codigo_salud)->get();
+            if(!empty($conceptos)){
+                foreach ($conceptos as $concepto){  
+                   $concepto_id = $concepto->id; 
+                   $cp_porcentajeDefault = $concepto->cp_porcentajeDefault;
+                   }
+               } 
+            if($base > 0){
+                $salud = (-1) * $base * $cp_porcentajeDefault  / 100;
+                LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $concepto_id, $nro,  $salud);
             }
 
-               // Novedades del periodo solo para liquidación periódica
-        if($tt_codigo == 'LP'){
-            LiquidacionesController::leeNnovedadesPermanantes($liqId, $empleado,  $par_periodo);
-            LiquidacionesController::leeNnovedadesOcasionales($liqId, $empleado,  $par_periodo);
+        //  Pensión
+
+            $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
+            ->where('cp_codigo',$par_codigo_pension)->get();
+            if(!empty($conceptos)){
+                foreach ($conceptos as $concepto){  
+                $concepto_id = $concepto->id; 
+                $cp_porcentajeDefault = $concepto->cp_porcentajeDefault;
+                }
+            } 
+            if($base > 0){
+                $pension = (-1) * $base * $cp_porcentajeDefault / 100;
+                LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $concepto_id, $nro,  $pension);
+            }
+
+
         }
+    
     }
 
- 
-    // array_push($arre, $empleado, $cargo, $salarioMes, $salarioDiario, $salarioHora, $dias, $vlrExtras);
 
-    // print_r($arre);
+    // $par_codigo_bonos =  $parametro->par_codigo_bonos;
+    // $par_codigo_salud =  $parametro->par_codigo_salud;
+    // $par_codigo_pension =  $parametro->par_codigo_pension; 
+    // $par_codigo_riesgos =  $parametro->par_codigo_riesgos;
+    // $par_codigo_retefuente =  $parametro->par_codigo_retefuente; 
+
+
+
 
     //
     // Recupera para mostar las liquidaciones   FINAL -----
@@ -329,8 +436,9 @@ $arre = array();
         ->get();
        
         $liquidaciones = Liquidaciones::where('liq_idEmpresa', auth()->user()->empresa)
-        ->where('liq_tipo',$tt)
-        ->select('liq_tipo', 'liq_fechaDesde', 'liq_fechaHasta', 'liq_idEmpleado', 'liq_periodo', 'liq_estado');
+        ->where('liq_tipo',$tt)       
+        ->select('liq_tipo', 'liq_fechaDesde', 'liq_fechaHasta', 'liq_idEmpleado', 'liq_periodo', 'liq_estado')
+        ->orderBy('liq_periodo','desc');
 
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
         ->where('empleados.id',$id)->get();
@@ -364,48 +472,49 @@ $arre = array();
         ->where('hex_idEmpleado','=', $empleado)
         ->where('hex_estado','=', 'P')
         ->where('hex_periodo','=', $par_periodo);
-        $nro = 97;
-        //($para, $par_horasdiurna, $par_horasnocturna, $par_festivadiurna, $par_festivanocturna );
+
         if(!empty($horasExtras)){
             foreach ($horasExtras as $horas){               
                 if ($horas->hex_diurnas  >  0){
-                    $valor += $horas->hex_diurnas *  $salarioHora * $para[0];
+                    $valor += $horas->hex_diurnas *  $salarioHora * $para['par_horasdiurna'];
                 }
                 if ($horas->hex_nocturnas  >  0){
-                    $valor += $horas->hex_nocturnas *  $salarioHora * $para[1];
+                    $valor += $horas->hex_nocturnas *  $salarioHora * $para['par_horasnocturna'];
                 }
                 if ($horas->hex_festivasDiurna  >  0){
-                    $valor += $horas->hex_festivasDiurna *  $salarioHora * $para[2];
+                    $valor += $horas->hex_festivasDiurna *  $salarioHora * $para['par_festivadiurna'];
                 }
                 if ($horas->hex_festivasNocturna  >  0){
-                    $valor += $horas->hex_festivasNocturna *  $salarioHora * $para[3];
+                    $valor += $horas->hex_festivasNocturna *  $salarioHora * $para['par_festivanocturna'];
                 }        
             }
         }
         return $valor;
     }
    
-    private function leeNnovedadesPermanantes($liqId, $empleado,  $par_periodo){
+    private function leeNnovedadesPermanantes($liqId, $empleado, $nro, $par_periodo){
         $novedades = Novedades::all()->where('nov_idEmpresa','=',auth()->user()->empresa)
         ->where('nov_idEmpleado','=', $empleado)
         ->where('nov_tipo','=', 'P');
-        $nro = 99;
+        $permanantes=0;
         if(!empty($novedades)){
-            foreach ($novedades as $novedad){    
+            foreach ($novedades as $novedad){   
+                $permanantes += $novedad->nov_valor;
                 LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $novedad->nov_idConcepto, $nro, $novedad->nov_valor);
             }     
         }
-        return;
+        return $permanantes;
     }
 
-    private function leeNnovedadesOcasionales($liqId, $empleado,  $par_periodo){
+    private function leeNnovedadesOcasionales($liqId, $empleado, $nro, $par_periodo){
         $novedades = Novedades::all()->where('nov_idEmpresa','=',auth()->user()->empresa)
         ->where('nov_idEmpleado','=', $empleado)
         ->where('nov_periodo','=', $par_periodo)
         ->where('nov_tipo','=', 'O');
-        $nro = 98;
+        $ocasionales=0;
         if(!empty($novedades)){
-            foreach ($novedades as $novedad){    
+            foreach ($novedades as $novedad){   
+                $ocasionales +=  $novedad->nov_valor;
                 LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $novedad->nov_idConcepto, $nro, $novedad->nov_valor);
             }     
         }
@@ -421,11 +530,25 @@ $arre = array();
         $acumulados->acu_idEmpleado = $empleado;
         $acumulados->acu_idConcepto = $concepto;
         $acumulados->acu_numero = $nro;
-        $acumulados->acu_valor = $valor;
-        $acumulados->acu_estado = 'P';
+        if($valor > 0){
+            $acumulados->acu_debitos = $valor;
+        }else{
+            $acumulados->acu_creditos = $valor * (-1);
+        }
+       
+        $acumulados->acu_estado = 'A';
         $acumulados->save();
         return;
     }
 
+        
+    public function export (){
+        return Excel::download(new CargosExport, 'cargos.xlsx');
+     }
+
+     public function cargaxls()
+     {
+         return view('cargos/cargaxls');
+    }
 //    https://www.digitalocean.com/community/tutorials/easier-datetime-in-laravel-and-php-with-carbon
 }

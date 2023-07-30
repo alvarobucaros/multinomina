@@ -67,7 +67,7 @@
 <div class="mb-1">
     <a href="{{route('home.index')}}" class="btn btn-sm btn-info"> Menú</a>
     @if( isset(auth()->user()->profile) )  
-        @if (auth()->user()->profile == 'A') 
+        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
             <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>  
         @endif
    @else

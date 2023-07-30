@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 use App\Models\Parametros;
+use App\Models\Conceptos;
 
 class ParametrosController extends Controller
 {
@@ -16,8 +17,12 @@ class ParametrosController extends Controller
      */
     public function index()
     {
+        $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
+        ->whereIn('cp_tipo', ['DD','DV'])
+        ->orderBy('cp_tipo', 'desc', 'cp_titulo', 'asc')->get();
+
         $datos = Parametros::all()->where('par_idEmpresa', auth()->user()->empresa);
-        return view('parametros/actualizar', compact('datos'));  
+        return view('parametros/actualizar', compact('datos','conceptos'));  
     }
 
     /**
@@ -83,7 +88,31 @@ class ParametrosController extends Controller
        $parametros->par_smmlv = $request->post('par_smmlv');    
        $parametros->par_auxTransporte = $request->post('par_auxTransporte');
        $parametros->par_diasVacaciones = $request->post('par_diasVacaciones');
-       $parametros->par_horasMes = $request->post('par_horasMes');      
+       $parametros->par_horasMes = $request->post('par_horasMes'); 
+       $parametros->par_uvt = $request->post('par_uvt');
+        $parametros->par_retefuente_rango0 = $request->post('par_retefuente_rango0');
+        $parametros->par_retefuente_rango1 = $request->post('par_retefuente_rango1');
+        $parametros->par_retefuente_rango2 = $request->post('par_retefuente_rango2');
+        $parametros->par_retefuente_rango3 = $request->post('par_retefuente_rango3');
+        $parametros->par_retefuente_rango4 = $request->post('par_retefuente_rango4');
+        $parametros->par_retefuente_rango5 = $request->post('par_retefuente_rango5');
+        $parametros->par_retefuente_rango6 = $request->post('par_retefuente_rango6');
+        $parametros->par_retefunte_porc0 = $request->post('par_retefunte_porc0');
+        $parametros->par_retefunte_porc1 = $request->post('par_retefunte_porc1');
+        $parametros->par_retefunte_porc2 = $request->post('par_retefunte_porc2');
+        $parametros->par_retefunte_porc3 = $request->post('par_retefunte_porc3');
+        $parametros->par_retefunte_porc4 = $request->post('par_retefunte_porc4');
+        $parametros->par_retefunte_porc5 = $request->post('par_retefunte_porc5');
+        $parametros->par_retefunte_porc6 = $request->post('par_retefunte_porc6'); 
+        $parametros->par_codigo_salario = $request->post('par_codigo_salario'); 
+        $parametros->par_codigo_trasporte  = $request->post('par_codigo_trasporte'); 
+        $parametros->par_codigo_hrsRxtras  = $request->post('par_codigo_hrsRxtras'); 
+        $parametros->par_codigo_bonos  = $request->post('par_codigo_bonos'); 
+        $parametros->par_codigo_salud  = $request->post('par_codigo_salud'); 
+        $parametros->par_codigo_pension  = $request->post('par_codigo_pension'); 
+        $parametros->par_codigo_riesgos  = $request->post('par_codigo_riesgos'); 
+        $parametros->par_codigo_retefuente = $request->post('par_codigo_retefuente'); 
+
        $parametros->save();
        return redirect()->route("home.index")->with("success","Actualizado correctamente");
         

@@ -169,7 +169,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('liquidaciones/store', [LiquidacionesController::class, 'store'])->name('liquidaciones/liquidaciones.store');
     Route::post('verliquidaciones', [LiquidacionesController::class, 'verliquidaciones'])->name('liquidaciones/liquidaciones/verliquidaciones');
     Route::post('liquidaciones/liquidar', [LiquidacionesController::class, 'liquidar'])->name('liquidaciones/liquidaciones.liquidar');
-  
+    Route::get('verMovimientos/{id}', [LiquidacionesController::class, 'verMovimientos'])->name('liquidaciones/liquidaciones/verMovimientos');
+    Route::get('liquidaciones/export', [CargosController::class, 'export'])->name('liquidaciones/liquidaciones.export');
+    Route::get('liquidaciones/cargaxls', [CargosController::class, 'cargaxls'])->name('liquidaciones/liquidaciones.cargaxls');
+
 
     Route::get('/novedades', [NovedadesController::class, 'index'])->name('novedades'); 
     Route::get('/create', [NovedadesController::class, 'create'])->name('novedades/novedades.create');
