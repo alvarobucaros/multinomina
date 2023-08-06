@@ -71,7 +71,8 @@
               <li><a href="#" class="nav-link px-2 ">Informes y consultas</a>
                   <ul>
                     <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Desprendibles</a></li>
-                    <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Prenómina</a></li>        
+                    <li><a href="{{ route('acumulados') }}" class="nav-link px-2 ">Acumulados</a></li> 
+                    <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Prenómina</a></li>               
                     <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Lista de personal</a></li>
                     <li><a href="{{ route('desarrollo') }}" class="nav-link px-2 ">Planilla Pila</a></li>
                   </ul>    

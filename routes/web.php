@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AcumuladosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BancosController;
 use App\Http\Controllers\CargosController;
@@ -35,6 +36,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::view('/home/index', 'home')->name('home');
 
     Route::view('/home/importaXLS', 'home')->name('importaXLS');
+
+    Route::get('acumulados', [AcumuladosController::class, 'index'])->name('acumulados'); 
+    Route::post('acumulados/list/{id}', [AcumuladosController::class, 'list'])->name('acumulados/acumulados.list');
+    Route::post('acumulados/createPDF/{id}', [AcumuladosController::class, 'createPDF'])->name('acumulados/acumulados.createPDF');
+
 
     Route::get('bancos', [BancosController::class, 'index'])->name('bancos'); 
     Route::get('bancos/create', [BancosController::class, 'create'])->name('bancos/bancos.create');
