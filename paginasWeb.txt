@@ -1,6 +1,9 @@
 Documentacion:
 https://www.gerencie.com/liquidacion-de-la-nomina-html
 
+Imprime en PDF
+https://codeanddeploy.com/blog/laravel/how-to-implement-laravel-8-using-fpdf-example
+
 
 ejemplos varios de todo 
 

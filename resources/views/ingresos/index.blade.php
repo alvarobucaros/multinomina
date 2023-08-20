@@ -40,6 +40,7 @@
                                 <th>EPS</th>
                                 <th>APF</th>
                                 <th>ARL  (%)</th>
+                                <th>Retefuente</th>
                                 <th>Contrato</th>
                                 <th>Salario</th>
                                 <th>Estado</th>
@@ -90,7 +91,7 @@
                                 {{$item->ing_porcARL}}
                             </td>                             
 
-                            
+                            <td>{{$item->ing_porcRetefuente}}</td>
                             <td>{{$item->ing_numeroContrato}}</td>
                             <td>{{$item->car_salario}}</td>
                           

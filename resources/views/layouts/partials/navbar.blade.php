@@ -34,7 +34,7 @@
                   <ul>
                       <li><a href="{{ route('empresas/empresas.edit',auth()->user()->empresa) }}" class="nav-link px-2 ">La Empresa</a></li>
                       <li><a href="{{ route('parametros',auth()->user()->empresa) }}" class="nav-link px-2 ">Param. Generales</a></li>
-                      <li><a href="{{ route('tiposvarios') }}" class="nav-link px-2 ">Tipos varios</a></li>
+                    
                       @if (auth()->user()->profile == 'A') 
                         <li><a href="{{ route('user') }}" class="nav-link px-2 ">Usuarios</a></li>
                       @endif

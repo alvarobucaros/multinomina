@@ -39,7 +39,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     Route::get('acumulados', [AcumuladosController::class, 'index'])->name('acumulados'); 
     Route::post('acumulados/list/{id}', [AcumuladosController::class, 'list'])->name('acumulados/acumulados.list');
-    Route::post('acumulados/createPDF/{id}', [AcumuladosController::class, 'createPDF'])->name('acumulados/acumulados.createPDF');
+    Route::get('acumulados/createPDF/{id}', [AcumuladosController::class, 'createPDF'])->name('acumulados/acumulados.createPDF');
 
 
     Route::get('bancos', [BancosController::class, 'index'])->name('bancos'); 
@@ -191,7 +191,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('novedades/import', [NovedadesController::class, 'import'])->name('novedades/novedades.import');
     Route::get('novedades/cargaxls', [NovedadesController::class, 'cargaxls'])->name('novedades/novedades.cargaxls');
 
-
    Route::get('parametros', [ParametrosController::class, 'index'])->name('parametros'); 
    Route::get('parametros/create', [ParametrosController::class, 'create'])->name('parametros/parametros.create');
    Route::get('parametros/edit/{id}', [ParametrosController::class, 'edit'])->name('parametros/parametros.edit');
@@ -200,15 +199,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
    Route::post('parametros/parametros/store', [ParametrosController::class, 'store'])->name('parametros/parametros.store');
    Route::delete('parametros/destroy/{id}', [ParametrosController::class, 'destroy'])->name('parametros/parametros.destroy');
  
-    Route::get('/tiposvarios', [TiposVariosController::class, 'index'])->name('tiposvarios'); 
-    Route::get('tiposvarios/create', [TiposVariosController::class, 'create'])->name('tiposvarios/tiposvarios.create');
-    Route::get('tiposvarios/edit/{id}', [TiposVariosController::class, 'edit'])->name('tiposvarios/tiposvarios.edit');
-    Route::post('tiposvarios/update/{id}', [TiposVariosController::class, 'update'])->name('tiposvarios/tiposvarios.update');
-    Route::get('tiposvarios/show/{id}', [TiposVariosController::class, 'show'])->name('tiposvarios/tiposvarios.show');
-    Route::post('tiposvarios/store', [TiposVariosController::class, 'store'])->name('tiposvarios/tiposvarios.store');
-    Route::delete('tiposvarios/destroy/{id}', [TiposVariosController::class, 'destroy'])->name('tiposvarios/tiposvarios.destroy');
-    Route::get('tiposvarios/export', [TiposVariosController::class, 'export'])->name('tiposvarios/tiposvarios.export');
-
     Route::get('/terceros', [TercerosController::class, 'index'])->name('terceros'); 
     Route::get('terceros/create', [TercerosController::class, 'create'])->name('terceros/terceros.create');
     Route::get('terceros/edit/{id}', [TercerosController::class, 'edit'])->name('terceros/terceros.edit');

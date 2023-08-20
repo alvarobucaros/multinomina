@@ -3,13 +3,12 @@
                 <div class="input mb-1">
                     <label class="col-md-2 control-label" name='selConcepto'>Tipo Cargo :</label>
                     <select name="car_tipo" id="car_tipo" class="form_control">
-                        <option value="0">Seleccione tipo cargo</option>
-                        @if(!empty($tipos))
-                            @foreach ($tipos as $tipo)                               
-                                <option value="{{$tipo->id}}" @selected($tipo->id == $cargos->car_tipo)>
-                                    {{$tipo->tt_descripcion}}</option>
-                            @endforeach
-                        @endif 
+                        <option value="">Seleccione tipo cargo</option>                        
+                        <option value="A" <?php if ($cargos->car_tipo == 'A') echo ' selected="selected"'; ?>>Auxiliar</option>
+                        <option value="D" <?php if ($cargos->car_tipo == 'D') echo ' selected="selected"'; ?>>Directivo</option>                       
+                        <option value="O" <?php if ($cargos->car_tipo == 'O') echo ' selected="selected"'; ?>>Operativo</option>
+                        <option value="P" <?php if ($cargos->car_tipo == 'P') echo ' selected="selected"'; ?>Profecional</option>
+                        <option value="T" <?php if ($cargos->car_tipo == 'T') echo ' selected="selected"'; ?>>Técnico tecnológico</option>
                     </select>
                 </div>  
 

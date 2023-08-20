@@ -95,7 +95,11 @@
     </select>
 </div>
 
-
+<div class="input mb-1">
+    <label for="ing_porcRetefuente" class="col-md-2 control-label">Porcentaje Retefuente:</label>
+    <input type="text" name="ing_porcRetefuente" id="ing_porcRetefuente" class="form_control col-md-1" 
+    maxlength="6" required value="{{$ingresos->ing_porcRetefuente}}">
+</div> 
 <div class="input mb-1">
     <label for="ing_porcARL" class="col-md-2 control-label">Porcentaje ARL:</label>
     <input type="text" name="ing_porcARL" id="ing_porcARL" class="form_control col-md-1" 

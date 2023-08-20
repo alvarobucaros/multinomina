@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Embargos;
 use App\Models\Empleados;
 use App\Models\Terceros;
-use App\Models\TiposVarios;
 
 use Illuminate\Http\Request;
 
@@ -43,7 +42,7 @@ class EmbargosController extends Controller
       
         $terceros = Terceros::where('ter_idEmpresa', auth()->user()->empresa)
         ->where('ter_estado','A')
-        ->where('ter_idTipoTercero','8')
+        ->where('ter_tipoTercero','J')
         ->orderBy("ter_nombre")->get();
 
         $embargos = new Embargos();
@@ -95,9 +94,8 @@ class EmbargosController extends Controller
       
         $terceros = Terceros::where('ter_idEmpresa', auth()->user()->empresa)
         ->select('terceros.id','ter_nombre')
-        ->where('ter_estado','A')
-        ->join('tipos_varios','tipos_varios.id','=','terceros.ter_idTipoTercero')
-        ->where('tipos_varios.tt_clase','JZ')
+        ->where('ter_estado','A') 
+        ->where('ter_tipoTercero','J')
         ->orderBy("ter_nombre")->get();
 
        $embargos = Embargos::find($id);
@@ -107,14 +105,16 @@ class EmbargosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Embargos $embargos)
+
+    public function update(Request $request,  string $id)
     {
         $embargos->emb_idEmpresa= auth()->user()->empresa;
         $embargos->emb_idEmpleado = $request->post('emb_idEmpleado');
         $embargos->emb_idTercero = $request->post('emb_idTercero');
         $embargos->emb_valorCuota = $request->post('emb_valorCuota');
         $embargos->emb_valorTotal = $request->post('emb_valorTotal');
-        $embargos->emb_estado = $request->post('emb_estado');        $embargos->save();
+        $embargos->emb_estado = $request->post('emb_estado');        
+        $embargos->save();
         return redirect()->route("embargos")->with("success","Actualizado correctamente");
 
     }

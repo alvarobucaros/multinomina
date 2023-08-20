@@ -55,21 +55,17 @@ class ConceptosController extends Controller
         return redirect()->route("conceptos")->with("success","Agregado correctamente");
     }
 
-
- 
     public function show(string $id)
     {
         $conceptos = Conceptos::find($id);
         return view('conceptos/eliminar', compact('conceptos'));
     }
 
-
     public function edit(string $id)
     {
         $conceptos = Conceptos::find($id);
         return view('conceptos/actualizar', compact('conceptos'));
     }
-
 
     public function update(Request $request, string $id)
     {

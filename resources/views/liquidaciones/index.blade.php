@@ -26,12 +26,11 @@
                                 <label for="tt_codigo" class="col-md-2 control-label">Tipo liquidación :</label>
                                 <select name="tt_codigo" id="tt_codigo" class="form_control">
                                     <option value="">Seleccione liquidación</option>
-                                    @if(!empty($tipos))
-                                        @foreach ($tipos as $tipo)                               
-                                            <option value="{{$tipo->tt_codigo}}">
-                                            {{$tipo->tt_descripcion}}  </option>
-                                        @endforeach
-                                    @endif 
+                                    <option value="LP">Liquidación Periódica</option>                                    	
+                                    <option value="PS">Prima Semestral</option>
+                                    <option value="PN">Prima de Navidad</option>
+                                    <option value="PC">Pago de Cesantías</option>
+                                    <option value="LD">Liquidación Definitiva</option>
                                 </select>
                             </div>          
                         </div>

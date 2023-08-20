@@ -1,9 +1,11 @@
 <ul class='tabs' >
+    <li><a href='#tab5'> Datos básicos </a></li>
     <li><a href='#tab0'> Datos complementarios </a></li>
     <li><a href='#tab1'> Formación y Estudios </a></li>
-    <li><a href='#tab2'> Experiencia Laboral </a></li>
-    <li><a href='#tab3'> Núcleo Familiares </a></li>  
-    <li><a href='#tab4'> Logros en la Empresa </a></li>
+    <li><a href='#tab2'> Experiencia Externa </a></li>
+    <li><a href='#tab4'> Exoeriencia Interna</a></li>
+    <li><a href='#tab3'> Núcleo Familiar </a></li>  
+    
   </ul>
 
  <div class="card row mt-2">    
@@ -39,6 +41,13 @@
             <div class="card-body">        
                 <div class="card-text">  
                     <span class="miSubTitulo">Logros empresariales</span> 
+                </div> 
+            </div> 
+        </div> 
+        <div id="tab5" class="col-md-11 col-md-offset-1 alert alert-mm color-palette-set"> 
+            <div class="card-body">        
+                <div class="card-text">  
+                    <span class="miSubTitulo">Información de Ingreso</span> 
                 </div> 
             </div> 
         </div> 

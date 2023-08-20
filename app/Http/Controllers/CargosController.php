@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exports\CargosExport;
 use App\Imports\CargosImport;
-use App\Models\TiposVarios;
+
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Cargos;
 
@@ -28,10 +28,6 @@ class CargosController extends Controller
      */
     public function create()
     {
-        $tipos = TiposVarios::where('tt_idEmpresa', auth()->user()->empresa)
-        ->where('tt_clase','CA')
-        ->orderBy("tt_codigo")->get();
-
         $cargos = new Cargos();
         $cargos->car_idEmpresa = auth()->user()->empresa;
         $cargos->car_estado = 'A';
@@ -40,7 +36,7 @@ class CargosController extends Controller
         $cargos->car_nroOcupados=0;
         $cargos->car_nroVacantes = 0;
         $cargos->car_salario = 0;
-        return view('cargos/agregar', compact('cargos', 'tipos'));
+        return view('cargos/agregar', compact('cargos'));
     }
 
     /**
@@ -76,12 +72,9 @@ class CargosController extends Controller
      */
     public function edit(string $id)
     {
-        $tipos = TiposVarios::where('tt_idEmpresa', auth()->user()->empresa)
-        ->where('tt_clase','CA')
-        ->orderBy("tt_codigo")->get();
 
         $cargos = Cargos::find($id);
-        return view('cargos/actualizar', compact('cargos','tipos'));
+        return view('cargos/actualizar', compact('cargos'));
     }
 
     /**

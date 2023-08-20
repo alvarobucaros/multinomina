@@ -30,7 +30,7 @@ class IngresosController extends Controller
         ->join('dependencias','dependencias.id','=','ingresos.ing_idDependencia')
         ->select('ingresos.id' ,  'ing_idEmpleado' , 'ing_fechaIngreso' , 
         'ing_fechaRetiro' , 'ing_idCargo' , 'ing_idDependencia' , 
-        'ing_porcARL' , 'ing_EPS' , 'ing_AFP' , 'ing_encargo' , 'ing_estado' ,
+        'ing_porcARL' , 'ing_EPS' , 'ing_AFP' , 'ing_encargo' , 'ing_estado' , 'ing_porcRetefuente',
         'ing_idCargoEncargo' ,'ing_numeroContrato', 'empl_primerNombre', 
         'empl_otroNombre', 'empl_primerApellido', 'empl_otroApellido',
         'dep_nombre', 'car_nombre', 'car_salario')
@@ -74,6 +74,7 @@ class IngresosController extends Controller
         $ingresos->ing_idEmpresa = auth()->user()->empresa;
         $ingresos->ing_encargo = 'N';
         $ingresos->ing_estado = 'A';
+        $ingresos->ing_porcRetefuente = 0;
         return view('ingresos/agregar',
         compact('ingresos','empleados', 'cargos', 'dependencias','tipos'));
     }
@@ -103,6 +104,8 @@ class IngresosController extends Controller
         $ingresos->ing_fchUltimaCesantia = $request->post('ing_fechaIngreso');
         $ingresos->ing_banco  = $request->post('ing_banco');
         $ingresos->ing_cuenta = $request->post('ing_cuenta');
+        $ingresos->ing_porcRetefuente = $request->post('ing_porcRetefuente');
+        
         $ingresos->save();
         return redirect()->route("ingresos")->with("success","Agregado correctamente");
 
@@ -151,6 +154,8 @@ class IngresosController extends Controller
         $ingresos->ing_fchUltimaCesantia = $request->post('ing_fchUltimaCesantia');
         $ingresos->ing_banco  = $request->post('ing_banco');
         $ingresos->ing_cuenta = $request->post('ing_cuenta');
+        $ingresos->ing_porcRetefuente = $request->post('ing_porcRetefuente');
+        
         $ingresos->save();
         return redirect()->route("ingresos")->with("success","Actualizado correctamente");
  

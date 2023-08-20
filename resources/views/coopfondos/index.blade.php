@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-light p-5 rounded">
         @auth
-        <div class="card">
+        <div class="card letraChica">
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
@@ -56,13 +56,13 @@
                                             {{$item->empl_primerNombre}} {{$item->empl_otroNombre}}</td>
                      
                                         <td>{{$item->ter_nombre}}</td> 
-                                        <td class="derecha">{{$item->cof_valorTotal}}</td>                                
-                                        <td class="centro">{{$item->cof_valorCuota}}</td>
+                                        <td class="derecha">@php echo number_format($item->cof_valorTotal,0,",",".");  @endphp </td>                                
+                                        <td class="derecha">@php echo number_format($item->cof_valorCuota,0,",",".");  @endphp </td>
                                         <td class="centro">{{$item->col_plazo}}</td>   
-                                        <td class="centro">{{$item->cof_saldo}}</td>                                                              
+                                        <td class="derecha">@php echo number_format($item->cof_saldo,0,",","."); @endphp </td>                                                              
                                         <td class="centro">{{$item->cof_fechaInicio}}</td>
                                         <td class="centro">{{$item->cof_fechaFinal}}</td>  
-                                        <td class="centro">{{$item->cof_periDescuento}}</td> 
+                                        <td class="centro">{{($item->cof_periDescuento == 'P')? 'Mensual':'Semestral'}}</td> 
                                         @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('coopfondos/coopfondos.edit',$item->id)}}" method="GET">

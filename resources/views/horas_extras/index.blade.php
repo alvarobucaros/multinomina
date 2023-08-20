@@ -52,7 +52,7 @@
                                         <td>{{$item->hex_nocturnas}}</td>
                                         <td>{{$item->hex_festivasDiurna}}</td>
                                         <td>{{$item->hex_festivasNocturna}}</td>
-                                        <td class="centro">{{($item->hex_estado =  'P') ? 'Pendiente':'liquidada'}}</td>
+                                        <td class="centro">{{($item->hex_estado ==  'P') ? 'Pendiente':'liquidada'}}</td>
                                         @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
                                             <form action="{{ route('horas_extras/horas_extras.edit',$item->id)}}" method="GET">

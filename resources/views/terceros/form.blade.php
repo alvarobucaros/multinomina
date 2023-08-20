@@ -1,14 +1,4 @@
-                <div class="input mb-1">
-                    <label class="col-md-2 control-label" name='selConcepto'>Tipo :</label>
-                    <select name="hex_idEmpleado" id="hex_idEmpleado"  class="form_control ">
-                        <option value="0">Seleccione tipo tercero</option>
-                        @if(!empty($terceros))
-                            @foreach ($tipos as $item)  
-                                <option value="{{$item->id}}">{{$item->tt_codigo  }}</option>
-                            @endforeach
-                        @endif                         
-                    </select>
-                </div>
+
                 
                 <div class="input mb-1">
                     <label for="ter_nombre" class="col-md-2 control-label">Nombre :</label>
@@ -25,43 +15,68 @@
                     <input type="text" name="ter_ciudad" id="ter_ciudad"
                     class="form_control col-md-2" required value="{{$terceros->ter_ciudad}}">
                 </div>
-            <div class="input mb-1">
-                <label for="ter_telefono" class="col-md-2 control-label">Telefono :</label>
-                <input type="text" name="ter_telefono" id="ter_telefono" class="form_control col-md-3"
-                required value="{{$terceros->ter_telefono}}">
-            </div>
+                <div class="input mb-1">
+                    <label for="ter_telefono" class="col-md-2 control-label">Telefono :</label>
+                    <input type="text" name="ter_telefono" id="ter_telefono" class="form_control col-md-3"
+                    required value="{{$terceros->ter_telefono}}">
+                </div>
           
-                     <div class="input mb-1">
-                        <label for="ter_email" class="col-md-2 control-label">Email :</label>
-                        <input type="mail" name="ter_email" id="ter_email"
-                        class="form_control col-md-2" required value="{{$terceros->ter_email}}">
-                    </div>
+                <div class="input mb-1">
+                    <label for="ter_email" class="col-md-2 control-label">Email :</label>
+                    <input type="mail" name="ter_email" id="ter_email"
+                    class="form_control col-md-2" required value="{{$terceros->ter_email}}">
+                </div>
+
+                <div class="input mb-1">
+                    <label class="col-md-2 control-label" name='selConcepto'>Tipo Tercero:</label>
+                    <select name="ter_tipoTercero" id="ter_tipoTercero"  class="form_control ">
+                        <option value="">Seleccione tipo tercero</option>
+                        <option value="C" <?php if ($terceros->ter_tipoTercero == 'C') echo ' selected="selected"'; ?>>Cooperativa</option>
+                        <option value="F" <?php if ($terceros->ter_tipoTercero == 'F') echo ' selected="selected"'; ?>>Fondo empleado</option>
+                        <option value="J" <?php if ($terceros->ter_tipoTercero == 'J') echo ' selected="selected"'; ?>>Juzgado</option>
+                        <option value="O" <?php if ($terceros->ter_tipoTercero == 'O') echo ' selected="selected"'; ?>>Otro tercero</option>                      
+                    </select>
+                </div>
 
                     <div class="input mb-1">
                         <label for="ter_tipoDoc" class="col-md-2 control-label">Tipo Doc :</label>
                             <input type="radio" name="ter_tipoDoc" id="tipoC"
-                            value="A"  @if ($terceros->ter_tipoDoc=='N') checked @endif> NIT
+                            value="N"  @if ($terceros->ter_tipoDoc=='N') checked @endif> NIT
                             <input type="radio" name="ter_tipoDoc" id="tipoE" 
-                            value="E"  @if ($terceros->ter_tipoDoc=='C') checked @endif> Cédula
+                            value="C"  @if ($terceros->ter_tipoDoc=='C') checked @endif> Cédula
                             <input type="radio" name="ter_tipoDoc" id="tipoN" 
-                            value="N"  @if ($terceros->ter_tipoDoc=='T') checked @endif> Tarjeta Extranjero              
+                            value="T"  @if ($terceros->ter_tipoDoc=='T') checked @endif> Tarjeta Extranjero              
                     </div>
                     <div class="input mb-1">
                         <label for="ter_nroDoc" class="col-md-2 control-label">Nro Doc :</label>
                         <input type="text" name="ter_nroDoc" id="ter_nroDoc" class="form_control col-md-3"
                         required value="{{$terceros->ter_nroDoc}}">
                     </div>
-
-
-{{-- 
-
-                <div class="input mb-1">
-                    <label for="ter_otrosFactores" class="col-md-2 control-label">Otros factores :</label>
-                    <input type="radio" name="ter_otrosFactores" id="estadoA"
-                    value="S" @if ($terceros->ter_otrosFactores=='S') checked @endif> Si
-                    <input type="radio" name="ter_otrosFactores" id="estadoI" 
-                    value="N" @if ($terceros->ter_otrosFactores=='N') checked @endif> No
-                </div>  --}}
+                    <div class="input mb-1">
+                        <label class="col-md-2 control-label" name='selConcepto'>Banco  :</label>
+                        <select name="ter_idBanco" id="ter_idBanco"  class="form_control col-md-4">
+                            <option value="0">Seleccione un banco</option>
+                            @if(!empty($bancos))
+                            @foreach ($bancos as $banco)                               
+                                <option value="{{$banco->id}}" @selected($banco->id == $terceros->ter_idBanco)>
+                                    {{$banco->ban_nombre}}</option>
+                            @endforeach
+                            @endif 
+                            
+                        </select>
+                    </div>
+                    <div class="input mb-1">
+                        <label for="ter_ctaBanco" class="col-md-2 control-label">Nro Cuenta :</label>
+                        <input type="text" name="ter_ctaBanco" id="ter_ctaBanco" class="form_control col-md-3"
+                        required value="{{$terceros->ter_ctaBanco}}">
+                    </div>
+                    <div class="input mb-1">
+                        <label for="ter_tipoCtaBanco" class="col-md-2 control-label">Tpo cuenta :</label>
+                        <input type="radio" name="ter_tipoCtaBanco" id="estadoA"
+                        value="A" @if ($terceros->ter_tipoCtaBanco=='A') checked @endif> Ahorros
+                        <input type="radio" name="ter_tipoCtaBanco" id="estadoI" 
+                        value="C" @if ($terceros->ter_tipoCtaBanco=='C') checked @endif> Corriente
+                     </div>
 
 
                 <div class="input mb-1">

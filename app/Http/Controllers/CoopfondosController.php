@@ -48,8 +48,7 @@ class CoopfondosController extends Controller
         $terceros = Terceros::where('ter_idEmpresa', auth()->user()->empresa)
         ->select('terceros.id','ter_nombre')
         ->where('ter_estado','A')
-        ->join('tipos_varios','tipos_varios.id','=','terceros.ter_idTipoTercero')
-        ->where('tipos_varios.tt_clase','CO')
+        ->whereIn('ter_tipoTercero', ['C','F'])
         ->orderBy("ter_nombre")->get();
 
         $coopfondos = new Coopfondos();
@@ -102,8 +101,7 @@ class CoopfondosController extends Controller
         $terceros = Terceros::where('ter_idEmpresa', auth()->user()->empresa)
         ->select('terceros.id','ter_nombre')
         ->where('ter_estado','A')
-        ->join('tipos_varios','tipos_varios.id','=','terceros.ter_idTipoTercero')
-        ->where('tipos_varios.tt_clase','CO')
+        ->whereIn('ter_tipoTercero', ['C','F'])
         ->orderBy("ter_nombre")->get();
 
         $coopfondos = Coopfondos::find($id);
@@ -113,7 +111,8 @@ class CoopfondosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Coopfondos $coopfondos)
+   
+     public function update(Request $request,  string $id)
     {
         $coopfondos = Coopfondos::find($id); 
         $coopfondos-> cof_idEmpresa= auth()->user()->empresa;

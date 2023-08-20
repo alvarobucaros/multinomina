@@ -141,20 +141,7 @@ class EmpresasController extends Controller
     
 
 
-// INSERT INTO 'conceptos'
-// ('id','cp_idEmpresa','cp_tipo','cp_codigo','cp_clase','cp_titulo','cp_descripcion','cp_fechaDesde','cp_fechaHasta',
-// 'cp_valorDefault','cp_porcentajeDefault','cp_estado',
 
-// INSERT INTO 'parametros'
-// ('id','par_idEmpresa','par_porcCaja','par_porcICBF','par_porSENA','par_porcRiesgos','par_porcESAP','par_porcFODE',
-// 'par_fondoRiesgos','par_CajaSubsidio','par_representante','par_tipoDocRepresentante','par_nroDocRepresentante','par_tesorero',
-// 'par_tipoDocTesorero','par_nroDocTesorero','par_festivadiurna','par_festivanocturna','par_horasnocturna','par_horasdiurna',
-// 'par_periodo','par_liquidacion','par_smmlv','par_auxTransporte','par_diasVacaciones','par_horasMes',
-
-
-// INSERT INTO 'tipos_varios'
-// ('id','tt_idEmpresa','tt_clase','tt_codigo','tt_descripcion','tt_estado',
-    
     }
 
     /**

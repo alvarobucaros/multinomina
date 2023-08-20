@@ -3,8 +3,8 @@
 @section('content')
     <div class="bg-light p-5 rounded">
         @auth
-        <div class="card">
-            <div class="card-body">
+        <div class="card letraChica">
+            <div class="card-body ">
                 <div class="row">
                     <div class="col-sm-12">
                         @if ($mensaje = Session::get('success'))
@@ -29,7 +29,7 @@
                     @endif
                     <span class="miTituloForm"> TERCEROS</span>
                 </p>
-                <p class="card-text">
+                <p class="card-text col-sm-12 ">  
                     <div class="table table-resposive-sm">
                         <table class="table table-sm table-bordered table-striped table-hover">
                             <thead class="table-success miThead">
@@ -40,6 +40,8 @@
                                 <th>Ciudad</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
+                                <th>Cta Bancaria</th>
+                                <th>Banco</th>
                                 <th>Estado</th>
                                 @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                     <th colspan="2" class="centro">Acciones</th>
@@ -50,13 +52,15 @@
                             <tbody>
                                 @foreach ($datos as $item)  
                                     <tr>
-                                        <td class="mithcmd miColc">{{$item->tt_codigo}}</td>
+                                        <td class="mitad">{{$item->ter_tipoTercero}}</td>
                                         <td>{{$item->ter_nombre}}</td>
                                         <td>{{$item->ter_tipoDoc}} - {{$item->ter_nroDoc}}</td>
                                         <td >{{$item->ter_direccion}}</td>
                                         <td >{{$item->ter_ciudad}}</td>
                                         <td >{{$item->ter_email}}</td>
                                         <td >{{$item->ter_telefono}}</td>
+                                        <td >{{$item->ter_ctaBanco}} - {{$item->ter_tipoCtaBanco}}</td>
+                                        <td >{{$item->ban_nombre}}</td>
                                         <td class="centro">{{$item->ter_estado}}</td>
                                         @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                         <td class="mithcmd">
@@ -73,12 +77,7 @@
                                                 </button>         
                                             </form>      
                                         </td>
-                                        @endif
-
-                                        <td style='display: none'>
-                                            {{$item->id}}
-                                            {{$item->ter_idEmpresa}}
-                                        </td>                          
+                                        @endif                         
                                     </tr>
                                 @endforeach
                             </tbody>

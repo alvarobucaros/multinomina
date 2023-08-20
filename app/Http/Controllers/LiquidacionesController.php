@@ -10,6 +10,7 @@ use App\Models\Acumulados;
 use App\Models\Cargos;
 use App\Models\Conceptos;
 use App\Models\Empresas;
+use App\Models\Embargos;
 use App\Models\Empleados;
 use App\Models\Horas_extras;
 use App\Models\Ingresos;
@@ -33,13 +34,8 @@ class LiquidacionesController extends Controller
         ->orderBy("empl_primerNombre")->get();
 
         $parametros = Parametros::all()->where('par_idEmpresa', auth()->user()->empresa);
-
-        $tipos = TiposVarios::where('tt_idEmpresa', auth()->user()->empresa)
-        ->where('tt_clase','LQ')
-        ->where('tt_estado','A')       
-        ->orderBy('tt_codigo')->get();
-     
-        return view('liquidaciones/index', compact('tipos','empleados', 'parametros')); 
+   
+        return view('liquidaciones/index', compact('empleados', 'parametros')); 
     }
 
     public function traeLiq(Request $request)
@@ -349,10 +345,13 @@ class LiquidacionesController extends Controller
             // DES C U E N T O S
 
             $valor = $salario + $vlrExtras + $permanantes + $ocasionales;
+            $neo = $valor;
 
             //  salud
            
             $base = ($valor * 30) / $dias; 
+            $salud = 0;
+
             $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
             ->where('cp_codigo',$par_codigo_salud)->get();
             if(!empty($conceptos)){
@@ -368,6 +367,7 @@ class LiquidacionesController extends Controller
 
         //  Pensión
 
+            $pension = 0;
             $conceptos = Conceptos::where('cp_idEmpresa', auth()->user()->empresa)
             ->where('cp_codigo',$par_codigo_pension)->get();
             if(!empty($conceptos)){
@@ -380,21 +380,25 @@ class LiquidacionesController extends Controller
                 $pension = (-1) * $base * $cp_porcentajeDefault / 100;
                 LiquidacionesController::grabaAcumulados($liqId, $par_periodo ,$empleado, $concepto_id, $nro,  $pension);
             }
+            $neto -= ($salud + $pension);
 
+        //  Embargos    
+
+        $embargos = 0;
+        $conceptos = Embargos::where('emb_idEmpresa', auth()->user()->empresa)
+        ->where('emb_idEmpleado',$empleado)
+        ->where('emb_estado','A')
+        ->where('emb_valorTotal' > 0) >get();
+        if(!empty($conceptos)){
+            foreach ($conceptos as $concepto){  
+            $concepto_id = $concepto->id; 
+            $cp_porcentajeDefault = $concepto->cp_porcentajeDefault;
+            }
+        }
 
         }
     
     }
-
-
-    // $par_codigo_bonos =  $parametro->par_codigo_bonos;
-    // $par_codigo_salud =  $parametro->par_codigo_salud;
-    // $par_codigo_pension =  $parametro->par_codigo_pension; 
-    // $par_codigo_riesgos =  $parametro->par_codigo_riesgos;
-    // $par_codigo_retefuente =  $parametro->par_codigo_retefuente; 
-
-
-
 
     //
     // Recupera para mostar las liquidaciones   FINAL -----
@@ -416,14 +420,6 @@ class LiquidacionesController extends Controller
         $id = $request->post('liq_idEmpleado');
         $tt = $request->post('tt_codigo');
 
-
-        $tiposVarios = DB::table('tipos_varios')
-        ->where('tt_idEmpresa', (auth()->user()->empresa))
-        ->where('tt_clase','LQ')
-        ->where('tt_codigo',$tt)
-        ->selectRaw('tipos_varios.*')
-        ->get();
-
         $parametros = DB::table('parametros')
         ->where('par_idEmpresa', (auth()->user()->empresa))
         ->selectRaw('parametros.*')
@@ -443,7 +439,7 @@ class LiquidacionesController extends Controller
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
         ->where('empleados.id',$id)->get();
        
-        return view('liquidaciones/form', compact('liquidaciones', 'parametros',  'empleados', 'tiposVarios' ));
+        return view('liquidaciones/form', compact('liquidaciones', 'parametros', 'empleados' ));
      
     }
 

@@ -15,8 +15,11 @@
                     </div>
                 </div>                
                 <p>
-                    <a class="btn btn-primary" href="acumulados/acumulados"  method="get"> Regresa </a>
-                    <a class="btn btn-secondary" href="{{ URL::to('#') }}"> Export to PDF </a>
+
+                  
+                    <a class="btn btn-primary" href="{{ route('acumulados') }}"  method="get"> Regresa </a>
+                                                         
+                    <a class="btn btn-secondary" href="{{ route('acumulados/acumulados.createPDF','202301') }} "  method="post" > Export to PDF </a>
                     <a class="btn btn-success" href="{{ URL::to('#') }}"> Export to EXCEL </a>
                     <span class="miTituloForm"> ACUMULADOS DE NOMINA</span>
                 </p>

@@ -22,6 +22,10 @@ body{
     font-size: 1.2em;
 }
 
+.letraChica{
+    font-size: 0.8em;
+}
+
 .mayuscula {
     color: rgb(28, 114, 28);
     text-transform: uppercase;
