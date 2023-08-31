@@ -30,7 +30,9 @@ class TercerosController extends Controller
         $terceros = new Terceros();
         $terceros->ter_idEmpresa = auth()->user()->empresa;
         $terceros->ter_estado = 'A';
-        $terceros->ter_tipoDoc = 'N';        
+        $terceros->ter_tipoDoc = 'N'; 
+        $terceros->ter_ctaBanco = 0;   
+        $terceros->ter_tipoCtaBanco   = 'C';     
         return view('terceros/agregar', compact('terceros', 'bancos'));
     }
 

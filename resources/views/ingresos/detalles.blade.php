@@ -174,17 +174,10 @@
                                 <label  class="col-md-3 control-label">Riesgos:</label>
                                 <input type="text" name="par_codigo_riesgos"  class="form_control col-md-1 derecha"
                                 onclick="selConcepto('V3')"  id="V3"  maxlength="3" value="{{$parametros->par_codigo_riesgos}}">                         
-                                <label  class="col-md-3 control-label derecha">Retefuente:</label>
+                                <label  class="col-md-3 control-label">Retefuente:</label>
                                 <input type="text" name="par_codigo_retefuente"  class="form_control col-md-1 derecha"
-                                onclick="selConcepto('V4')"  id="V4"  maxlength="3" value="{{$parametros->par_codigo_retefuente}}">
-                            </div>
-                            <div class="input mb-1">
-                                <label  class="col-md-3 control-label">Embargos:</label>   
-                                <input type="text" name="par_codigo_embargos"  class="form_control col-md-1 derecha"
-                                onclick="selConcepto('V5')"  id="V5"  maxlength="3" value="{{$parametros->par_codigo_embargos}}">                         
-                                <label  class="col-md-3 control-label derecha">Préstamos:</label>
-                                <input type="text" name="par_codigo_prestamos"  class="form_control col-md-1 derecha"
-                                onclick="selConcepto('V6')"  id="V6"  maxlength="3" value="{{$parametros->par_codigo_prestamos}}">
+                                onclick="selConcepto('V4')"  id="V4"  maxlength="3" value="{{$parametros->par_codigo_retefuente}}">                         
+
                             </div>
                           
                     </div>

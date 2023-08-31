@@ -46,7 +46,18 @@ body{
     border-color: #596c7d;
     background: #caf5b8;;
 }
-
+.miButton2{
+    border-color: #596c7d;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+.miButton2 a{
+    margin-right: 5px;
+}
+.miButton2 form{
+    margin-left: 5px;
+}
 .miInputText{
     background: #dbecfb;
     width: auto;

@@ -18,7 +18,7 @@
         <option value="0">Seleccione cargo</option>
         @if(!empty($cargos))
             @foreach ($cargos as $cargo)                               
-                <option value="{{$cargo->id}}" @selected($cargo->id == $ingresos->ing_idCargo)>
+                <option value="{{$cargo->id}}|{{$cargo->car_salario}}". @selected($cargo->id == $ingresos->ing_idCargo)>
                     {{$cargo->car_nombre}}  </option>
             @endforeach
         @endif 
@@ -39,12 +39,19 @@
 </div>
 
 <div class="input mb-1">
+    <label for="ing_salario" class="col-md-2 control-label">Salario Base:</label>
+    <input type="text" name="ing_salario" id="ing_salario" class="form_control col-md-2 derecha" 
+    maxlength="10"  value="{{$ingresos->ing_salario}}">
+    <label for="ing_numeroContrato" class="col-md-2 control-label derecha">Nro Contrato:</label>
+    <input type="text" name="ing_numeroContrato" id="ing_numeroContrato" class="form_control col-md-2" 
+    maxlength="10" required value="{{$ingresos->ing_numeroContrato}}">
+</div> 
+<div class="input mb-1">
     <label for="ing_fechaIngreso" class="col-md-2 control-label">Fecha Ingreso:</label>
     <input type="date" name="ing_fechaIngreso" id="ing_fechaIngreso" class="form_control col-md-2" 
     maxlength="10" required value="{{$ingresos->ing_fechaIngreso}}">
-</div> 
-<div class="input mb-1">
-    <label for="ing_fechaRetiro" class="col-md-2 control-label">Fecha Retiro:</label>
+
+    <label for="ing_fechaRetiro" class="col-md-2 control-label derecha">Fecha Retiro:</label>
     <input type="date" name="ing_fechaRetiro" id="ing_fechaRetiro" class="form_control col-md-2" 
     maxlength="10"  value="{{$ingresos->ing_fechaRetiro}}">
 </div> 
@@ -52,11 +59,11 @@
     <label for="ing_EPS" class="col-md-2 control-label">EPS :</label>
     <select name="ing_EPS" id="ing_EPS" class="col-md-3 form_control">
         <option value="0">Seleccione eps</option>
-        @if(!empty($tipos))
-            @foreach ($tipos as $tipo)  
-            @if($tipo->tt_clase = 'EP'))                             
-                <option value="{{$tipo->id}}" @selected($tipo->id == $ingresos->ing_EPS)>
-                    {{$tipo->tt_codigo}}  
+        @if(!empty($terceros))
+            @foreach ($terceros as $tercero)  
+            @if($tercero->ter_tipoTercero == 'E'))                             
+                <option value="{{$tercero->id}}" @selected($tercero->id == $ingresos->ing_EPS)>
+                    {{$tercero->ter_nombre}}  
                 </option>
                 @endif 
             @endforeach
@@ -66,28 +73,28 @@
 <div class="input mb-tt_codigo1">
     <label for="ing_AFP" class="col-md-2 control-label">Fondo de Pensión:</label>
     <select name="ing_AFP" id="ing_AFP" class="col-md-3 form_control">
-        <option value="0">Seleccione afp</option>
-        @if(!empty($tipos))
-            @foreach ($tipos as $tipo)  
-            @if($tipo->tt_clase = 'FP'))                             
-                <option value="{{$tipo->id}}" @selected($tipo->id == $ingresos->ing_AFP)>
-                    {{$tipo->tt_codigo}}  
+        <option value="0">Seleccione AFP</option>
+        @if(!empty($terceros))
+            @foreach ($terceros as $tercero)  
+            @if($tercero->ter_tipoTercero == 'P'))                             
+                <option value="{{$tercero->id}}" @selected($tercero->id == $ingresos->ing_AFP)>
+                    {{$tercero->ter_nombre}}  
                 </option>
                 @endif 
             @endforeach
         @endif 
     </select>
 </div>
- {{--  ,ing_AFP ,ing_ARL   'id','tt_clase', 'tt_codigo'--}}
+
  <div class="input mb-tt_codigo1">
     <label for="ing_ARL" class="col-md-2 control-label">Adm Riesgo Laboral :</label>
     <select name="ing_ARL" id="ing_ARL" class="col-md-3 form_control">
         <option value="0">Seleccione ARL</option>
-        @if(!empty($tipos))
-            @foreach ($tipos as $tipo)  
-            @if($tipo->tt_clase = 'AR'))                             
-                <option value="{{$tipo->id}}" @selected($tipo->id == $ingresos->ing_ARL)>
-                    {{$tipo->tt_codigo}}  
+        @if(!empty($terceros))
+            @foreach ($terceros as $tercero)  
+            @if($tercero->ter_tipoTercero == 'R'))                             
+                <option value="{{$tercero->id}}" @selected($tercero->id == $ingresos->ing_ARL)>
+                    {{$tercero->ter_nombre}}  
                 </option>
                 @endif 
             @endforeach
@@ -100,39 +107,66 @@
     <input type="text" name="ing_porcRetefuente" id="ing_porcRetefuente" class="form_control col-md-1" 
     maxlength="6" required value="{{$ingresos->ing_porcRetefuente}}">
 </div> 
+
+<div class="input mb-1">
+    <label for="ing_deduccionSalud" class="col-md-2 control-label">Deducción Salud:</label>
+    <input type="text" name="ing_deduccionSalud" id="ing_deduccionSalud" class="form_control col-md-2 derecha" 
+    maxlength="10"  value="{{$ingresos->ing_deduccionSalud}}">
+    <label for="ing_deduccionDependiente" class="col-md-2 control-label derecha">Deduc.Persona a cargo:</label>
+    <input type="text" name="ing_deduccionDependiente" id="ing_deduccionDependiente" class="form_control col-md-2 derecha" 
+    maxlength="10" required value="{{$ingresos->ing_deduccionDependiente}}">
+</div> 
+<div class="input mb-1">
+    <label for="ing_deduccionVivienda" class="col-md-2 control-label">Deducción Vicienda:</label>
+    <input type="text" name="ing_deduccionVivienda" id="ing_deduccionVivienda" class="form_control col-md-2 derecha" 
+    maxlength="10"  value="{{$ingresos->ing_deduccionVivienda}}">
+    <label for="ing_deduccionAFC" class="col-md-2 control-label derecha">Deducción AFC:</label>
+    <input type="text" name="ing_deduccionAFC" id="ing_deduccionAFC" class="form_control col-md-2 derecha" 
+    maxlength="10" required value="{{$ingresos->ing_deduccionAFC}}">
+</div> 
+   
+
 <div class="input mb-1">
     <label for="ing_porcARL" class="col-md-2 control-label">Porcentaje ARL:</label>
     <input type="text" name="ing_porcARL" id="ing_porcARL" class="form_control col-md-1" 
     maxlength="6" required value="{{$ingresos->ing_porcARL}}">
 </div> 
-<div class="input mb-1">
-    <label for="ing_numeroContrato" class="col-md-2 control-label">Nro Contrato:</label>
-    <input type="text" name="ing_numeroContrato" id="ing_numeroContrato" class="form_control col-md-2" 
-    maxlength="10" required value="{{$ingresos->ing_numeroContrato}}">
-</div> 
 
-<div class="input mb-1">
-    <label for="ing_banco" class="col-md-2 control-label">Banco:</label>
-    <input type="text" name="ing_banco" id="ing_banco" class="form_control col-md-2" 
-    maxlength="10" required value="{{$ingresos->ing_banco}}">
-</div> 
+
+<div class="input mb-tt_codigo1">
+    <label for="ing_banco" class="col-md-2 control-label">Banco :</label>
+    <select name="ing_banco" id="ing_banco" class="col-md-3 form_control">
+        <option value="0">Seleccione banco</option>
+        @if(!empty($bancos))
+            @foreach ($bancos as $banco)                               
+                <option value="{{$banco->id}}" @selected($banco->id == $ingresos->ing_banco)>
+                    {{$banco->ban_nombre}}
+                </option>
+            @endforeach
+        @endif 
+    </select>
+</div>
+
 <div class="input mb-1">
     <label for="ing_cuenta" class="col-md-2 control-label">Nro Cuenta:</label>
     <input type="text" name="ing_cuenta" id="ing_cuenta" class="form_control col-md-2" 
     maxlength="10" required value="{{$ingresos->ing_cuenta}}">
+    <label for="ing_tipoCtaBco" class="col-md-1 control-label derecha">Titpo :</label>
+    <input type="radio" name="ing_tipoCtaBco" id="estadoA"
+    value="A" @if ($ingresos->ing_tipoCtaBco=='A') checked @endif> Ahorros
+    <input type="radio" name="ing_tipoCtaBco" id="estadoI" 
+    value="C" @if ($ingresos->ing_tipoCtaBco=='C') checked @endif> Corriente
 </div> 
 
 
-<hr>
+
 <div class="input mb-1">
     <label for="ing_encargo" class="col-md-2 control-label">Encargado ? :</label>
     <input type="radio" name="ing_encargo" id="estadoA"
     value="S" @if ($ingresos->ing_encargo=='S') checked @endif> SI
     <input type="radio" name="ing_encargo" id="estadoI" 
     value="N" @if ($ingresos->ing_encargo=='N') checked @endif> NO
- </div>
 
- <div class="input mb-tt_codigo1">
     <label for="ing_idCargoEncargo" class="col-md-2 control-label">Encargo :</label>
     <select name="ing_idCargoEncargo" id="ing_idCargoEncargo" class="col-md-3 form_control">
         <option value="0">Seleccione cargo</option>
@@ -145,8 +179,6 @@
     </select>
 </div>
 
-
-<hr>
 
     <div class="input mb-1">
         <label for="ing_estado" class="col-md-2 control-label">Estado :</label>

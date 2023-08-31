@@ -5,7 +5,7 @@
 @section('contenido')
 
 <div class="card row mt-2">
-    <h5 class="card-header">Adiciona Ingreso</h5>
+    <h5 class="card-header">Adiciona un Ingreso</h5>
     <div class="card-body">
         <p class="card-text">
             <form action="{{ route('ingresos/ingresos.store')}}" method="post">
@@ -16,4 +16,7 @@
     </div>
 </div>
     
+@endsection
+@section('scripts')
+    <script src="{!! url('js/app/ingresos.js') !!}" type='text/javascript'></script>
 @endsection

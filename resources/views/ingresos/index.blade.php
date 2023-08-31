@@ -37,9 +37,6 @@
                                 <th>Dependencia</th>
                                 <th>FchIngreso</th>
                                 <th>FchRetiro</th>                                
-                                <th>EPS</th>
-                                <th>APF</th>
-                                <th>ARL  (%)</th>
                                 <th>Retefuente</th>
                                 <th>Contrato</th>
                                 <th>Salario</th>
@@ -58,66 +55,17 @@
                             <td>{{$item->dep_nombre}}</td>
                             <td>{{$item->ing_fechaIngreso}}</td>
                             <td>{{$item->ing_fechaRetiro}}</td>
-                            <td>
-                                <select name="ing_EPS" id="ing_EPS"  class="form_control ">
-                                    @if(!empty($tipos))
-                                        @foreach ($tipos as $tipo)                               
-                                            <option value="{{$tipo->id}}" @selected($tipo->id == $item->ing_EPS)>
-                                                {{$tipo->codigo}}   </option>
-                                        @endforeach                    
-                                    @endif                                     
-                                </select>
-                            </td>
-
-                            <td>
-                                <select name="ing_AFP" id="ing_AFP"  class="form_control ">
-                                    @if(!empty($tipos))
-                                        @foreach ($tipos as $tipo)                               
-                                            <option value="{{$tipo->id}}" @selected($tipo->id == $item->ing_AFP)>
-                                                {{$tipo->codigo}}   </option>
-                                        @endforeach                    
-                                    @endif                                     
-                                </select>
-                            </td>                            
-                            <td>
-                                <select name="ing_ARL" id="ing_ARL"  class="form_control ">
-                                    @if(!empty($tipos))
-                                        @foreach ($tipos as $tipo)                               
-                                            <option value="{{$tipo->id}}" @selected($tipo->id == $item->ing_ARL)>
-                                                {{$tipo->codigo}}   </option>
-                                        @endforeach                    
-                                    @endif                                     
-                                </select>
-                                {{$item->ing_porcARL}}
-                            </td>                             
-
                             <td>{{$item->ing_porcRetefuente}}</td>
                             <td>{{$item->ing_numeroContrato}}</td>
-                            <td>{{$item->car_salario}}</td>
-                          
+                            <td class="derecha">@php echo number_format($item->car_salario,0,",",".");  @endphp </td>                         
                             <td class="centro">{{$item->ing_estado}}</td>
-                            @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
-                                <td class="mithcmd">
+                                 <td class="mithcmd">
                                     <form action="{{ route('ingresos/ingresos.edit',$item->id)}}" method="GET">
                                         <button class="btn btn-sm btn-primary">
-                                        <span class="fa-solid fa-pen"></span> Edita
+                                        <span class="fa-solid fa-pen"></span> Ver
                                         </button>         
                                     </form>
-                                </td>
-                                <td class="mithcmd">
-                                    <form action="{{ route('ingresos/ingresos.show',$item->id.'|'.$item->ter_nombre.
-                                        '|'.$item->empl_primerApellido.'|'.$item->empl_otroApellido .'|'.$item->empl_primerNombre.'|'.$item->empl_otroNombre)}}" method="GET">
-                                        <button class="btn btn-sm btn-danger">
-                                        <span class="fa-solid fa-trash-can"></span> Eliminar</button>
-                                        </button>          
-                                    </form>      
-                                </td>
-                            @endif
-
-                            <td style='display: none'>
-                                {{$item->id}}
-                                {{$item->ing_idEmpresa}}
-                            </td>                          
+                                </td>                         
                         </tr>
                     @endforeach
                 </tbody>

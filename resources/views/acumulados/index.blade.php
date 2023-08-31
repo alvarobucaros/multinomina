@@ -1,7 +1,7 @@
 @extends('layouts/plantilla')
 
 @section('tituloPagina')
-<p class="mayuscula centro">Acumulados de nómina </p>
+    <p class="mayuscula izquierda">Acumulados de nómina </p>
 @endsection
 
 @section('contenido')
@@ -10,12 +10,12 @@
   
     <div class="card-body  mb-6">
         <div class="card-text">          
-            <form action="{{ route('acumulados/acumulados.list','202301')}}" method="post">
+            <form action="{{ route('acumulados/acumulados.list',$datos[0])}}" method="post">
                 @csrf
                 <div class="input mb-1">
                     <label for="acu_periodo" class="col-md-1 control-label">Periodo :</label>
                     <input type="text" name="acu_periodo" id="acu_periodo" class="form_control col-md-1"
-                    required value="202301">
+                    required value="{{$datos[0]}}">
                 </div>
                 <div class="input mb-1">
                     <label class="col-md-1 control-label" name='selConcepto'>Empleado :</label>
@@ -32,9 +32,20 @@
                     </select>
                 </div> 
                 <br>
-                <div class="mb-3">
-                    <a href="{{route('acumulados')}}" class="btn btn-sm btn-info"> Regresa</a>
-                    <button type="submit" class="btn btn-sm btn-primary"> Acepta</button>
+                <div class="miButton2">
+                    <a href="{{route('acumulados')}}" class="btn btn-sm btn-info"> Menú</a>
+                    <form action="{{ route('terceros/terceros.edit',$datos[0])}}" method="GET">
+                        <button class="btn btn-sm btn-primary">
+                        <span class="fa-solid fa-pen"></span> Listado
+                        </button>         
+                    </form>                   
+                
+                    <form action="{{ route('acumulados/acumulados.comprobantes',$datos[0])}}" method="GET">
+                        <button class="btn btn-sm btn-warning">
+                        <span class="fa-solid fa-trash-can"></span> Comprobantes</button>
+                        </button>         
+                    </form>      
+                   
                 </div>    
             </form> 
         </div>

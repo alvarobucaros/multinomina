@@ -17,3 +17,7 @@
 </div>
     
 @endsection
+
+@section('scripts')
+    <script src="{!! url('js/app/coopfondos.js') !!}" type='text/javascript'></script>
+@endsection

@@ -20,7 +20,7 @@
         @if(!empty($terceros))
             @foreach ($terceros as $tercero)                               
                 <option value="{{$tercero->id}}" @selected($tercero->id == $coopfondos->cof_idTercero)>
-                    {{$tercero->ter_nombre}}</option>
+                    {{$tercero->ter_tipoTercero}}  - {{$tercero->ter_nombre}}</option>
             @endforeach
         @endif 
     </select>

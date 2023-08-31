@@ -32,6 +32,9 @@
                     <select name="ter_tipoTercero" id="ter_tipoTercero"  class="form_control ">
                         <option value="">Seleccione tipo tercero</option>
                         <option value="C" <?php if ($terceros->ter_tipoTercero == 'C') echo ' selected="selected"'; ?>>Cooperativa</option>
+                        <option value="E" <?php if ($terceros->ter_tipoTercero == 'E') echo ' selected="selected"'; ?>>EPS</option>
+                        <option value="P" <?php if ($terceros->ter_tipoTercero == 'P') echo ' selected="selected"'; ?>>Adm Fondo Pensión</option>
+                        <option value="R" <?php if ($terceros->ter_tipoTercero == 'R') echo ' selected="selected"'; ?>>Adm Riesgo Laboral</option>
                         <option value="F" <?php if ($terceros->ter_tipoTercero == 'F') echo ' selected="selected"'; ?>>Fondo empleado</option>
                         <option value="J" <?php if ($terceros->ter_tipoTercero == 'J') echo ' selected="selected"'; ?>>Juzgado</option>
                         <option value="O" <?php if ($terceros->ter_tipoTercero == 'O') echo ' selected="selected"'; ?>>Otro tercero</option>                      
@@ -68,7 +71,7 @@
                     <div class="input mb-1">
                         <label for="ter_ctaBanco" class="col-md-2 control-label">Nro Cuenta :</label>
                         <input type="text" name="ter_ctaBanco" id="ter_ctaBanco" class="form_control col-md-3"
-                        required value="{{$terceros->ter_ctaBanco}}">
+                         value="{{$terceros->ter_ctaBanco}}">
                     </div>
                     <div class="input mb-1">
                         <label for="ter_tipoCtaBanco" class="col-md-2 control-label">Tpo cuenta :</label>

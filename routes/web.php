@@ -40,7 +40,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::get('acumulados', [AcumuladosController::class, 'index'])->name('acumulados'); 
     Route::post('acumulados/list/{id}', [AcumuladosController::class, 'list'])->name('acumulados/acumulados.list');
     Route::get('acumulados/createPDF/{id}', [AcumuladosController::class, 'createPDF'])->name('acumulados/acumulados.createPDF');
-
+    Route::post('acumulados/comprobantes/{id}', [AcumuladosController::class, 'comprobantes'])->name('acumulados/acumulados.comprobantes');
+ 
 
     Route::get('bancos', [BancosController::class, 'index'])->name('bancos'); 
     Route::get('bancos/create', [BancosController::class, 'create'])->name('bancos/bancos.create');
@@ -155,7 +156,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::post('ingresos/ingresos/store', [IngresosController::class, 'store'])->name('ingresos/ingresos.store');
     Route::delete('ingresos/destroy/{id}', [IngresosController::class, 'destroy'])->name('ingresos/ingresos.destroy');
     Route::get('ingresos/export', [IngresosController::class, 'export'])->name('ingresos/ingresos.export');
-
+    Route::get('ingresos/ver/{id}', [IngresosController::class, 'ver'])->name('ingresos/ingresos.ver');
+ 
     Route::get('licencias', [LicenciasController::class, 'index'])->name('licencias'); 
     Route::get('licencias/create', [LicenciasController::class, 'create'])->name('licencias/licencias.create');
     Route::get('licencias/edit/{id}', [LicenciasController::class, 'edit'])->name('licencias/licencias.edit');

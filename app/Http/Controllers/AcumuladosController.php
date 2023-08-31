@@ -6,6 +6,7 @@ use App\Models\Acumulados;
 use App\Models\Empleados;
 use App\Models\Empresas;
 use App\Models\Conceptos;
+use App\Models\Parametros;
 use Illuminate\Http\Request;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
@@ -22,13 +23,24 @@ class AcumuladosController extends Controller
 
     public function index(Request $request)
     {
+        $periodos  = Parametros::where('par_idEmpresa', auth()->user()->empresa)->get('par_periodo');
+        $datos = array();
+        foreach ($periodos as $periodo){ 
+            $p=$periodo->par_periodo;
+            array_push($datos,$p);
+         }
+        
+        
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
         ->join('ingresos','ingresos.ing_idEmpleado','=','empleados.id')
+        ->join('parametros','parametros.par_idEmpresa','=','empl_idEmpresa')
         ->where('empl_estado','A')
+        ->select('empl_primerApellido','empl_otroApellido',
+        'empl_primerNombre','empl_otroNombre', 'par_periodo')
         ->orderBy("empl_primerApellido")
         ->orderBy("empl_primerNombre")->get();
-
-        return view('acumulados/index',  compact('empleados'));  
+        
+        return view('acumulados/index',  compact('empleados','datos'));  
     }
 
     public function list(Request $request)
@@ -38,32 +50,20 @@ class AcumuladosController extends Controller
 
         $datos = Acumulados::where('acu_idEmpresa', auth()->user()->empresa)
         ->join('empleados','empleados.id','=','acu_idEmpleado')
-        ->join('conceptos','conceptos.id','=','acu_idConcepto')
-        
+        ->join('conceptos','conceptos.id','=','acu_idConcepto')        
         ->where('acu_periodo',$periodo)      
         ->orderBy('empl_primerApellido') 
         ->orderBy('empl_otroApellido') 
         ->orderBy('empl_primerNombre') 
-        ->orderBy( 'empl_otroNombre') 
+        ->orderBy('empl_otroNombre') 
         ->orderBy('acu_creditos')  
         ->orderBy('acu_idConcepto')->get();
 
         if($idEmpleado > 0 ){
             $datos ->where('acu_idEmpleado',$idEmpleado) ;
         }
-  
         $datos;
         
-       
-       // return view('conceptos/index', compact('datos'));  
-
-
-      //  $datos = Acumulados::where('acu_idEmpresa', auth()->user()->empresa);
-       // ->where('acu_periodo',$periodo);
-        // ->join('empleados','empleados.id','=','aumulados.acu_idEmpleado')
-        // ->join('conceptos','conceptos.id','=','aumulados.acu_idConcepto')
-    
-
         return view('acumulados/list', compact('datos'));  
     }
 
@@ -73,27 +73,26 @@ class AcumuladosController extends Controller
         ->join('parametros','parametros.par_idEmpresa','=','empresas.id')->get();
     
         $this->acumuladosTitulo($empresas, $id);
-
         $y=25;
        
-        $this->fpdf->SetFont('Arial','B',8);
+        $this->fpdf->SetFont('Arial','B',7);
         $this->fpdf->Text( 05, $y,'Periodo' );
-        $this->fpdf->Text( 30, $y,' Empleado' );
+        $this->fpdf->Text( 25, $y,' Empleado' );
         $this->fpdf->Text( 75, $y,'Concepto' );
-        $this->fpdf->Text( 110, $y,'Cantidad' );
-        $this->fpdf->Text( 135,$y, 'Devengado' );
-        $this->fpdf->Text( 165, $y,'Deducido' );
-        $this->fpdf->Text( 190, $y,'Estado' );
+        $this->fpdf->Text( 135, $y,'Cantidad' );
+        $this->fpdf->Text( 160,$y, 'Devengado' );
+        $this->fpdf->Text( 185, $y,'Deducido' );
+      
         $y+=2;
-        $this->fpdf->SetFont('Arial','',8);
+        $this->fpdf->SetFont('Arial','',7);
         $this->fpdf->Line(3, $y, 200, $y); 
         $this->fpdf->SetY($y); 
         $acumulados = Acumulados::where('acumulados.acu_idEmpresa', auth()->user()->empresa)
         ->where('acumulados.acu_periodo',$id )
         ->join('conceptos','conceptos.id','=','acumulados.acu_idConcepto')
         ->join('empleados','empleados.id','=','acumulados.acu_idEmpleado')
-        ->get(['acu_idEmpleado','acu_periodo', 'acu_numero', 'acu_debitos', 
-        'acu_creditos', 'acu_estado','cp_descripcion', 'empl_primerApellido',
+        ->get(['acu_idEmpleado','acu_periodo', 'acu_numero', 'acu_debitos', 'acu_detalle',
+        'acu_creditos', 'cp_descripcion', 'empl_primerApellido',
         'empl_otroApellido',  'empl_primerNombre', 'empl_otroNombre']);
         $idEmpleado = 0;
         $devengados = 0;
@@ -104,7 +103,7 @@ class AcumuladosController extends Controller
                 if($acumulado->acu_idEmpleado != $idEmpleado){
                     if($idEmpleado != 0){
                         $this->acumuladosCorte($devengados, $deducciones, $y);
-                        $y += 7;
+                        $y += 10;
                     }
                     $idEmpleado = $acumulado->acu_idEmpleado;
                     $devengados = 0;
@@ -115,18 +114,21 @@ class AcumuladosController extends Controller
                 }
                
                 $this->fpdf->Text( 05, $y,$acumulado->acu_periodo );
-                $this->fpdf->Text( 20, $y, utf8_decode($empleadoNombre) ); 
-                $this->fpdf->Text( 70, $y, utf8_decode($acumulado->cp_descripcion) );
-                $this->fpdf->Text( 110, $y,$acumulado->acu_numero );
-                $this->fpdf->SetXY(135,$y);
-                $this->fpdf->Cell(15,0,  number_format($acumulado->acu_debitos,0,",","."),0,0,'R');
-                $this->fpdf->SetXY(165,$y);
-                $this->fpdf->Cell(15,0,  number_format($acumulado->acu_creditos,0,",","."),0,0,'R');
-                $estado = 'Aplicado';
-                if($acumulado->acu_estado == 'P'){$estado = 'Pendiente';}
-                $this->fpdf->Text( 190, $y,$estado ); 
+                $this->fpdf->Text( 16, $y, utf8_decode($empleadoNombre) ); 
+                $this->fpdf->Text( 70, $y, utf8_decode($acumulado->cp_descripcion.' '.$acumulado->acu_detalle ));
+                $this->fpdf->Text( 138, $y,$acumulado->acu_numero );
+                $this->fpdf->SetXY(160,$y);
+                $this->fpdf->Cell(12,0,  number_format($acumulado->acu_debitos,0,",","."),0,0,'R');
+                $this->fpdf->SetXY(185,$y);
+                $this->fpdf->Cell(12,0,  number_format($acumulado->acu_creditos,0,",","."),0,0,'R');
+ 
                 $devengados += $acumulado->acu_debitos;
                 $deducciones += $acumulado->acu_creditos;
+                if($y > 240 ){
+                    $this->acumuladosTitulo($empresas, $id);
+                    $y=25;
+                    $this->fpdf->SetFont('Arial','',7);
+                }
             }
             $this->acumuladosCorte($devengados, $deducciones, $y);
             $y += 1;
@@ -141,10 +143,12 @@ class AcumuladosController extends Controller
         $this->fpdf->Output();
 
         exit;
-
- 
       }
   
+      public function comprobantes(string $id) {
+        exit;
+      }
+
       private function acumuladosTitulo($empresas, $id){
         $this->fpdf->AddPage("P");
         $this->fpdf->SetFont('Arial','',10);
@@ -166,17 +170,17 @@ class AcumuladosController extends Controller
       }
 
      private function acumuladosCorte($devengados, $deducciones, $y){ 
-      
-        $this->fpdf->Text( 135,$y, '-----------' );
-        $this->fpdf->Text( 165, $y,'-----------' );
-        $this->fpdf->SetFont('Arial','B',8);
         $y += 2;
-        $this->fpdf->Text( 110, $y,'Sub Total' );
-        $this->fpdf->SetXY(135,$y);
-        $this->fpdf->Cell( 15,0, number_format($devengados,0,",","."),0,0,'R');
-        $this->fpdf->SetXY(165,$y);
-        $this->fpdf->Cell( 15,0,  number_format($deducciones,0,",","."),0,0,'R');
-        $this->fpdf->SetFont('Arial','',8);
+        $this->fpdf->Text( 160,$y, '--------------' );
+        $this->fpdf->Text( 185, $y,'--------------' );
+        $this->fpdf->SetFont('Arial','B',7);
+        $y += 2;
+        $this->fpdf->Text( 120, $y,'Sub Total' );
+        $this->fpdf->SetXY(160,$y);
+        $this->fpdf->Cell( 12,0, number_format($devengados,0,",","."),0,0,'R');
+        $this->fpdf->SetXY(185,$y);
+        $this->fpdf->Cell( 12,0,  number_format($deducciones,0,",","."),0,0,'R');
+        $this->fpdf->SetFont('Arial','',7);
      }
 
     /**

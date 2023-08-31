@@ -20,7 +20,8 @@ class EmbargosController extends Controller
         ->join('terceros','terceros.id','=','embargos.emb_idTercero')
         ->select('empl_primerNombre', 'empl_otroNombre', 'empl_primerApellido', 
         'empl_otroApellido','ter_nombre', 'embargos.id','emb_idEmpresa','emb_idEmpleado',
-        'emb_idTercero','emb_valorCuota','emb_valorTotal','emb_estado') 
+        'emb_idTercero','emb_valorCuota','emb_valorTotal','emb_estado','emb_porcentaje',
+        'emb_conPrestaciones','emb_sobreBasico') 
         ->where('emb_estado', '=', 'A')
         ->orderBy('emb_estado')
         ->orderBy('empl_primerApellido')
@@ -37,20 +38,25 @@ class EmbargosController extends Controller
         $empleados = Empleados::where('empl_idEmpresa', auth()->user()->empresa)
         ->join('ingresos','ingresos.ing_idEmpleado','=','empleados.id')
         ->where('empl_estado','A')
+        ->select('empl_primerApellido','empl_otroApellido',
+        'empl_primerNombre','empl_otroNombre')
         ->orderBy("empl_primerApellido")
         ->orderBy("empl_primerNombre")->get();
       
         $terceros = Terceros::where('ter_idEmpresa', auth()->user()->empresa)
         ->where('ter_estado','A')
-        ->where('ter_tipoTercero','J')
+        ->whereNotIn('ter_tipoTercero',['E','R','P'])
         ->orderBy("ter_nombre")->get();
 
         $embargos = new Embargos();
         $embargos->emb_idEmpresa = auth()->user()->empresa;
         $embargos->emb_estado = 'A';
         $embargos->emb_tipo='';
-        $embargos->emb_valorDefault = 0;
-        $embargos->emb_porcentajeDefault = 0;
+        $embargos->emb_porcentaje  = 0;
+        $embargos->emb_valorCuota = 0;
+        $embargos->emb_valorTotal = 0;
+        $embargos->emb_conPrestaciones='N';
+        $embargos->emb_sobreBasico='S';
         return view('embargos/agregar', compact('embargos','empleados','terceros'));
     }
 
@@ -66,6 +72,10 @@ class EmbargosController extends Controller
         $embargos->emb_valorCuota = $request->post('emb_valorCuota');
         $embargos->emb_valorTotal = $request->post('emb_valorTotal');
         $embargos->emb_estado = $request->post('emb_estado');
+        $embargos->emb_porcentaje = $request->post('emb_porcentaje');
+        $embargos->emb_conPrestaciones = $request->post('emb_conPrestaciones');
+        $embargos->emb_sobreBasico = $request->post('emb_sobreBasico');
+        
         $embargos->save();
         return redirect()->route("embargos")->with("success","Agregado correctamente");
      }
@@ -77,7 +87,6 @@ class EmbargosController extends Controller
     {
         $ar = explode('|',$id);
         return view('embargos/eliminar', compact('ar'));
-
     }
 
     /** 
@@ -95,7 +104,7 @@ class EmbargosController extends Controller
         $terceros = Terceros::where('ter_idEmpresa', auth()->user()->empresa)
         ->select('terceros.id','ter_nombre')
         ->where('ter_estado','A') 
-        ->where('ter_tipoTercero','J')
+
         ->orderBy("ter_nombre")->get();
 
        $embargos = Embargos::find($id);
@@ -113,7 +122,10 @@ class EmbargosController extends Controller
         $embargos->emb_idTercero = $request->post('emb_idTercero');
         $embargos->emb_valorCuota = $request->post('emb_valorCuota');
         $embargos->emb_valorTotal = $request->post('emb_valorTotal');
-        $embargos->emb_estado = $request->post('emb_estado');        
+        $embargos->emb_estado = $request->post('emb_estado');     
+        $embargos->emb_porcentaje = $request->post('emb_porcentaje'); 
+        $embargos->emb_conPrestaciones = $request->post('emb_conPrestaciones');
+        $embargos->emb_sobreBasico = $request->post('emb_sobreBasico');  
         $embargos->save();
         return redirect()->route("embargos")->with("success","Actualizado correctamente");
 

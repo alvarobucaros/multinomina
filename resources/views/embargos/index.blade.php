@@ -36,6 +36,9 @@
                                 <th>Tercero</th>
                                 <th>Cuota Mes</th>
                                 <th>Valor Total</th>
+                                <th>Porcentaje</th>
+                                <th>Prestaciones</th>
+                                <th>Solo Básico</th>
                                 <th>Estado</th>
                                 @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
                                     <th colspan="2" class="centro">Acciones</th>
@@ -51,23 +54,27 @@
                                         <td>{{$item->ter_nombre}}</td>
                                         <td>{{$item->emb_valorCuota}}</td>
                                         <td>{{$item->emb_valorTotal}}</td>
-                                        <td class="mithcmd miColc">{{$item->emb_estado}}<td>
-                                            @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
-                                        <td class="mithcmd">
-                                            <form action="{{ route('embargos/embargos.edit',$item->id)}}" method="GET">
-                                                <button class="btn btn-sm btn-primary">
-                                                <span class="fa-solid fa-pen"></span> Edita
-                                                </button>         
-                                            </form>
-                                        </td>
-                                        <td class="mithcmd">
-                                            <form action="{{ route('embargos/embargos.show',$item->id.'|'.$item->ter_nombre.
-                                                '|'.$item->empl_primerApellido.'|'.$item->empl_otroApellido .'|'.$item->empl_primerNombre.'|'.$item->empl_otroNombre)}}" method="GET">
-                                                <button class="btn btn-sm btn-danger">
-                                                <span class="fa-solid fa-trash-can"></span> Eliminar</button>
-                                                </button>         
-                                            </form>      
-                                        </td>
+                                        <td>{{$item->emb_porcentaje}}</td>
+                                        <td class="mitad">{{$item->emb_conPrestaciones}}<td>
+                                        <td class="mitad">{{$item->emb_sobreBasico}}<td>
+                                            
+                                        <td class="mitad">{{$item->emb_estado}}<td>
+                                        @if (auth()->user()->profile == 'A' || (auth()->user()->profile == 'S') )
+                                            <td class="mithcmd">
+                                                <form action="{{ route('embargos/embargos.edit',$item->id)}}" method="GET">
+                                                    <button class="btn btn-sm btn-primary">
+                                                    <span class="fa-solid fa-pen"></span> Edita
+                                                    </button>         
+                                                </form>
+                                            </td>
+                                            <td class="mithcmd">
+                                                <form action="{{ route('embargos/embargos.show',$item->id.'|'.$item->ter_nombre.
+                                                    '|'.$item->empl_primerApellido.'|'.$item->empl_otroApellido .'|'.$item->empl_primerNombre.'|'.$item->empl_otroNombre)}}" method="GET">
+                                                    <button class="btn btn-sm btn-danger">
+                                                    <span class="fa-solid fa-trash-can"></span> Eliminar</button>
+                                                    </button>         
+                                                </form>      
+                                            </td>
                                         @endif
 
                                         <td style='display: none'>

@@ -36,16 +36,36 @@
                     <label for="emb_valorTotal" class="col-md-2 control-label">Valor total:</label>
                     <input type="text" name="emb_valorTotal" id="emb_valorTotal" class="form_control col-md-2" 
                     maxlength="10" required value="{{$embargos->emb_valorTotal}}">
-                </div>     
-
+                </div>   
                 <div class="input mb-1">
+                    <label for="emb_porcentaje" class="col-md-2 control-label">Porcentaje:</label>
+                    <input type="text" name="emb_porcentaje" id="emb_porcentaje" class="form_control col-md-2" 
+                    maxlength="10" required value="{{$embargos->emb_porcentaje}}">
+                </div>  
+                
+                <div class="input mb-1">
+                    <label for="emb_conPrestaciones" class="col-md-2 control-label">Con Prestaciones :</label>
+                    <input type="radio" name="emb_conPrestaciones" id="estadoA"
+                    value="S" @if ($embargos->emb_conPrestaciones=='S') checked @endif> SI
+                    <input type="radio" name="emb_conPrestaciones" id="estadoI" 
+                    value="N" @if ($embargos->emb_conPrestaciones=='N') checked @endif> No
+                 </div>
+                 <div class="input mb-1">
+                    <label for="emb_sobreBasico" class="col-md-2 control-label">Solo Básico :</label>
+                    <input type="radio" name="emb_sobreBasico" id="estadoA"
+                    value="S" @if ($embargos->emb_sobreBasico=='S') checked @endif> SI
+                    <input type="radio" name="emb_sobreBasico" id="estadoI" 
+                    value="N" @if ($embargos->emb_sobreBasico=='N') checked @endif> No
+                 </div>
+                 
+
+                 <div class="input mb-1">
                     <label for="emb_estado" class="col-md-2 control-label">Estado :</label>
                     <input type="radio" name="emb_estado" id="estadoA"
                     value="A" @if ($embargos->emb_estado=='A') checked @endif> Activo
                     <input type="radio" name="emb_estado" id="estadoI" 
                     value="I" @if ($embargos->emb_estado=='I') checked @endif> Inactivo
-                 </div>
-  
+                 </div> 
                  <div style='display: none'>
                     <input type="text" name="id" id="id" value="{{$embargos->id}}">
                     <input type="text" name="emb_idEmpresa" id="emb_idEmpresa" value="{{$embargos->emb_idEmpresa}}">
