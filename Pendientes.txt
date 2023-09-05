@@ -4,4 +4,4 @@ Pendientes de nomina
 
 2)	Incluir validaciones de datos. tener en cuenta que es punto deimal y no coma
 
-3)	en conceptos incluir si es no no factor salarial, incluir si es factos base de seguridad social
+3)	en conceptos incluir si es no no factor salarial, incluir si es factos base de seguridad social..
